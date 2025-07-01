@@ -15,7 +15,7 @@ export default function PremiumSupplements() {
         "Enhances growth and vitality",
         "Ideal for cattle and poultry"
       ],
-      imageUrl: "https://postmanoil.com/wp-content/uploads/2025/05/IMG_8533-scaled.jpg",
+      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/05/IMG_8533-scaled.jpg",
       icon: "🐄"
     },
     {
@@ -27,7 +27,7 @@ export default function PremiumSupplements() {
         "Serves as a nutrient-rich animal feed",
         "100% organic and eco-friendly"
       ],
-      imageUrl: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8726-1-scaled.jpg",
+      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8726-1-scaled.jpg",
       icon: "🌱"
     },
     {
@@ -39,7 +39,7 @@ export default function PremiumSupplements() {
         "Strengthens animal health",
         "Supports sustained livestock productivity"
       ],
-      imageUrl: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_6416-scaled.jpg",
+      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_6416-scaled.jpg",
       icon: "🥜"
     }
   ];
@@ -66,7 +66,7 @@ export default function PremiumSupplements() {
         <div className="py-12 md:py-16 text-center">
           <div className="flex justify-center mb-6">
             <Image 
-              src="https://postmanoil.com/wp-content/uploads/2025/06/Logo.png" 
+              src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png" 
               alt="Postman Oils Logo" 
               width={180} 
               height={80} 

@@ -6,17 +6,17 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      image: "https://postmanoil.com/wp-content/uploads/2025/05/1.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/1.png",
       alt: "Postman Kachi Ghani Mustard Oil - Premium Quality"
     },
     {
       id: 2,
-      image: "https://postmanoil.com/wp-content/uploads/2025/05/2.png", 
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/2.png", 
       alt: "Postman Oil Categories - Complete Range"
     },
     {
       id: 3,
-      image: "https://postmanoil.com/wp-content/uploads/2025/05/3.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/3.png",
       alt: "Postman Pure Oil Products - Traditional Quality"
     }
   ];

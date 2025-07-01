@@ -82,7 +82,7 @@ export default function Header() {
             <Link href="/" className="flex-shrink-0 group">
               <div className="relative overflow-hidden rounded-lg">
                 <img
-                  src="https://postmanoil.com/wp-content/uploads/2025/06/Logo.png"
+                  src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png"
                   alt="Postman Oils - Premium Cooking Oils"
                   className={`w-auto transition-all duration-300 group-hover:scale-105 filter brightness-110 contrast-110 ${
                     isScrolled 

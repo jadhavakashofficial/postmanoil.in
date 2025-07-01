@@ -62,7 +62,7 @@ export default function YearsOfTrust() {
                 }}
               >
                 <img
-                  src="https://postmanoil.com/wp-content/uploads/2025/05/Postman.png"
+                  src="https://postmanoil.com/blog/wp-content/uploads/2025/05/Postman.png"
                   alt="Postman Oil - 55+ Years of Trust and Tradition"
                   className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500 p-4"
                   loading="lazy"

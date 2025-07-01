@@ -22,7 +22,7 @@ export default function RecipeBlogPost() {
       setLoading(true);
       
       // Fetch specific blog post by slug from postmanoil.com
-      const response = await fetch(`https://postmanoil.com/wp-json/wp/v2/posts?slug=${slug}&_embed`);
+      const response = await fetch(`https://postmanoil.com/blog/wp-json/wp/v2/posts?slug=${slug}&_embed`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch blog post');
@@ -68,7 +68,7 @@ export default function RecipeBlogPost() {
 
   const fetchRelatedPosts = async (currentPostId) => {
     try {
-      const response = await fetch(`https://postmanoil.com/wp-json/wp/v2/posts?per_page=3&_embed&exclude=${currentPostId}`);
+      const response = await fetch(`https://postmanoil.com/blog/wp-json/wp/v2/posts?per_page=3&_embed&exclude=${currentPostId}`);
       if (response.ok) {
         const posts = await response.json();
         const related = posts.slice(0, 3).map(p => ({

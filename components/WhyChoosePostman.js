@@ -3,42 +3,42 @@ export default function WhyChoosePostmanOil() {
     {
       id: 1,
       title: "100% NATURAL",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/1.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/1.png",
       gradient: "from-green-500 to-emerald-600",
       bgGlow: "from-green-100 to-emerald-100"
     },
     {
       id: 2,
       title: "WOODEN COLD-PRESSED",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/2.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/2.png",
       gradient: "from-amber-500 to-orange-600",
       bgGlow: "from-amber-100 to-orange-100"
     },
     {
       id: 3,
       title: "LAB-TESTED PURITY",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8500-scaled-e1751300136461.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8500-scaled-e1751300136461.jpg",
       gradient: "from-blue-500 to-indigo-600",
       bgGlow: "from-blue-100 to-indigo-100"
     },
     {
       id: 4,
       title: "MADE IN INDIA",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/3.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/3.png",
       gradient: "from-orange-500 to-red-600",
       bgGlow: "from-orange-100 to-red-100"
     },
     {
       id: 5,
       title: "HEALTHY & PURE",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/5.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/5.png",
       gradient: "from-pink-500 to-rose-600",
       bgGlow: "from-pink-100 to-rose-100"
     },
     {
       id: 6,
       title: "AMAZING TASTE",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/4.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/4.png",
       gradient: "from-purple-500 to-violet-600",
       bgGlow: "from-purple-100 to-violet-100"
     }

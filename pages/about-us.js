@@ -28,21 +28,21 @@ export default function AboutUs() {
       name: "Kacchi Ghani Mustard Oil",
       description: "Strong aroma, perfect for authentic Indian cooking",
       features: ["Cold Pressed", "Rich in Omega-3"],
-      image: "https://postmanoil.com/wp-content/uploads/2025/05/3.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/3.png",
       color: "from-orange-500 to-amber-500"
     },
     {
       name: "Groundnut Filtered Oil",
       description: "Rich in taste, ideal for high-heat cooking",
       features: ["Wooden Pressed", "High Smoke Point"],
-      image: "https://postmanoil.com/wp-content/uploads/2025/05/1.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/1.png",
       color: "from-amber-500 to-yellow-500"
     },
     {
       name: "Refined Groundnut Oil",
       description: "Light and neutral, great for daily use",
       features: ["Triple Refined", "Cholesterol Free"],
-      image: "https://postmanoil.com/wp-content/uploads/2025/05/2.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/2.png",
       color: "from-yellow-500 to-yellow-400"
     }
   ];
@@ -69,7 +69,7 @@ export default function AboutUs() {
         <div className="text-center pb-8">
           <div className="flex justify-center mb-6">
             <Image 
-              src="https://postmanoil.com/wp-content/uploads/2025/06/Logo.png" 
+              src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png" 
               alt="Postman Oils Logo" 
               width={200} 
               height={100} 
@@ -158,9 +158,9 @@ export default function AboutUs() {
                       muted={isVideoMuted}
                       loop
                       playsInline
-                      poster="https://postmanoil.com/wp-content/uploads/2025/05/video-poster.jpg"
+                      poster="https://postmanoil.com/blog/wp-content/uploads/2025/05/video-poster.jpg"
                     >
-                      <source src="https://postmanoil.com/wp-content/uploads/2025/06/postman-oill_17-1.mp4" type="video/mp4" />
+                      <source src="https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                     <button 

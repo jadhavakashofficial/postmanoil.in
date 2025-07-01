@@ -10,7 +10,7 @@ export default function CustomerReviews() {
   const reviews = [
     {
       id: 1,
-      videoUrl: 'https://postmanoil.com/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
+      videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=300&fit=crop&crop=face',
       name: 'Priya Sharma',
       location: 'Mumbai, Maharashtra',
@@ -20,7 +20,7 @@ export default function CustomerReviews() {
     },
     {
       id: 2,
-      videoUrl: 'https://postmanoil.com/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
+      videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=face',
       name: 'Rajesh Kumar',
       location: 'Delhi, India',
@@ -30,7 +30,7 @@ export default function CustomerReviews() {
     },
     {
       id: 3,
-      videoUrl: 'https://postmanoil.com/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
+      videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=300&fit=crop&crop=face',
       name: 'Meera Patel',
       location: 'Ahmedabad, Gujarat',
@@ -40,7 +40,7 @@ export default function CustomerReviews() {
     },
     {
       id: 4,
-      videoUrl: 'https://postmanoil.com/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
+      videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=300&fit=crop&crop=face',
       name: 'Amit Singh',
       location: 'Jaipur, Rajasthan',
@@ -50,7 +50,7 @@ export default function CustomerReviews() {
     },
     {
       id: 5,
-      videoUrl: 'https://postmanoil.com/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
+      videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop&crop=face',
       name: 'Sunita Reddy',
       location: 'Hyderabad, Telangana',
@@ -60,7 +60,7 @@ export default function CustomerReviews() {
     },
     {
       id: 6,
-      videoUrl: 'https://postmanoil.com/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
+      videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=300&fit=crop&crop=face',
       name: 'Kavya Iyer',
       location: 'Bangalore, Karnataka',

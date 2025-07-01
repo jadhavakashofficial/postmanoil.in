@@ -27,7 +27,7 @@ export default function PostmanRecipes() {
       setLoading(true);
       
       // Fetch from your WordPress blog
-      const response = await fetch('https://postmanoil.com/wp-json/wp/v2/posts?per_page=12&_embed');
+      const response = await fetch('https://postmanoil.com/blog/wp-json/wp/v2/posts?per_page=12&_embed');
       
       if (!response.ok) {
         throw new Error('Failed to fetch blog posts');

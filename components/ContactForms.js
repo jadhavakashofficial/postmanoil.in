@@ -89,7 +89,7 @@ export default function ContactForms() {
             <div className="relative">
               <div className="bg-white p-4 rounded-full shadow-2xl border-4 border-orange-100">
                 <img 
-                  src="https://postmanoil.com/wp-content/uploads/2025/06/Logo.png" 
+                  src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png" 
                   alt="Postman Oil Logo"
                   className="h-20 w-auto object-contain"
                 />

@@ -6,19 +6,19 @@ export default function PostmanOilCategories() {
     {
       id: 1,
       title: "Kacchi Ghani Mustard Oil",
-      image: "https://postmanoil.com/wp-content/uploads/2025/05/1.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/1.png",
       link: "/mustard-oil"
     },
     {
       id: 2,
       title: "Groundnut Filtered Oil", 
-      image: "https://postmanoil.com/wp-content/uploads/2025/05/2.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/2.png",
       link: "/groundnut-oil"
     },
     {
       id: 3,
       title: "Refined Groundnut Oil",
-      image: "https://postmanoil.com/wp-content/uploads/2025/05/3.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/3.png",
       link: "/refined-groundnut-oil"
     }
   ];

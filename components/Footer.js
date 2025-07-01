@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div>
               <img
-                src="https://postmanoil.com/wp-content/uploads/2025/06/Logo.png"
+                src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png"
                 alt="Postman Oils"
                 className="h-12 w-auto mb-3"
               />
@@ -173,7 +173,7 @@ export default function Footer() {
           {/* Company Info - Always Visible */}
           <div className="text-center mb-6">
             <img
-              src="https://postmanoil.com/wp-content/uploads/2025/06/Logo.png"
+              src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png"
               alt="Postman Oils"
               className="h-10 w-auto mx-auto mb-3"
             />

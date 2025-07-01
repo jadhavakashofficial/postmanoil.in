@@ -27,8 +27,8 @@ export default function PostmanRecipes() {
       
       // Try multiple API endpoints
       const endpoints = [
-        `https://postmanoil.com/wp-json/wp/v2/posts?per_page=${postsPerPage}&page=${page}&_embed&orderby=date&order=desc`,
-        `https://postmanoil.com/wp-json/wp/v2/posts?per_page=${postsPerPage}&page=${page}&orderby=date&order=desc`,
+        `https://postmanoil.com/blog/wp-json/wp/v2/posts?per_page=${postsPerPage}&page=${page}&_embed&orderby=date&order=desc`,
+        `https://postmanoil.com/blog/wp-json/wp/v2/posts?per_page=${postsPerPage}&page=${page}&orderby=date&order=desc`,
         `https://postmanoil.com/blog/wp-json/wp/v2/posts?per_page=${postsPerPage}&page=${page}&_embed&orderby=date&order=desc`,
         `https://postmanoil.com/blog/wp-json/wp/v2/posts?per_page=${postsPerPage}&page=${page}&orderby=date&order=desc`
       ];

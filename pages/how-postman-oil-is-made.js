@@ -41,7 +41,7 @@ export default function HowOilIsMade() {
       title: "Cleaning & Selection",
       icon: "✨",
       accent: "from-amber-500 to-yellow-500",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/1.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/1.png",
       detail: "Seeds undergo a meticulous 3-stage cleaning process. First, mechanical sieving removes large debris. Then, air classification eliminates dust and lightweight particles. Finally, hand-sorting ensures only perfect seeds proceed.",
       stats: "99.9% purity | Zero foreign matter | 3-stage verification"
     },
@@ -50,7 +50,7 @@ export default function HowOilIsMade() {
       title: "Seed Crushing",
       icon: "⚡",
       accent: "from-yellow-500 to-orange-500",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8333-scaled.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8333-scaled.jpg",
       detail: "Using traditional granite stone mills, we gently crush seeds at low RPM to prevent heat buildup. This ancient technique preserves delicate nutrients while preparing the seeds for oil extraction.",
       stats: "Low-temperature crushing | Nutrient preservation | 24-hour batch monitoring"
     },
@@ -59,7 +59,7 @@ export default function HowOilIsMade() {
       title: "Oil Extraction",
       icon: "💧",
       accent: "from-orange-500 to-red-500",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8326-scaled.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8326-scaled.jpg",
       detail: "Our cold-press extraction maintains temperatures below 40°C (104°F) throughout the process. This slow, pressure-controlled method ensures maximum nutrient retention and authentic flavor profile.",
       stats: "Temperature-controlled <40°C | Single-press extraction | No chemical solvents"
     },
@@ -68,7 +68,7 @@ export default function HowOilIsMade() {
       title: "Filtration",
       icon: "🔬",
       accent: "from-red-500 to-pink-500",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8244-scaled.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8244-scaled.jpg",
       detail: "Freshly pressed oil undergoes a natural sedimentation process followed by triple-layer filtration through food-grade cellulose, diatomaceous earth, and activated charcoal. This removes impurities while preserving nutrients.",
       stats: "3-stage filtration | 99.99% clarity | Natural sedimentation"
     },
@@ -77,7 +77,7 @@ export default function HowOilIsMade() {
       title: "Laboratory Testing",
       icon: "🧪",
       accent: "from-pink-500 to-red-500",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8516-scaled.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8516-scaled.jpg",
       detail: "Each batch is tested for 47 quality parameters including peroxide value, free fatty acids, and nutrient content. Our in-house lab and third-party verification ensure every bottle meets our strict standards.",
       stats: "47 quality parameters | Batch-specific reports | ISO-certified testing"
     },
@@ -86,7 +86,7 @@ export default function HowOilIsMade() {
       title: "Packaging",
       icon: "📦",
       accent: "from-red-500 to-orange-500",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8284-scaled.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8284-scaled.jpg",
       detail: "Oil is immediately bottled in UV-protected amber glass under nitrogen flushing to prevent oxidation. Each bottle is sealed with tamper-evident caps and labeled with harvest date and batch number.",
       stats: "Nitrogen-flushed | Light-protected bottles | Farm-to-bottle traceability"
     }
@@ -116,7 +116,7 @@ export default function HowOilIsMade() {
         <div className="text-center mb-16">
           <div className="flex justify-center mb-6">
             <img 
-              src="https://postmanoil.com/wp-content/uploads/2025/06/Logo.png" 
+              src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png" 
               alt="Postman Oils Logo" 
               className="h-20 w-auto object-contain"
             />

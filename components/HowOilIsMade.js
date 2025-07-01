@@ -12,7 +12,7 @@ export default function HowOilIsMade() {
     {
       id: 2,
       title: "Cleaning & Selection",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/1.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/1.png",
       description: "Thorough cleaning and hand-sorting to remove all impurities",
       icon: "✨",
       gradient: "from-blue-500 to-cyan-600",
@@ -21,7 +21,7 @@ export default function HowOilIsMade() {
     {
       id: 3,
       title: "Seed Crushing",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8333-scaled.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8333-scaled.jpg",
       description: "Traditional stone mills gently crush seeds to preserve nutrients",
       icon: "⚡",
       gradient: "from-purple-500 to-indigo-600",
@@ -30,7 +30,7 @@ export default function HowOilIsMade() {
     {
       id: 4,
       title: "Oil Extraction",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8326-scaled.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8326-scaled.jpg",
       description: "Cold-press extraction below 40°C to preserve nutrients",
       icon: "💧",
       gradient: "from-orange-500 to-red-600",
@@ -39,7 +39,7 @@ export default function HowOilIsMade() {
     {
       id: 5,
       title: "Filtration",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8244-scaled.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8244-scaled.jpg",
       description: "Multi-stage purification process for crystal-clear oil",
       icon: "🔬",
       gradient: "from-pink-500 to-rose-600",
@@ -48,7 +48,7 @@ export default function HowOilIsMade() {
     {
       id: 6,
       title: "Laboratory Testing",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8516-scaled.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8516-scaled.jpg",
       description: "Rigorous quality control to ensure purity and freshness",
       icon: "🧪",
       gradient: "from-yellow-500 to-amber-600",
@@ -57,7 +57,7 @@ export default function HowOilIsMade() {
     {
       id: 7,
       title: "Packaging",
-      image: "https://postmanoil.com/wp-content/uploads/2025/06/IMG_8284-scaled.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8284-scaled.jpg",
       description: "Nitrogen-flushed bottles sealed for freshness",
       icon: "📦",
       gradient: "from-green-500 to-emerald-600",

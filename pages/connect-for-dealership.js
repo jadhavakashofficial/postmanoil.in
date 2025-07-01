@@ -100,7 +100,7 @@ export default function ContactUsPage() {
           <div className="mb-8">
             <div className="inline-block bg-white/80 backdrop-blur-sm rounded-2xl p-4 mb-6 shadow-lg border border-orange-200">
               <img 
-                src="https://postmanoil.com/wp-content/uploads/2025/06/Logo.png" 
+                src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png" 
                 alt="Postman Oil Logo"
                 className="h-16 w-auto object-contain mx-auto"
               />

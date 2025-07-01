@@ -10,7 +10,7 @@ export default function GroundnutOilPage() {
   const productsPerPage = 8;
 
   // WooCommerce API credentials
-  const WC_BASE_URL = 'https://postmanoil.com';
+  const WC_BASE_URL = 'https://postmanoil.com/blog';
   const CONSUMER_KEY = 'ck_32dc33cd096651ea8476fe46f8435cea7ad9d713';
   const CONSUMER_SECRET = 'cs_54ddbb8dd5606fa41bbe040d091731fee0abbfdc';
 
@@ -98,9 +98,9 @@ export default function GroundnutOilPage() {
 
   const getPlatformLogo = (platform) => {
     const logos = {
-      'Amazon': 'https://postmanoil.com/wp-content/uploads/2025/06/amazon-logo-on-transparent-background-free-vector.jpg',
-      'Flipkart': 'https://postmanoil.com/wp-content/uploads/2025/06/flipkart-logo-svg-vector.svg',
-      'JioMart': 'https://postmanoil.com/wp-content/uploads/2025/06/jio-mart-logo.png'
+      'Amazon': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/amazon-logo-on-transparent-background-free-vector.jpg',
+      'Flipkart': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/flipkart-logo-svg-vector.svg',
+      'JioMart': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/jio-mart-logo.png'
     };
     return logos[platform] || logos['Amazon'];
   };
