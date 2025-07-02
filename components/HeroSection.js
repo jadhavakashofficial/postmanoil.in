@@ -7,17 +7,20 @@ export default function HeroSection() {
     {
       id: 1,
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/1.png",
-      alt: "Postman Kachi Ghani Mustard Oil - Premium Quality"
+      alt: "Postman Kachi Ghani Mustard Oil - Premium Quality",
+      link: "/groundnut-oil"
     },
     {
       id: 2,
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/2.png", 
-      alt: "Postman Oil Categories - Complete Range"
+      alt: "Postman Oil Categories - Complete Range",
+      link: "/refined-groundnut-oil"
     },
     {
       id: 3,
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/3.png",
-      alt: "Postman Pure Oil Products - Traditional Quality"
+      alt: "Postman Pure Oil Products - Traditional Quality",
+      link: "/mustard-oil"
     }
   ];
 
@@ -42,6 +45,10 @@ export default function HeroSection() {
     setCurrentSlide(index);
   };
 
+  const handleSlideClick = (link) => {
+    window.location.href = link;
+  };
+
   return (
     <section className="relative w-full overflow-hidden bg-white">
       {/* Carousel Container with optimized performance */}
@@ -56,7 +63,7 @@ export default function HeroSection() {
           }}
         >
           {slides.map((slide, index) => (
-            <div key={slide.id} className="w-full flex-shrink-0 relative">
+            <div key={slide.id} className="w-full flex-shrink-0 relative cursor-pointer" onClick={() => handleSlideClick(slide.link)}>
               <img
                 src={slide.image}
                 alt={slide.alt}

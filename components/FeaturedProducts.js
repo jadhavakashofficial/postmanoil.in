@@ -5,6 +5,7 @@ export default function FeaturedProducts() {
       id: 1,
       name: "Kacchi Ghani Mustard Oil 1Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/1-1-580x580.png",
+      link: "/product/1997",
       gradient: "from-amber-400 via-yellow-500 to-orange-500",
       shadow: "shadow-amber-500/30",
       bgGlow: "from-amber-100 to-yellow-100"
@@ -13,6 +14,7 @@ export default function FeaturedProducts() {
       id: 2,
       name: "Kacchi Ghani Mustard Oil 5Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61pg1v3I9zL._SL1080_-580x580.jpg",
+      link: "/product/1855",
       gradient: "from-orange-400 via-red-500 to-pink-500",
       shadow: "shadow-orange-500/30",
       bgGlow: "from-orange-100 to-red-100"
@@ -21,6 +23,7 @@ export default function FeaturedProducts() {
       id: 3,
       name: "Kacchi Ghani Mustard Oil 15Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61rmnbqnBQL._SL1100_-580x580.jpg",
+      link: "/product/1858",
       gradient: "from-red-400 via-pink-500 to-rose-500",
       shadow: "shadow-red-500/30",
       bgGlow: "from-red-100 to-pink-100"
@@ -30,6 +33,7 @@ export default function FeaturedProducts() {
       id: 4,
       name: "Groundnut Filter Oil 1Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61htcRuz9NL._SL1500_-580x580.jpg",
+      link: "/product/1862",
       gradient: "from-emerald-400 via-teal-500 to-cyan-500",
       shadow: "shadow-emerald-500/30",
       bgGlow: "from-emerald-100 to-teal-100"
@@ -38,6 +42,7 @@ export default function FeaturedProducts() {
       id: 5,
       name: "Groundnut Filtered Oil 5 Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/516TDqUwbL._SL1080_-580x580.jpg",
+      link: "/product/1870",
       gradient: "from-cyan-400 via-blue-500 to-indigo-500",
       shadow: "shadow-cyan-500/30",
       bgGlow: "from-cyan-100 to-blue-100"
@@ -46,6 +51,7 @@ export default function FeaturedProducts() {
       id: 6,
       name: "Groundnut Filtered Oil 15Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/Untitled-18-1-scaled-e1750371753802-800x800.png",
+      link: "/product/1872",
       gradient: "from-blue-400 via-indigo-500 to-purple-500",
       shadow: "shadow-blue-500/30",
       bgGlow: "from-blue-100 to-indigo-100"
@@ -55,6 +61,7 @@ export default function FeaturedProducts() {
       id: 7,
       name: "Refined Groundnut Oil 1Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61rbdNGSMKL._SL1500_-580x580.jpg",
+      link: "/product/1882",
       gradient: "from-purple-400 via-violet-500 to-fuchsia-500",
       shadow: "shadow-purple-500/30",
       bgGlow: "from-purple-100 to-violet-100"
@@ -63,6 +70,7 @@ export default function FeaturedProducts() {
       id: 8,
       name: "Refined Groundnut Oil 5Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/Screenshot-2025-06-20-at-3.41.07%E2%80%AFAM.png",
+      link: "/product/3011",
       gradient: "from-fuchsia-400 via-pink-500 to-rose-500",
       shadow: "shadow-fuchsia-500/30",
       bgGlow: "from-fuchsia-100 to-pink-100"
@@ -71,6 +79,7 @@ export default function FeaturedProducts() {
       id: 9,
       name: "Refined Groundnut Oil 15Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61ZEP9YlrRL._SL1100_-580x580.jpg",
+      link: "/product/1897",
       gradient: "from-rose-400 via-pink-500 to-red-500",
       shadow: "shadow-rose-500/30",
       bgGlow: "from-rose-100 to-red-100"

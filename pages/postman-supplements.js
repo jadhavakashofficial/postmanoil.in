@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 
 export default function PremiumSupplements() {
   const [activeTab, setActiveTab] = useState('mustard-doc');
@@ -15,8 +14,8 @@ export default function PremiumSupplements() {
         "Enhances growth and vitality",
         "Ideal for cattle and poultry"
       ],
-      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/05/IMG_8533-scaled.jpg",
-      icon: "🐄"
+      icon: "🐄",
+      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/05/IMG_8533-scaled.jpg"
     },
     {
       id: 'mustard-cake',
@@ -27,8 +26,8 @@ export default function PremiumSupplements() {
         "Serves as a nutrient-rich animal feed",
         "100% organic and eco-friendly"
       ],
-      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8726-1-scaled.jpg",
-      icon: "🌱"
+      icon: "🌱",
+      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8726-1-scaled.jpg"
     },
     {
       id: 'groundnut-cake',
@@ -39,8 +38,8 @@ export default function PremiumSupplements() {
         "Strengthens animal health",
         "Supports sustained livestock productivity"
       ],
-      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_6416-scaled.jpg",
-      icon: "🥜"
+      icon: "🥜",
+      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_6416-scaled.jpg"
     }
   ];
 
@@ -65,13 +64,12 @@ export default function PremiumSupplements() {
         {/* Hero Section */}
         <div className="py-12 md:py-16 text-center">
           <div className="flex justify-center mb-6">
-            <Image 
-              src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png" 
+            <img 
+              src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png"
               alt="Postman Oils Logo" 
-              width={180} 
-              height={80} 
+              width="180" 
+              height="80" 
               className="object-contain"
-              priority
             />
           </div>
           
@@ -137,13 +135,10 @@ export default function PremiumSupplements() {
               {activeSupplement && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden shadow-xl border-4 border-amber-300">
-                    <Image
+                    <img
                       src={activeSupplement.imageUrl}
                       alt={activeSupplement.name}
-                      layout="fill"
-                      objectFit="cover"
-                      className="transition-transform duration-500 hover:scale-105"
-                      priority
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     />
                   </div>
                   
@@ -304,13 +299,9 @@ export default function PremiumSupplements() {
                 </div>
               </div>
             </div>
-
-            {/* CTA Section */}
-            
-              </div>
-            </div>
           </div>
         </div>
-    
+      </div>
+    </div>
   );
 }

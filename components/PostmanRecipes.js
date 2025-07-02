@@ -118,22 +118,27 @@ export default function PostmanRecipes() {
 
   if (loading) {
     return (
-      <section className="py-16 bg-gradient-to-br from-orange-50 via-white to-amber-50">
+      <section className="py-8 lg:py-12 bg-gradient-to-br from-orange-50 via-white to-amber-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full mb-4 shadow-lg">
+              <div className="w-4 h-4 bg-white/30 rounded-full mr-2 animate-pulse"></div>
+              <span className="font-bold text-sm tracking-wide">LOADING RECIPES</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
               Postman Recipes
             </h2>
-            <p className="text-gray-600 text-lg">Loading delicious recipes from our blog...</p>
+            <p className="text-gray-600 text-base lg:text-lg">Loading delicious recipes from our blog...</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[1, 2, 3].map((index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
-                <div className="bg-gray-200 h-64"></div>
-                <div className="p-6">
-                  <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                  <div className="h-3 bg-gray-200 rounded w-3/4"></div>
+              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse border border-orange-100">
+                <div className="bg-gradient-to-br from-orange-100 to-red-100 h-48 lg:h-56"></div>
+                <div className="p-4 lg:p-6">
+                  <div className="h-4 bg-gradient-to-r from-orange-100 to-red-100 rounded-full mb-3"></div>
+                  <div className="h-3 bg-gradient-to-r from-orange-100 to-red-100 rounded-full w-3/4 mb-2"></div>
+                  <div className="h-3 bg-gradient-to-r from-orange-100 to-red-100 rounded-full w-1/2"></div>
                 </div>
               </div>
             ))}
@@ -144,55 +149,60 @@ export default function PostmanRecipes() {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-orange-50 via-white to-amber-50 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-40 h-40 bg-orange-300 rounded-full" style={{ filter: 'blur(20px)' }}></div>
-        <div className="absolute bottom-20 right-20 w-48 h-48 bg-amber-300 rounded-full" style={{ filter: 'blur(20px)' }}></div>
+    <section className="py-6 lg:py-8 bg-gradient-to-br from-orange-50 via-white to-amber-50 relative overflow-hidden">
+      {/* Enhanced Background Elements */}
+      <div className="absolute inset-0 opacity-[0.08]">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-orange-400 to-red-400 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-gradient-to-r from-red-400 to-pink-400 rounded-full blur-2xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Enhanced Header */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-6">
-            <div className="bg-white p-4 rounded-full shadow-2xl border-4 border-orange-100">
-              <span className="text-4xl">🍽️</span>
-            </div>
+        {/* Compact Professional Header */}
+        <div className="text-center mb-6 lg:mb-8">
+          <div className="inline-flex items-center bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-1.5 rounded-full mb-4 shadow-lg">
+            <div className="w-2 h-2 bg-white rounded-full mr-2"></div>
+            <span className="font-bold text-sm tracking-wider">FRESH FROM OUR BLOG</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+          
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-3 bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 bg-clip-text text-transparent leading-tight">
             Postman Recipes
           </h2>
-          <p className="text-gray-700 text-lg max-w-2xl mx-auto">
+          
+          <p className="text-gray-700 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
             Discover authentic recipes and cooking tips from our <span className="font-bold text-orange-600">expert chefs</span> using pure Postman Oil
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full mt-4"></div>
+          
+          <div className="flex justify-center mt-3">
+            <div className="w-20 h-1 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-full"></div>
+          </div>
         </div>
 
-        {/* Error State */}
+        {/* Error State with better styling */}
         {error && !blogs.length && (
-          <div className="text-center py-8">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
-              <p className="text-red-600 font-medium">Unable to load recipes from blog</p>
-              <p className="text-red-500 text-sm mt-2">Showing fallback recipes instead</p>
+          <div className="text-center py-6 mb-8">
+            <div className="bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-xl p-6 max-w-md mx-auto shadow-lg">
+              <div className="text-3xl mb-3">⚠️</div>
+              <p className="text-red-600 font-semibold mb-2">Unable to load recipes from blog</p>
+              <p className="text-red-500 text-sm">Showing fallback recipes instead</p>
             </div>
           </div>
         )}
 
-        {/* Blog Slider */}
+        {/* Enhanced Blog Slider */}
         <div className="relative">
           {/* Main Slider Container */}
-          <div className="overflow-hidden rounded-3xl">
+          <div className="overflow-hidden rounded-2xl lg:rounded-3xl">
             <div 
-              className="flex transition-transform duration-700 ease-in-out"
+              className="flex transition-transform duration-400 ease-out"
               style={{ 
                 transform: `translate3d(-${currentSlide * 100}%, 0, 0)`,
-                willChange: 'transform',
-                backfaceVisibility: 'hidden'
+                willChange: 'transform'
               }}
             >
               {Array.from({ length: totalSlides }, (_, slideIndex) => (
                 <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-2 sm:px-4">
                     {blogs.slice(slideIndex * 3, slideIndex * 3 + 3).map((blog) => (
                       <Link 
                         key={blog.id}
@@ -200,67 +210,67 @@ export default function PostmanRecipes() {
                         className="group block"
                       >
                         <article 
-                          className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-3 hover:scale-105 border border-orange-100 hover:border-orange-200"
+                          className="bg-white rounded-xl lg:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-1 hover:scale-[1.01] border border-orange-100 hover:border-orange-300 cursor-pointer"
                           style={{
-                            willChange: 'transform',
-                            backfaceVisibility: 'hidden',
-                            height: '400px' // Fixed height for consistent layout
+                            willChange: 'transform'
                           }}
                         >
                           {/* Featured Image */}
-                          <div className="relative h-56 overflow-hidden">
+                          <div className="relative h-48 sm:h-52 lg:h-56 overflow-hidden">
                             <img
                               src={blog.featuredImage}
                               alt={blog.title}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                              className="w-full h-full object-contain bg-gray-50 group-hover:scale-105 transition-transform duration-300"
                               loading="lazy"
                               onError={(e) => {
                                 e.target.src = 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop';
                               }}
                             />
                             
-                            {/* Overlay */}
+                            {/* Enhanced Overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             
-                            {/* Read More Badge */}
-                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <div className="bg-white/95 backdrop-blur-sm px-6 py-3 rounded-full shadow-xl border-2 border-orange-200">
-                                <span className="text-orange-600 font-bold flex items-center">
-                                  <span className="mr-2">📖</span>
-                                  Read Recipe
+                            {/* Improved Read More Badge */}
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                              <div className="bg-white/95 backdrop-blur-sm px-4 py-2 lg:px-6 lg:py-3 rounded-full shadow-lg border border-orange-200">
+                                <span className="text-orange-600 font-bold flex items-center text-sm lg:text-base">
+                                  <span className="mr-2">👨‍🍳</span>
+                                  View Recipe
                                 </span>
                               </div>
                             </div>
 
                             {/* Category Badge */}
-                            <div className="absolute top-4 left-4">
-                              <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                            <div className="absolute top-3 left-3">
+                              <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
                                 Recipe Blog
                               </span>
                             </div>
 
                             {/* Date Badge */}
-                            <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium border border-white/20">
                               {blog.date}
                             </div>
                           </div>
 
-                          {/* Content */}
-                          <div className="p-6 flex flex-col" style={{ height: 'calc(400px - 224px)' }}>
-                            <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300 leading-tight line-clamp-2">
+                          {/* Enhanced Content */}
+                          <div className="p-4 lg:p-6">
+                            <h3 className="text-base lg:text-lg font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors duration-300 leading-tight line-clamp-2">
                               {blog.title}
                             </h3>
 
-                            {/* Author */}
-                            <div className="flex items-center justify-between mt-auto pt-3 border-t border-orange-100">
-                              <span className="text-xs text-gray-500 flex items-center">
-                                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                                </svg>
-                                {blog.author}
-                              </span>
+                            {/* Author and CTA */}
+                            <div className="flex items-center justify-between pt-3 border-t border-orange-100">
+                              <div className="flex items-center">
+                                <div className="w-6 h-6 lg:w-7 lg:h-7 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center mr-2">
+                                  <span className="text-white text-xs font-bold">
+                                    {blog.author.charAt(0)}
+                                  </span>
+                                </div>
+                                <span className="text-xs lg:text-sm text-gray-600 font-medium">{blog.author}</span>
+                              </div>
                               
-                              <span className="text-orange-600 font-semibold text-sm flex items-center group-hover:translate-x-1 transition-transform duration-300">
+                              <span className="text-orange-600 font-semibold text-sm flex items-center group-hover:translate-x-0.5 transition-transform duration-200">
                                 Read More
                                 <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -277,33 +287,25 @@ export default function PostmanRecipes() {
             </div>
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Enhanced Navigation Arrows */}
           {totalSlides > 1 && (
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/95 backdrop-blur-sm rounded-full shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center transition-all duration-300 hover:scale-110 text-gray-700 hover:text-orange-600 z-20 border-2 border-orange-100 hover:border-orange-300"
+                className="absolute left-2 lg:left-4 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-white/95 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-200 hover:scale-105 text-gray-700 hover:text-orange-600 z-20 border border-orange-100 hover:border-orange-300"
                 aria-label="Previous recipes"
-                style={{
-                  willChange: 'transform',
-                  backfaceVisibility: 'hidden'
-                }}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
 
               <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/95 backdrop-blur-sm rounded-full shadow-2xl hover:shadow-orange-500/25 flex items-center justify-center transition-all duration-300 hover:scale-110 text-gray-700 hover:text-orange-600 z-20 border-2 border-orange-100 hover:border-orange-300"
+                className="absolute right-2 lg:right-4 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-white/95 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-200 hover:scale-105 text-gray-700 hover:text-orange-600 z-20 border border-orange-100 hover:border-orange-300"
                 aria-label="Next recipes"
-                style={{
-                  willChange: 'transform',
-                  backfaceVisibility: 'hidden'
-                }}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
@@ -313,32 +315,33 @@ export default function PostmanRecipes() {
 
         {/* Enhanced Slide Indicators */}
         {totalSlides > 1 && (
-          <div className="flex justify-center mt-8 space-x-3">
+          <div className="flex justify-center mt-6 lg:mt-8 space-x-2">
             {Array.from({ length: totalSlides }, (_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 rounded-full border-2 ${
+                className={`transition-all duration-200 rounded-full ${
                   currentSlide === index 
-                    ? 'w-12 h-4 bg-gradient-to-r from-orange-500 to-red-500 border-orange-500 shadow-lg' 
-                    : 'w-4 h-4 bg-white border-gray-300 hover:border-orange-400 hover:bg-orange-50'
+                    ? 'w-8 lg:w-12 h-3 lg:h-4 bg-gradient-to-r from-orange-500 to-red-500 shadow-md' 
+                    : 'w-3 h-3 lg:w-4 lg:h-4 bg-white border border-orange-200 hover:border-orange-400 hover:bg-orange-50'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
-                style={{
-                  willChange: 'transform',
-                  backfaceVisibility: 'hidden'
-                }}
               />
             ))}
           </div>
         )}
 
-        {/* Recipe Count Info */}
+        {/* Enhanced Recipe Count Info */}
         {blogs.length > 0 && (
-          <div className="text-center mt-8">
-            <p className="text-gray-600 text-sm">
-              Showing {blogs.length} delicious recipes • Fresh from our blog • Updated {new Date().toLocaleDateString()}
-            </p>
+          <div className="text-center mt-4 lg:mt-6">
+            <div className="inline-flex items-center bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-md border border-orange-200">
+              <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+              <p className="text-gray-600 text-sm font-medium">
+                <span className="font-bold text-orange-600">{blogs.length}</span> delicious recipes • 
+                <span className="mx-1">Fresh from our blog</span> • 
+                <span className="font-medium">Updated {new Date().toLocaleDateString()}</span>
+              </p>
+            </div>
           </div>
         )}
       </div>
