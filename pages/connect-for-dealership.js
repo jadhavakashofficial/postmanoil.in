@@ -87,8 +87,8 @@ export default function ContactUsPage() {
         <link rel="canonical" href="https://postmanoil.com/contact-us" />
       </Head>
 
-      {/* Vibrant Header */}
-      <section className="py-16 bg-gradient-to-br from-orange-50 via-red-50 to-lime-50 relative overflow-hidden">
+      {/* Compact Header */}
+      <section className="py-8 bg-gradient-to-br from-orange-50 via-red-50 to-lime-50 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-32 h-32 bg-orange-300 rounded-full" style={{ filter: 'blur(20px)' }}></div>
@@ -97,31 +97,21 @@ export default function ContactUsPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
-          <div className="mb-8">
-            <div className="inline-block bg-white/80 backdrop-blur-sm rounded-2xl p-4 mb-6 shadow-lg border border-orange-200">
-              <img 
-                src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png" 
-                alt="Postman Oil Logo"
-                className="h-16 w-auto object-contain mx-auto"
-              />
-            </div>
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-orange-600 via-red-500 to-lime-600 bg-clip-text text-transparent">
+          <h1 className="text-3xl md:text-4xl font-black mb-4 bg-gradient-to-r from-orange-600 via-red-500 to-lime-600 bg-clip-text text-transparent">
             Get In Touch With Us
           </h1>
           
-          <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Ready to experience the <span className="font-bold text-orange-600">purity and quality</span> of Postman Oil? 
-            We're here to help with all your cooking oil needs.
+          <p className="text-lg text-gray-700 mb-4 max-w-3xl mx-auto leading-relaxed">
+            Interested in becoming a <span className="font-bold text-orange-600">Postman Oil Dealer</span>?  
+            Join our fast-growing network.
           </p>
           
-          <div className="w-32 h-1 bg-gradient-to-r from-orange-500 via-red-500 to-lime-500 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-orange-500 via-red-500 to-lime-500 mx-auto rounded-full"></div>
         </div>
       </section>
 
       {/* Main Contact Section */}
-      <section className="py-16 bg-gradient-to-br from-orange-50 via-amber-50 to-lime-50 relative overflow-hidden">
+      <section className="py-12 bg-gradient-to-br from-orange-50 via-amber-50 to-lime-50 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-40 h-40 bg-orange-300 rounded-full" style={{ filter: 'blur(20px)' }}></div>
@@ -160,7 +150,6 @@ export default function ContactUsPage() {
                       <div>
                         <h3 className="font-bold mb-1">Email Address</h3>
                         <p className="text-orange-100">marketingpostmanoil@gmail.com</p>
-                        <p className="text-orange-100">support@postmanoil.com</p>
                       </div>
                     </div>
                     
@@ -172,9 +161,9 @@ export default function ContactUsPage() {
                       </div>
                       <div>
                         <h3 className="font-bold mb-1">Phone Numbers</h3>
-                        <p className="text-orange-100">Anil: +91-9928021482</p>
-                        <p className="text-orange-100">Sanjay: +91-9214044288</p>
-                        <p className="text-orange-100">Pakshik: +91-9529808832</p>
+                        <p className="text-orange-100">Anil Mittal: +91-9928021482</p>
+                        <p className="text-orange-100">Sanjay Mittal: +91-9214044288</p>
+                        <p className="text-orange-100">Pakshik Mittal: +91-9529808832</p>
                       </div>
                     </div>
                     

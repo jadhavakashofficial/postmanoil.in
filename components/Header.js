@@ -133,7 +133,7 @@ export default function Header() {
               </Link>
 
               <Link 
-                href="//postman-supplements"
+                href="/postman-supplements"
                 className={`px-3 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md relative group ${isScrolled ? 'py-2' : 'py-3'}`}
               >
                 INDUSTRY SUPPLEMENTS
@@ -178,7 +178,7 @@ export default function Header() {
                         </div>
                       </Link>
                       <Link 
-                        href="/about-postman-oils" 
+                        href="/about-us" 
                         onClick={handleSubmenuClick}
                         className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:text-orange-700 transition-all duration-200 rounded-xl group"
                       >
@@ -330,7 +330,7 @@ export default function Header() {
                 </Link>
 
                 <Link
-                  href="/industry-supplements"
+                  href="/postman-supplements"
                   className="flex items-center px-4 py-4 text-gray-800 hover:text-orange-600 hover:bg-white/70 rounded-xl font-semibold transition-all duration-200 group"
                   onClick={closeMenu}
                 >
@@ -357,7 +357,7 @@ export default function Header() {
                 </Link>
 
                 <Link
-                  href="/about-postman-oils"
+                  href="/about-us"
                   className="flex items-center px-4 py-4 text-gray-800 hover:text-orange-600 hover:bg-white/70 rounded-xl font-semibold transition-all duration-200 group"
                   onClick={closeMenu}
                 >
