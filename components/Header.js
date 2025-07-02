@@ -99,10 +99,10 @@ export default function Header() {
             </Link>
 
             {/* Premium Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-2" ref={dropdownRef}>
+            <nav className="hidden lg:flex items-center space-x-1" ref={dropdownRef}>
               <Link 
                 href="/" 
-                className={`px-4 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md relative group ${isScrolled ? 'py-2' : 'py-3'}`}
+                className={`px-3 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md relative group ${isScrolled ? 'py-2' : 'py-3'}`}
               >
                 HOME
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-yellow-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
@@ -110,7 +110,7 @@ export default function Header() {
 
               <Link 
                 href="/mustard-oil"
-                className={`px-4 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md relative group ${isScrolled ? 'py-2' : 'py-3'}`}
+                className={`px-3 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md relative group ${isScrolled ? 'py-2' : 'py-3'}`}
               >
                 MUSTARD OIL
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-yellow-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
@@ -118,7 +118,7 @@ export default function Header() {
 
               <Link 
                 href="/groundnut-oil"
-                className={`px-4 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md relative group ${isScrolled ? 'py-2' : 'py-3'}`}
+                className={`px-3 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md relative group ${isScrolled ? 'py-2' : 'py-3'}`}
               >
                 GROUNDNUT OIL
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-yellow-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
@@ -126,9 +126,17 @@ export default function Header() {
 
               <Link 
                 href="/refined-groundnut-oil" 
-                className={`px-4 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md relative group ${isScrolled ? 'py-2' : 'py-3'}`}
+                className={`px-3 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md relative group ${isScrolled ? 'py-2' : 'py-3'}`}
               >
                 REFINED OIL
+                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-yellow-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+              </Link>
+
+              <Link 
+                href="//postman-supplements"
+                className={`px-3 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md relative group ${isScrolled ? 'py-2' : 'py-3'}`}
+              >
+                INDUSTRY SUPPLEMENTS
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-yellow-500 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </Link>
 
@@ -136,7 +144,7 @@ export default function Header() {
               <div className="relative">
                 <button
                   onClick={() => toggleDropdown('pages')}
-                  className={`px-4 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md flex items-center relative group ${isScrolled ? 'py-2' : 'py-3'}`}
+                  className={`px-3 text-gray-800 hover:text-orange-600 font-semibold text-sm tracking-wide transition-all duration-300 rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:shadow-md flex items-center relative group ${isScrolled ? 'py-2' : 'py-3'}`}
                 >
                   MORE
                   <svg className={`ml-2 h-4 w-4 transition-transform duration-300 ${activeDropdown === 'pages' ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -165,30 +173,30 @@ export default function Header() {
                       >
                         <span className="text-lg mr-3 group-hover:scale-110 transition-transform duration-200">🏭</span>
                         <div>
-                          <div className="font-medium">How Oil Is Made</div>
+                          <div className="font-medium">How Postman Oil Is Made</div>
                           <div className="text-xs text-gray-500">Our quality process</div>
                         </div>
                       </Link>
                       <Link 
-                        href="/postman-supplements" 
-                        onClick={handleSubmenuClick}
-                        className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:text-orange-700 transition-all duration-200 rounded-xl group"
-                      >
-                        <span className="text-lg mr-3 group-hover:scale-110 transition-transform duration-200">💊</span>
-                        <div>
-                          <div className="font-medium">Supplements</div>
-                          <div className="text-xs text-gray-500">Health products</div>
-                        </div>
-                      </Link>
-                      <Link 
-                        href="/about-us" 
+                        href="/about-postman-oils" 
                         onClick={handleSubmenuClick}
                         className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:text-orange-700 transition-all duration-200 rounded-xl group"
                       >
                         <span className="text-lg mr-3 group-hover:scale-110 transition-transform duration-200">🏢</span>
                         <div>
-                          <div className="font-medium">About Us</div>
+                          <div className="font-medium">About Postman Oils</div>
                           <div className="text-xs text-gray-500">Our story & heritage</div>
+                        </div>
+                      </Link>
+                      <Link 
+                        href="/contact-us" 
+                        onClick={handleSubmenuClick}
+                        className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:text-orange-700 transition-all duration-200 rounded-xl group"
+                      >
+                        <span className="text-lg mr-3 group-hover:scale-110 transition-transform duration-200">📞</span>
+                        <div>
+                          <div className="font-medium">Contact Us</div>
+                          <div className="text-xs text-gray-500">Get in touch</div>
                         </div>
                       </Link>
                       <div className="border-t border-orange-100 my-2 mx-4"></div>
@@ -214,7 +222,7 @@ export default function Header() {
               {/* Premium CTA Button with pulse animation */}
               <Link 
                 href="/connect-for-dealership" 
-                className={`ml-6 bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 hover:from-orange-600 hover:via-red-600 hover:to-red-700 text-white px-6 rounded-full font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl hover:shadow-orange-500/25 relative overflow-hidden group ${isScrolled ? 'py-2' : 'py-3'}`}
+                className={`ml-4 bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 hover:from-orange-600 hover:via-red-600 hover:to-red-700 text-white px-5 rounded-full font-bold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl hover:shadow-orange-500/25 relative overflow-hidden group ${isScrolled ? 'py-2' : 'py-3'}`}
               >
                 <span className="relative z-10 flex items-center">
                   <span className="mr-2 text-base group-hover:scale-110 transition-transform duration-200">🤝</span>
@@ -322,6 +330,15 @@ export default function Header() {
                 </Link>
 
                 <Link
+                  href="/industry-supplements"
+                  className="flex items-center px-4 py-4 text-gray-800 hover:text-orange-600 hover:bg-white/70 rounded-xl font-semibold transition-all duration-200 group"
+                  onClick={closeMenu}
+                >
+                  <span className="text-lg mr-3 w-6 flex justify-center group-hover:scale-110 transition-transform duration-200">💊</span>
+                  INDUSTRY SUPPLEMENTS
+                </Link>
+
+                <Link
                   href="/postman-recipes"
                   className="flex items-center px-4 py-4 text-gray-800 hover:text-orange-600 hover:bg-white/70 rounded-xl font-semibold transition-all duration-200 group"
                   onClick={closeMenu}
@@ -336,25 +353,25 @@ export default function Header() {
                   onClick={closeMenu}
                 >
                   <span className="text-lg mr-3 w-6 flex justify-center group-hover:scale-110 transition-transform duration-200">🏭</span>
-                  OUR PROCESS
+                  HOW OIL IS MADE
                 </Link>
 
                 <Link
-                  href="/postman-supplements"
-                  className="flex items-center px-4 py-4 text-gray-800 hover:text-orange-600 hover:bg-white/70 rounded-xl font-semibold transition-all duration-200 group"
-                  onClick={closeMenu}
-                >
-                  <span className="text-lg mr-3 w-6 flex justify-center group-hover:scale-110 transition-transform duration-200">💊</span>
-                  SUPPLEMENTS
-                </Link>
-
-                <Link
-                  href="/about-us"
+                  href="/about-postman-oils"
                   className="flex items-center px-4 py-4 text-gray-800 hover:text-orange-600 hover:bg-white/70 rounded-xl font-semibold transition-all duration-200 group"
                   onClick={closeMenu}
                 >
                   <span className="text-lg mr-3 w-6 flex justify-center group-hover:scale-110 transition-transform duration-200">🏢</span>
-                  ABOUT US
+                  ABOUT POSTMAN OILS
+                </Link>
+
+                <Link
+                  href="/contact-us"
+                  className="flex items-center px-4 py-4 text-gray-800 hover:text-orange-600 hover:bg-white/70 rounded-xl font-semibold transition-all duration-200 group"
+                  onClick={closeMenu}
+                >
+                  <span className="text-lg mr-3 w-6 flex justify-center group-hover:scale-110 transition-transform duration-200">📞</span>
+                  CONTACT US
                 </Link>
 
                 <div className="mt-6 pt-4 border-t border-orange-200">
