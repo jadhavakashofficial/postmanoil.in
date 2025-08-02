@@ -260,10 +260,6 @@ export default function PostmanRecipes() {
           generateBreadcrumbSchema(breadcrumbItems)
         ]}
       />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-      </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50">
         {/* Compact Hero Section */}
