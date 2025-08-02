@@ -120,10 +120,10 @@ function getCompanyEmailTemplate($data) {
                     
                     <!-- Main Header -->
                     <tr>
-                        <td style="background: linear-gradient(135deg, #f97316, #dc2626); color: white; padding: 40px 30px; text-align: center;">
+                        <td style="background-color: #f97316; color: white; padding: 40px 30px; text-align: center;">
                             <img src="https://postmanoil.com/blog/wp-content/uploads/2025/04/cropped-Postman-logo-2-1-e1745020681558.png" alt="Postman Oils" style="width: 80px; height: auto; margin-bottom: 15px; border-radius: 8px;">
-                            <h1 style="margin: 0; font-size: 28px; font-weight: bold;">New Customer Contact</h1>
-                            <p style="margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Premium business opportunity</p>
+                            <h1 style="margin: 0; font-size: 28px; font-weight: bold; color: white;">New Customer Contact</h1>
+                            <p style="margin: 10px 0 0 0; font-size: 16px; color: white;">Premium business opportunity</p>
                         </td>
                     </tr>
                     
@@ -208,8 +208,8 @@ function getCompanyEmailTemplate($data) {
                             <table width="100%" style="margin: 30px 0;">
                                 <tr>
                                     <td style="text-align: center;">
-                                        <a href="mailto:' . htmlspecialchars($data['email']) . '?subject=Re: ' . htmlspecialchars($data['subject']) . ' - Postman Oils Response" style="display: inline-block; background: linear-gradient(135deg, #f97316, #dc2626); color: white; text-decoration: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; font-size: 14px; margin: 5px;">📧 Reply to Customer</a>
-                                        ' . ($data['phone'] ? '<a href="tel:' . htmlspecialchars($data['phone']) . '" style="display: inline-block; background: #10b981; color: white; text-decoration: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; font-size: 14px; margin: 5px;">📞 Call Now</a>' : '') . '
+                                        <a href="mailto:' . htmlspecialchars($data['email']) . '?subject=Re: ' . htmlspecialchars($data['subject']) . ' - Postman Oils Response" style="display: inline-block; background-color: #f97316; color: white; text-decoration: none; padding: 12px 30px; border-radius: 6px; font-weight: bold; font-size: 14px; margin: 5px;">📧 Reply to Customer</a>
+                                        ' . ($data['phone'] ? '<a href="tel:' . htmlspecialchars($data['phone']) . '" style="display: inline-block; background-color: #10b981; color: white; text-decoration: none; padding: 12px 30px; border-radius: 6px; font-weight: bold; font-size: 14px; margin: 5px;">📞 Call Now</a>' : '') . '
                                     </td>
                                 </tr>
                             </table>
@@ -234,9 +234,9 @@ function getCompanyEmailTemplate($data) {
                     
                     <!-- Footer -->
                     <tr>
-                        <td style="background: linear-gradient(135deg, #1f2937, #111827); color: #d1d5db; padding: 30px; text-align: center;">
+                        <td style="background-color: #1f2937; color: #d1d5db; padding: 30px; text-align: center;">
                             <h3 style="color: #f97316; margin: 0 0 10px 0; font-size: 20px;">Postman Oils</h3>
-                            <p style="margin: 10px 0; font-size: 14px;">Premium Cooking Oils Since 1967</p>
+                            <p style="margin: 10px 0; font-size: 14px; color: #d1d5db;">Premium Cooking Oils Since 1967</p>
                             <p style="margin: 15px 0; font-size: 13px; color: #9ca3af;">
                                 📍 H-1, 87-94, RIICO Industrial Area, Jaipur Road, Kekri - 305404<br>
                                 📞 +91-9928021482 | ✉️ marketingpostmanoil@gmail.com
@@ -303,22 +303,22 @@ function getUserConfirmationTemplate($data) {
                             <table width="100%" style="background-color: #eff6ff; border: 1px solid #3b82f6; border-radius: 6px; margin: 20px 0;">
                                 <tr>
                                     <td style="padding: 20px; text-align: center;">
-                                        <h3 style="color: #1e40af; margin: 0 0 15px 0; font-size: 18px;">What Happens Next</h3>
-                                        <table width="100%">
+                                        <h3 style="color: #1e40af; margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">What Happens Next</h3>
+                                        <table width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
-                                                <td style="text-align: center; padding: 10px;">
-                                                    <div style="background: #3b82f6; color: white; border-radius: 50%; width: 25px; height: 25px; margin: 0 auto 5px; line-height: 25px; font-weight: bold; font-size: 12px;">1</div>
-                                                    <div style="font-size: 12px; font-weight: bold;">Review</div>
+                                                <td style="text-align: center; padding: 10px; width: 33%;">
+                                                    <div style="background-color: #3b82f6; color: white; border-radius: 50%; width: 30px; height: 30px; margin: 0 auto 8px; line-height: 30px; font-weight: bold; font-size: 14px;">1</div>
+                                                    <div style="font-size: 13px; font-weight: bold; color: #1e40af; margin-bottom: 3px;">Review</div>
                                                     <div style="font-size: 11px; color: #6b7280;">Within 2 hours</div>
                                                 </td>
-                                                <td style="text-align: center; padding: 10px;">
-                                                    <div style="background: #3b82f6; color: white; border-radius: 50%; width: 25px; height: 25px; margin: 0 auto 5px; line-height: 25px; font-weight: bold; font-size: 12px;">2</div>
-                                                    <div style="font-size: 12px; font-weight: bold;">Prepare</div>
+                                                <td style="text-align: center; padding: 10px; width: 33%;">
+                                                    <div style="background-color: #3b82f6; color: white; border-radius: 50%; width: 30px; height: 30px; margin: 0 auto 8px; line-height: 30px; font-weight: bold; font-size: 14px;">2</div>
+                                                    <div style="font-size: 13px; font-weight: bold; color: #1e40af; margin-bottom: 3px;">Prepare</div>
                                                     <div style="font-size: 11px; color: #6b7280;">Response</div>
                                                 </td>
-                                                <td style="text-align: center; padding: 10px;">
-                                                    <div style="background: #3b82f6; color: white; border-radius: 50%; width: 25px; height: 25px; margin: 0 auto 5px; line-height: 25px; font-weight: bold; font-size: 12px;">3</div>
-                                                    <div style="font-size: 12px; font-weight: bold;">Reply</div>
+                                                <td style="text-align: center; padding: 10px; width: 33%;">
+                                                    <div style="background-color: #3b82f6; color: white; border-radius: 50%; width: 30px; height: 30px; margin: 0 auto 8px; line-height: 30px; font-weight: bold; font-size: 14px;">3</div>
+                                                    <div style="font-size: 13px; font-weight: bold; color: #1e40af; margin-bottom: 3px;">Reply</div>
                                                     <div style="font-size: 11px; color: #6b7280;">Within 24 hours</div>
                                                 </td>
                                             </tr>
@@ -328,23 +328,23 @@ function getUserConfirmationTemplate($data) {
                             </table>
                             
                             <!-- Message Summary -->
-                            <table width="100%" style="background-color: #fef7ed; border-left: 4px solid #f97316; border-radius: 6px; margin: 20px 0;">
+                            <table width="100%" style="background-color: #fef7ed; border-left: 4px solid #f97316; border-radius: 6px; margin: 20px 0; border: 1px solid #fed7aa;">
                                 <tr>
                                     <td style="padding: 20px;">
-                                        <h3 style="margin: 0 0 15px 0; color: #92400e; font-size: 18px;">Your Inquiry Details</h3>
-                                        <table width="100%" cellpadding="5" cellspacing="0">
+                                        <h3 style="margin: 0 0 15px 0; color: #92400e; font-size: 18px; font-weight: bold;">Your Inquiry Details</h3>
+                                        <table width="100%" cellpadding="8" cellspacing="0">
                                             <tr>
-                                                <td style="font-weight: bold; color: #374151; width: 80px;">Subject:</td>
-                                                <td style="color: #1f2937;">' . htmlspecialchars($data['subject']) . '</td>
+                                                <td style="font-weight: bold; color: #374151; width: 80px; font-size: 14px;">Subject:</td>
+                                                <td style="color: #1f2937; font-size: 14px;">' . htmlspecialchars($data['subject']) . '</td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight: bold; color: #374151;">Date:</td>
-                                                <td style="color: #1f2937;">' . $currentDate . ' (IST)</td>
+                                                <td style="font-weight: bold; color: #374151; font-size: 14px;">Date:</td>
+                                                <td style="color: #1f2937; font-size: 14px;">' . $currentDate . ' (IST)</td>
                                             </tr>
                                         </table>
                                         <div style="margin-top: 15px;">
-                                            <strong style="color: #374151;">Message:</strong>
-                                            <div style="background: white; padding: 15px; border-radius: 6px; color: #1f2937; margin-top: 5px; border: 1px solid #e5e7eb;">' . htmlspecialchars($data['message']) . '</div>
+                                            <strong style="color: #374151; font-size: 14px;">Message:</strong>
+                                            <div style="background-color: white; padding: 15px; border-radius: 6px; color: #1f2937; margin-top: 5px; border: 1px solid #e5e7eb; font-size: 14px; line-height: 1.5;">' . htmlspecialchars($data['message']) . '</div>
                                         </div>
                                     </td>
                                 </tr>
