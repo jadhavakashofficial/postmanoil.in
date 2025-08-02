@@ -13,8 +13,19 @@ export default function Document() {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="theme-color" content="#f97316" />
         
+        {/* Favicon and App Icons */}
+        <link rel="icon" type="image/png" sizes="16x16" href="https://postmanoil.com/blog/wp-content/uploads/2025/04/cropped-Postman-logo-2-1-e1745020681558.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="https://postmanoil.com/blog/wp-content/uploads/2025/04/cropped-Postman-logo-2-1-e1745020681558.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="https://postmanoil.com/blog/wp-content/uploads/2025/04/cropped-Postman-logo-2-1-e1745020681558.png" />
+        <link rel="apple-touch-icon" href="https://postmanoil.com/blog/wp-content/uploads/2025/04/cropped-Postman-logo-2-1-e1745020681558.png" />
+        <link rel="shortcut icon" href="https://postmanoil.com/blog/wp-content/uploads/2025/04/cropped-Postman-logo-2-1-e1745020681558.png" />
+        
+        {/* Web App Manifest */}
+        <link rel="manifest" href="/site.webmanifest" />
+        
         {/* Preload critical images */}
         <link rel="preload" as="image" href="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png" />
+        <link rel="preload" as="image" href="https://postmanoil.com/blog/wp-content/uploads/2025/04/cropped-Postman-logo-2-1-e1745020681558.png" />
         <link rel="preload" as="image" href="https://postmanoil.com/blog/wp-content/uploads/2025/05/1.png" />
         <link rel="preload" as="image" href="https://postmanoil.com/blog/wp-content/uploads/2025/05/2.png" />
         <link rel="preload" as="image" href="https://postmanoil.com/blog/wp-content/uploads/2025/05/3.png" />

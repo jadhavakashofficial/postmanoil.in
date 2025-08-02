@@ -1,0 +1,96 @@
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /blog/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /blog/index.php [L]
+</IfModule>
+# END WordPress
+
+# Custom rules for email handler and security
+<IfModule mod_rewrite.c>
+    # Allow direct access to PHP files (including our email handler)
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteCond %{REQUEST_FILENAME} \.php$
+    RewriteRule ^(.*)$ $1 [L]
+</IfModule>
+
+# CORS Headers for email handler
+<IfModule mod_headers.c>
+    <FilesMatch "postman-contact-handler\.php">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "POST, GET, OPTIONS"
+        Header set Access-Control-Allow-Headers "Content-Type, Accept, Origin, X-Requested-With"
+        Header set Access-Control-Allow-Credentials "false"
+    </FilesMatch>
+</IfModule>
+
+# Handle preflight OPTIONS requests for CORS
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteCond %{REQUEST_URI} postman-contact-handler\.php
+    RewriteRule ^(.*)$ $1 [R=200,L]
+</IfModule>
+
+# PHP Configuration for email functionality
+<IfModule mod_php.c>
+    php_value upload_max_filesize 32M
+    php_value post_max_size 32M
+    php_value memory_limit 128M
+    php_value max_execution_time 300
+    php_value max_input_vars 1000
+    php_value session.gc_maxlifetime 1440
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Compression for WordPress
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Browser Caching for WordPress
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/html "access plus 1 day"
+    ExpiresDefault "access plus 7 days"
+</IfModule>
+
+# Protect sensitive WordPress files
+<FilesMatch "(wp-config\.php|\.htaccess|\.htpasswd|error_log|debug\.log)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Allow wp-json API access (needed for WordPress REST API)
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_URI} ^/blog/wp-json/
+    RewriteRule ^(.*)$ $1 [L]
+</IfModule>

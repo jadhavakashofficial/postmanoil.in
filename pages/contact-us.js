@@ -24,6 +24,7 @@ export default function ContactUsPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('');
     
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       alert('Please fill in all required fields.');
@@ -32,25 +33,45 @@ export default function ContactUsPage() {
     }
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-      setTimeout(() => setSubmitStatus(''), 3000);
+      const response = await fetch('https://postmanoil.com/blog/postman-contact-handler.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          formType: 'contact-us-page'
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+        setTimeout(() => setSubmitStatus(''), 5000);
+      } else {
+        console.error('Form submission failed:', result);
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus(''), 5000);
+      }
     } catch (error) {
+      console.error('Network error:', error);
       setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus(''), 3000);
+      setTimeout(() => setSubmitStatus(''), 5000);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-orange-50 relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-orange-300 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-amber-300 rounded-full blur-xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-yellow-300 rounded-full blur-xl"></div>
+      <div className="absolute inset-0 opacity-3 pointer-events-none">
+        <div className="absolute top-20 left-20 w-32 h-32 bg-orange-200 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-amber-200 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-yellow-200 rounded-full blur-3xl"></div>
       </div>
 
       <Head>
@@ -82,9 +103,9 @@ export default function ContactUsPage() {
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 overflow-hidden">
             
             {/* Contact Form Section - TOP */}
-            <div className="p-6 md:p-8 bg-gradient-to-r from-orange-50 to-amber-50">
+            <div className="p-6 md:p-8 bg-gradient-to-br from-white to-gray-50">
               <h2 className="text-xl font-bold flex items-center mb-6">
-                <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 shadow-lg">
                   <span className="font-bold text-sm">1</span>
                 </div>
                 <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
@@ -92,12 +113,12 @@ export default function ContactUsPage() {
                 </span>
               </h2>
 
-              <div className="bg-white rounded-xl p-6 shadow-md border border-orange-100">
+              <div className="bg-white rounded-xl p-6 shadow-xl border-2 border-gray-100 backdrop-blur-sm">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-gray-800 mb-2">
                         Full Name *
                       </label>
                       <input
@@ -106,13 +127,13 @@ export default function ContactUsPage() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-                        placeholder="Your full name"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 bg-white text-gray-900 placeholder-gray-500 shadow-sm"
+                        placeholder="Enter your full name"
                       />
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-gray-800 mb-2">
                         Email Address *
                       </label>
                       <input
@@ -121,7 +142,7 @@ export default function ContactUsPage() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 bg-white text-gray-900 placeholder-gray-500 shadow-sm"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -129,7 +150,7 @@ export default function ContactUsPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-gray-800 mb-2">
                         Phone Number
                       </label>
                       <input
@@ -137,13 +158,13 @@ export default function ContactUsPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 bg-white text-gray-900 placeholder-gray-500 shadow-sm"
                         placeholder="+91 XXXXX XXXXX"
                       />
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-gray-800 mb-2">
                         Subject *
                       </label>
                       <select
@@ -151,20 +172,20 @@ export default function ContactUsPage() {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 bg-white text-gray-900 shadow-sm"
                       >
-                        <option value="">Select subject</option>
-                        <option value="product-inquiry">Product Inquiry</option>
-                        <option value="dealership">Dealership</option>
-                        <option value="bulk-order">Bulk Order</option>
-                        <option value="quality">Quality Concern</option>
-                        <option value="general">General Inquiry</option>
+                        <option value="" className="text-gray-500">Select subject</option>
+                        <option value="product-inquiry" className="text-gray-900">Product Inquiry</option>
+                        <option value="dealership" className="text-gray-900">Dealership</option>
+                        <option value="bulk-order" className="text-gray-900">Bulk Order</option>
+                        <option value="quality" className="text-gray-900">Quality Concern</option>
+                        <option value="general" className="text-gray-900">General Inquiry</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-gray-800 mb-2">
                       Message *
                     </label>
                     <textarea
@@ -173,26 +194,46 @@ export default function ContactUsPage() {
                       value={formData.message}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors resize-vertical"
-                      placeholder="How can we help you?"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 resize-vertical bg-white text-gray-900 placeholder-gray-500 shadow-sm"
+                      placeholder="How can we help you? Please provide details about your inquiry..."
                     />
                   </div>
 
-                  <div className="text-center">
+                  <div className="text-center pt-4">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`px-8 py-3 rounded-lg font-medium transition-all ${
+                      className={`px-10 py-4 rounded-lg font-semibold transition-all duration-300 transform shadow-lg hover:shadow-xl ${
                         isSubmitting
-                          ? 'bg-gray-400 cursor-not-allowed'
+                          ? 'bg-gray-400 cursor-not-allowed text-white'
                           : submitStatus === 'success'
-                          ? 'bg-green-600 hover:bg-green-700'
-                          : 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600'
-                      } text-white shadow-lg`}
+                          ? 'bg-green-600 hover:bg-green-700 text-white scale-105'
+                          : 'bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white hover:scale-105'
+                      }`}
                     >
-                      {isSubmitting ? 'Sending...' : 
-                       submitStatus === 'success' ? '✓ Message Sent!' : 
-                       'Send Message'}
+                      {isSubmitting ? (
+                        <span className="flex items-center">
+                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Sending...
+                        </span>
+                      ) : submitStatus === 'success' ? (
+                        <span className="flex items-center">
+                          <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          Message Sent Successfully!
+                        </span>
+                      ) : (
+                        <span className="flex items-center">
+                          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                          </svg>
+                          Send Message
+                        </span>
+                      )}
                     </button>
                   </div>
                 </form>
