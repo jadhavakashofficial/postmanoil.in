@@ -1,24 +1,25 @@
 // components/PostmanOilCategories.js
 import Link from "next/link";
+import { getImageSEO } from '../utils/imageSEO';
 
 export default function PostmanOilCategories() {
   const categories = [
     {
       id: 1,
       title: "Kacchi Ghani Mustard Oil",
-      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/1.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/07/1.png",
       link: "/mustard-oil"
     },
     {
       id: 2,
       title: "Groundnut Filtered Oil", 
-      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/2.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/07/3.png",
       link: "/groundnut-oil"
     },
     {
       id: 3,
       title: "Refined Groundnut Oil",
-      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/3.png",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/07/2.png",
       link: "/refined-groundnut-oil"
     }
   ];
@@ -37,7 +38,12 @@ export default function PostmanOilCategories() {
         <div className="bg-gradient-to-br from-orange-50 to-yellow-50 relative z-10 overflow-hidden">
           <img
             src={category.image}
-            alt={category.title}
+            {...getImageSEO(
+              category.title.toLowerCase().includes('mustard') ? 'mustard-oil' :
+              category.title.toLowerCase().includes('refined') ? 'refined-oil' :
+              'groundnut-oil',
+              category.title
+            )}
             className="w-full h-auto object-contain group-hover:scale-110 transition-transform duration-700"
           />
         </div>
@@ -56,10 +62,10 @@ export default function PostmanOilCategories() {
   );
 
   return (
-    <section className="py-8 bg-gray-50">
+    <section className="py-6 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-600 via-red-500 to-pink-500 bg-clip-text text-transparent mb-3">
             Postman Oil Categories
           </h2>

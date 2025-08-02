@@ -60,20 +60,20 @@ export default function ContactUsPage() {
         <link rel="canonical" href="https://postmanoil.com/contact-us" />
       </Head>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 pt-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 pt-4">
         
-        {/* Hero Section */}
-        <div className="text-center pb-8">
-          <h1 className="text-2xl md:text-3xl font-bold mb-2">
+        {/* Compact Hero Section */}
+        <div className="text-center pb-4">
+          <h1 className="text-xl md:text-2xl font-bold mb-1">
             <span className="bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 bg-clip-text text-transparent">
               Contact Postman Oils
             </span>
           </h1>
-          <p className="text-base text-amber-800 font-medium max-w-2xl mx-auto">
+          <p className="text-sm text-amber-800 font-medium max-w-2xl mx-auto">
             Get in touch with India's trusted cooking oil manufacturer
           </p>
-          <div className="mt-4 flex justify-center">
-            <div className="bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 h-1 w-24 rounded-full"></div>
+          <div className="mt-2 flex justify-center">
+            <div className="bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 h-1 w-20 rounded-full"></div>
           </div>
         </div>
 
@@ -311,8 +311,8 @@ export default function ContactUsPage() {
                   <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
                     <span className="text-xl">🌱</span>
                   </div>
-                  <h3 className="font-bold text-orange-800 mb-2 text-center">Natural Process</h3>
-                  <p className="text-sm text-gray-600 text-center">Traditional methods preserving goodness</p>
+                  <h3 className="font-bold text-orange-800 mb-2 text-center">Traditional Process</h3>
+                  <p className="text-sm text-gray-600 text-center">Time-tested methods preserving goodness</p>
                 </div>
 
                 <div className="bg-white rounded-xl p-5 shadow-sm border border-orange-100 transition-transform duration-300 hover:scale-[1.02]">
@@ -344,8 +344,8 @@ export default function ContactUsPage() {
                     <div className="text-sm text-gray-700">Generations of Expertise</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-orange-800">100%</div>
-                    <div className="text-sm text-gray-700">Pure & Organic</div>
+                    <div className="text-3xl font-bold text-orange-800">Premium</div>
+                    <div className="text-sm text-gray-700">Quality & Traditional</div>
                   </div>
                 </div>
               </div>

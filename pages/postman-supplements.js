@@ -20,9 +20,9 @@ export default function PremiumSupplements() {
       name: "Mustard Cake",
       description: "A powerful dual-purpose supplement for soil and livestock",
       benefits: [
-        "Works as a natural fertilizer to improve soil fertility",
+        "Works as a fertilizer to improve soil fertility",
         "Serves as a nutrient-rich animal feed",
-        "Organic and eco-friendly"
+        "Eco-friendly and sustainable"
       ],
       icon: "🌱",
       imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8726-1-scaled.jpg"
@@ -51,7 +51,7 @@ export default function PremiumSupplements() {
       
       <Head>
         <title>Industry Supplements | Postman Oils</title>
-        <meta name="description" content="High-quality organic supplements for livestock and agriculture - Mustard DOC, Mustard Cake, and Groundnut Cake." />
+        <meta name="description" content="High-quality supplements for livestock and agriculture - Mustard DOC, Mustard Cake, and Groundnut Cake." />
         <link rel="canonical" href="https://www.postmanoil.com/postman-supplements" />
       </Head>
 
@@ -66,7 +66,7 @@ export default function PremiumSupplements() {
             <div className="bg-gradient-to-r from-amber-500 to-yellow-500 h-1 w-20 rounded-full"></div>
           </div>
           <p className="text-lg text-amber-700 max-w-2xl mx-auto">
-            High-quality organic supplements for livestock and agriculture from our oil extraction process
+            High-quality supplements for livestock and agriculture from our oil extraction process
           </p>
         </div>
 
@@ -159,8 +159,8 @@ export default function PremiumSupplements() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-bold text-green-800 mb-2">Pure & Organic</h3>
-                  <p className="text-xs text-green-700 font-medium">Made from natural by-products with no additives</p>
+                  <h3 className="text-lg font-bold text-green-800 mb-2">Quality Assured</h3>
+                  <p className="text-xs text-green-700 font-medium">Made from quality by-products with no additives</p>
                 </div>
                 
                 <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-xl p-4 border-2 border-blue-200 shadow-lg transition-transform duration-300 hover:scale-105 text-center relative overflow-hidden">
@@ -232,7 +232,7 @@ export default function PremiumSupplements() {
                     </div>
                     <div>
                       <h4 className="font-bold text-blue-800 text-sm">Priya Sharma</h4>
-                      <p className="text-xs text-blue-600">Organic Farmer, Punjab</p>
+                      <p className="text-xs text-blue-600">Farmer, Punjab</p>
                     </div>
                   </div>
                   <p className="text-blue-700 italic text-sm font-medium relative z-10">

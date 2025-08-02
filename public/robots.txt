@@ -1,0 +1,61 @@
+# Robots.txt for Postman Oils
+# https://postmanoil.com
+
+# Allow all search engines
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+
+# Specific directives for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /blog/wp-content/uploads/
+Allow: /images/
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.png
+Allow: *.webp
+Allow: *.gif
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://postmanoil.com/sitemap.xml
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Allow social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Slackbot
+Allow: /

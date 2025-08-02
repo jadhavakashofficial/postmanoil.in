@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage -->
+  <url>
+    <loc>https://postmanoil.com/</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png</image:loc>
+      <image:title>Postman Oils Logo - Premium Cooking Oil Brand by Mittal Oils</image:title>
+      <image:caption>Postman Oil Official Logo - Postmanoils Trusted Since 1967</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Product Pages -->
+  <url>
+    <loc>https://postmanoil.com/mustard-oil</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://postmanoil.com/blog/wp-content/uploads/2025/06/1_yellow_mustard_bottle_FRONT.webp</image:loc>
+      <image:title>Postman Oils Kacchi Ghani Mustard Oil - Premium Cold Pressed Sarson Ka Tel</image:title>
+      <image:caption>Buy Postman Oil Mustard Oil Online - Postmanoils Traditional Wood Pressed</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://postmanoil.com/groundnut-oil</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://postmanoil.com/blog/wp-content/uploads/2025/06/2_yellow_groundnut_bottle_FRONT.webp</image:loc>
+      <image:title>Postman Oils Groundnut Oil - Premium Filtered Peanut Oil by Mittal Oils</image:title>
+      <image:caption>Postman Oil Groundnut Oil - Postmanoils Pure Filtered Cooking Oil</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://postmanoil.com/refined-groundnut-oil</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://postmanoil.com/blog/wp-content/uploads/2025/06/3_white_refined_bottle_FRONT.webp</image:loc>
+      <image:title>Postman Oils Refined Groundnut Oil - Premium Refined Cooking Oil</image:title>
+      <image:caption>Postman Oil Refined Oil - Postmanoils High Quality Edible Oil</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- How It's Made -->
+  <url>
+    <loc>https://postmanoil.com/how-postman-oil-is-made</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Recipes -->
+  <url>
+    <loc>https://postmanoil.com/postman-recipes</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Certifications -->
+  <url>
+    <loc>https://postmanoil.com/certifications</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://postmanoil.com/blog/wp-content/uploads/2025/08/1.png</image:loc>
+      <image:title>Postman Oils Government Trademark Certificate - Mittal Oils</image:title>
+      <image:caption>Government of India Registered Trademark - Postmanoils</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://postmanoil.com/blog/wp-content/uploads/2025/08/3.png</image:loc>
+      <image:title>Postman Oils FSSAI License - Food Safety Certified</image:title>
+      <image:caption>FSSAI Certified Food Safety Standards - Postman Oil</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://postmanoil.com/blog/wp-content/uploads/2025/08/4.png</image:loc>
+      <image:title>Postman Oils ISO Certification - Quality Management</image:title>
+      <image:caption>ISO Certified Quality Management - Postmanoils</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://postmanoil.com/blog/wp-content/uploads/2025/08/5.png</image:loc>
+      <image:title>Postman Oils HACCP Certification - Food Safety System</image:title>
+      <image:caption>HACCP Certified Food Safety System - Postman Oil</image:caption>
+    </image:image>
+  </url>
+
+  <!-- About Us -->
+  <url>
+    <loc>https://postmanoil.com/about-us</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://postmanoil.com/connect-for-dealership</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://postmanoil.com/privacy-policy</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://postmanoil.com/terms-and-conditions</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Product Detail Pages (Main Products) -->
+  <url>
+    <loc>https://postmanoil.com/product/1655</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://postmanoil.com/product/1819</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://postmanoil.com/product/1751</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://postmanoil.com/product/1759</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://postmanoil.com/product/1661</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://postmanoil.com/product/1672</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://postmanoil.com/product/1845</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://postmanoil.com/product/1679</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://postmanoil.com/product/1692</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

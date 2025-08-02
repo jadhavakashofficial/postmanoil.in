@@ -1,6 +1,6 @@
 export default function YearsOfTrust() {
   return (
-    <section className="py-16 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
+    <section className="py-10 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
       {/* Simplified Background Elements for better performance */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 bg-orange-300 rounded-full blur-sm"></div>
@@ -28,7 +28,7 @@ export default function YearsOfTrust() {
               </p>
               
               <p className="text-gray-700">
-                From ethically sourcing the finest seeds directly from farmers to traditional stone crushing and low-heat expeller pressing, each drop is <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent font-bold text-lg md:text-xl">100% pure, organic, and chemical-free</span>. Our triple-filtration and in-house lab testing guarantee crystal-clear clarity, nutrient retention, and a luscious flavor profile.
+                From ethically sourcing the finest seeds directly from farmers to traditional stone crushing and low-heat expeller pressing, each drop is <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent font-bold text-lg md:text-xl">premium quality and traditionally processed</span>. Our triple-filtration and in-house lab testing guarantee crystal-clear clarity, nutrient retention, and a luscious flavor profile.
               </p>
             </div>
 

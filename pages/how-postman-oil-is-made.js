@@ -31,7 +31,7 @@ export default function HowOilIsMade() {
     {
       id: 1,
       title: "Procurement of Seeds",
-      icon: "🌱",
+      icon: "",
       accent: "from-orange-500 to-amber-500",
       image: "https://www.zettafarms.com/wp-content/uploads/2024/01/blog-3.jpg",
       detail: "We source only the highest quality, pesticide-free seeds from trusted local farmers who practice sustainable agriculture. Our rigorous selection process ensures only premium seeds with optimal oil content make it to production.",
@@ -40,7 +40,7 @@ export default function HowOilIsMade() {
     {
       id: 2,
       title: "Cleaning & Selection",
-      icon: "✨",
+      icon: "",
       accent: "from-amber-500 to-yellow-500",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/1.png",
       detail: "Seeds undergo a meticulous 3-stage cleaning process. First, mechanical sieving removes large debris. Then, air classification eliminates dust and lightweight particles. Finally, hand-sorting ensures only perfect seeds proceed.",
@@ -49,7 +49,7 @@ export default function HowOilIsMade() {
     {
       id: 3,
       title: "Seed Crushing",
-      icon: "⚡",
+      icon: "",
       accent: "from-yellow-500 to-orange-500",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8333-scaled.jpg",
       detail: "Using traditional granite stone mills, we gently crush seeds at low RPM to prevent heat buildup. This ancient technique preserves delicate nutrients while preparing the seeds for oil extraction.",
@@ -58,25 +58,25 @@ export default function HowOilIsMade() {
     {
       id: 4,
       title: "Oil Extraction",
-      icon: "💧",
+      icon: "",
       accent: "from-orange-500 to-red-500",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8326-scaled.jpg",
       detail: "Our cold-press extraction maintains temperatures below 40°C (104°F) throughout the process. This slow, pressure-controlled method ensures maximum nutrient retention and authentic flavor profile.",
-      stats: "Temperature-controlled <40°C | Single-press extraction | No chemical solvents"
+      stats: "Temperature-controlled <40°C | Single-press extraction | Traditional methods only"
     },
     {
       id: 5,
       title: "Filtration",
-      icon: "🔬",
+      icon: "",
       accent: "from-red-500 to-pink-500",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8244-scaled.jpg",
-      detail: "Freshly pressed oil undergoes a natural sedimentation process followed by triple-layer filtration through food-grade cellulose, diatomaceous earth, and activated charcoal. This removes impurities while preserving nutrients.",
-      stats: "3-stage filtration | 99.99% clarity | Natural sedimentation"
+      detail: "Freshly pressed oil undergoes a sedimentation process followed by triple-layer filtration through food-grade cellulose, diatomaceous earth, and activated charcoal. This removes impurities while preserving nutrients.",
+      stats: "3-stage filtration | 99.99% clarity | Sedimentation process"
     },
     {
       id: 6,
       title: "Laboratory Testing",
-      icon: "🧪",
+      icon: "",
       accent: "from-pink-500 to-red-500",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8516-scaled.jpg",
       detail: "Each batch is tested for 47 quality parameters including peroxide value, free fatty acids, and nutrient content. Our in-house lab and third-party verification ensure every bottle meets our strict standards.",
@@ -85,7 +85,7 @@ export default function HowOilIsMade() {
     {
       id: 7,
       title: "Packaging",
-      icon: "📦",
+      icon: "",
       accent: "from-red-500 to-orange-500",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8284-scaled.jpg",
       detail: "Oil is immediately bottled in UV-protected amber glass under nitrogen flushing to prevent oxidation. Each bottle is sealed with tamper-evident caps and labeled with harvest date and batch number.",
@@ -126,39 +126,22 @@ export default function HowOilIsMade() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-6">
-            <img 
-              src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png" 
-              alt="Postman Oils Logo" 
-              className="h-16 w-auto object-contain"
-            />
-          </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4">
-            <span className="bg-gradient-to-r from-orange-600 via-red-500 to-amber-600 bg-clip-text text-transparent">
-              The Art of Pure Oil Creation
+        {/* Simple Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-black">
+            <span className="bg-gradient-to-r from-red-600 via-red-500 to-rose-600 bg-clip-text text-transparent">
+              Our Production Journey
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-orange-800 font-medium max-w-3xl mx-auto mb-6">
-            Our meticulous <span className="font-semibold text-orange-600">7-step process</span> transforms premium seeds into liquid gold, preserving <span className="font-semibold text-amber-600">nature's goodness</span> in every drop
-          </p>
-          <div className="flex justify-center">
-            <div className="bg-gradient-to-r from-orange-600 via-red-500 to-amber-600 h-1.5 w-32 rounded-full"></div>
-          </div>
         </div>
 
         {/* Interactive Process Steps */}
         <div className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-orange-800 mb-8">Our Production Journey</h2>
-          <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-            Click on any step to explore the detailed process and quality metrics
-          </p>
           
           {/* Desktop Layout: 2 Rows with Dynamic Details */}
           <div className="hidden lg:block">
             {/* First Row - Steps 1-4 */}
-            <div className="grid grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6">
               {steps.slice(0, 4).map((step) => (
                 <StepCard 
                   key={step.id} 
@@ -182,8 +165,8 @@ export default function HowOilIsMade() {
             )}
             
             {/* Second Row - Steps 5-7 (centered) */}
-            <div className="flex justify-center mt-8">
-              <div className="grid grid-cols-3 gap-6 max-w-4xl">
+            <div className="flex justify-center">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 lg:w-3/4">
                 {steps.slice(4, 7).map((step) => (
                   <StepCard 
                     key={step.id} 
@@ -263,124 +246,50 @@ export default function HowOilIsMade() {
           </div>
         </div>
 
-        {/* Quality Promise Section */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-6 md:p-8 lg:p-12 border border-orange-200 shadow-xl">
-          <div className="text-center mb-8 lg:mb-10">
-            <div className="inline-block bg-gradient-to-r from-orange-500 to-amber-500 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-full mb-6 text-lg lg:text-xl font-bold shadow-lg">
-              Our Quality Promise
-            </div>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-orange-800 mb-6">
-              Pure, Nutrient-Rich Oil Crafted with <span className="text-orange-600">Passion</span> & <span className="text-amber-600">Precision</span>
-            </h3>
-            <p className="text-base md:text-lg lg:text-xl text-gray-700 max-w-4xl mx-auto">
-              From seed selection to bottling, every step of our process is designed to preserve the natural goodness of our oils. We never use chemicals, high heat, or shortcuts - just traditional methods perfected over generations.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-2xl shadow-md border border-orange-100 transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-              <div className="text-center">
-                <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center mx-auto mb-4 text-xl lg:text-2xl shadow-lg">
-                  🌿
-                </div>
-                <h4 className="font-bold text-lg lg:text-xl text-orange-800 mb-3">100% Natural</h4>
-                <p className="text-gray-700 text-sm lg:text-base">No chemicals, additives, or preservatives - just pure oil as nature intended</p>
-              </div>
-            </div>
-            
-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-2xl shadow-md border border-orange-100 transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-              <div className="text-center">
-                <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center mx-auto mb-4 text-xl lg:text-2xl shadow-lg">
-                  🔬
-                </div>
-                <h4 className="font-bold text-lg lg:text-xl text-orange-800 mb-3">Lab Tested</h4>
-                <p className="text-gray-700 text-sm lg:text-base">Every batch undergoes rigorous testing for purity and nutritional content</p>
-              </div>
-            </div>
-            
-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-2xl shadow-md border border-orange-100 transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-              <div className="text-center">
-                <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-full w-14 h-14 lg:w-16 lg:h-16 flex items-center justify-center mx-auto mb-4 text-xl lg:text-2xl shadow-lg">
-                  ♻️
-                </div>
-                <h4 className="font-bold text-lg lg:text-xl text-orange-800 mb-3">Sustainable</h4>
-                <p className="text-gray-700 text-sm lg:text-base">Ethically sourced from farmers practicing sustainable agriculture</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
 }
 
-// Enhanced Step Card Component with Click Interactions
+// Simplified Step Card Component to match homepage
 function StepCard({ step, activeStep, expandedStep, onStepClick, isMobile = false, isFullWidth = false }) {
   const isActive = activeStep === step.id;
   const isExpanded = expandedStep === step.id;
 
   return (
     <div 
-      className={`relative cursor-pointer transition-all duration-400 group ${
+      className={`relative cursor-pointer transition-all duration-300 group ${
         isActive ? 'transform scale-105' : 'hover:transform hover:scale-102'
       } ${isFullWidth ? 'w-full' : ''}`}
       onClick={() => onStepClick(step.id)}
     >
       {/* Step Card */}
-      <div className={`bg-white rounded-xl lg:rounded-2xl shadow-lg border-2 transition-all duration-400 overflow-hidden ${
-        isActive 
-          ? 'border-orange-400 shadow-xl ring-2 ring-orange-200' 
-          : 'border-orange-100 hover:border-orange-300 hover:shadow-lg'
-      }`}>
-        {/* Image Container - Consistent sizing */}
-        <div className={`relative bg-gradient-to-br from-orange-50 to-amber-50 p-3 ${isMobile ? 'h-36' : 'h-44'}`}>
+      <div className={`bg-white rounded-2xl sm:rounded-3xl shadow-md hover:shadow-xl border border-white/80 overflow-hidden transition-all duration-300 hover:-translate-y-2`}>
+        {/* Step Number Badge */}
+        <div className={`absolute top-2 sm:top-3 left-2 sm:left-3 z-20 w-7 h-7 sm:w-9 sm:h-9 bg-gradient-to-r ${step.accent} rounded-full flex items-center justify-center shadow-md ring-1 ring-white/50`}>
+          <span className="text-white font-bold text-xs sm:text-sm">{step.id}</span>
+        </div>
+        
+        {/* Image Container */}
+        <div className={`relative ${isMobile ? 'h-36' : 'h-44 sm:h-48'} overflow-hidden bg-gray-100`}>
           <img 
             src={step.image} 
             alt={step.title}
-            className="w-full h-full object-contain rounded-lg transition-transform duration-400 group-hover:scale-105"
-            style={{ 
-              objectPosition: 'center'
-            }}
+            className="w-full h-full object-contain bg-gray-50 group-hover:scale-105 transition-transform duration-300"
+            style={{ objectPosition: 'center' }}
           />
-          {/* Step Number Badge */}
-          <div className={`absolute top-2 right-2 w-6 h-6 lg:w-8 lg:h-8 rounded-full bg-gradient-to-r ${step.accent} flex items-center justify-center shadow-md transition-transform duration-300 ${isActive ? 'scale-110' : ''}`}>
-            <span className="text-white font-bold text-xs lg:text-sm">{step.id}</span>
-          </div>
-          
-          {/* Click Indicator */}
-          <div className={`absolute top-2 left-2 w-6 h-6 lg:w-8 lg:h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md transition-all duration-300 ${isExpanded ? 'bg-orange-500 text-white' : 'group-hover:bg-orange-100'}`}>
-            <svg className={`w-3 h-3 lg:w-4 lg:h-4 transition-transform duration-300 ${isExpanded ? 'rotate-45' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-          </div>
         </div>
         
         {/* Content */}
-        <div className={`${isMobile ? 'p-2.5' : 'p-4'}`}>
-          <div className="flex items-center mb-2">
-            <div className={`${isMobile ? 'w-7 h-7' : 'w-10 h-10'} rounded-full bg-gradient-to-r ${step.accent} flex items-center justify-center ${isMobile ? 'text-sm' : 'text-lg'} mr-2 transition-transform duration-300 ${isActive ? 'scale-110' : ''}`}>
-              {step.icon}
-            </div>
-            <div className="flex-1">
-              <h3 className={`font-bold text-orange-800 ${isMobile ? 'text-xs' : 'text-sm'} leading-tight`}>{step.title}</h3>
-              <p className={`text-orange-600 ${isMobile ? 'text-xs' : 'text-xs'}`}>Step {step.id}/7</p>
-            </div>
-          </div>
-          
-          {/* Progress Indicator */}
-          <div className="mt-2">
-            <div className="w-full bg-orange-100 rounded-full h-1.5 overflow-hidden">
-              <div 
-                className={`bg-gradient-to-r ${step.accent} h-1.5 rounded-full transition-all duration-500 ${isActive ? 'animate-pulse' : ''}`}
-                style={{ width: isActive ? '100%' : '30%' }}
-              ></div>
-            </div>
-          </div>
+        <div className={`${isMobile ? 'p-3' : 'p-4'}`}>
+          <h3 className={`font-bold text-transparent bg-gradient-to-r ${step.accent} bg-clip-text ${isMobile ? 'text-sm leading-tight' : 'text-base leading-tight'}`}>
+            {step.title}
+          </h3>
           
           {/* Click to Expand Hint */}
-          <div className={`mt-2 text-center transition-opacity duration-300 ${isExpanded ? 'opacity-0' : 'opacity-60 group-hover:opacity-100'}`}>
-            <span className={`text-orange-600 font-medium ${isMobile ? 'text-xs' : 'text-xs'}`}>
-              {isExpanded ? 'Click to close' : 'Click to explore'}
+          <div className={`mt-2 transition-opacity duration-300 ${isExpanded ? 'opacity-70' : 'opacity-60 group-hover:opacity-100'}`}>
+            <span className={`text-gray-500 font-medium ${isMobile ? 'text-xs' : 'text-xs'}`}>
+              {isExpanded ? 'Click to close' : 'Click for details'}
             </span>
           </div>
         </div>
@@ -392,7 +301,7 @@ function StepCard({ step, activeStep, expandedStep, onStepClick, isMobile = fals
 // Dynamic Step Detail Panel Component
 function StepDetailPanel({ step, onClose, isMobile = false }) {
   return (
-    <div className={`bg-white/98 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-2xl border border-orange-200 overflow-hidden animate-in slide-in-from-top duration-500`}>
+    <div className={`bg-white/98 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-2xl border border-orange-200 overflow-hidden my-6`}>
       <div className={`flex ${isMobile ? 'flex-col' : 'flex-col lg:flex-row'}`}>
         {/* Image Section */}
         <div className={`${isMobile ? 'w-full' : 'lg:w-2/5'} relative bg-gradient-to-br from-orange-50 to-amber-50 p-4 lg:p-6`}>

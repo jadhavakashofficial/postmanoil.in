@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
+import SEO from '../../components/SEO';
+import { generateProductSchema, generateBreadcrumbSchema } from '../../utils/structuredData';
+import { getImageSEO, generateProductGallerySchema } from '../../utils/imageSEO';
 
 export default function ProductPage() {
   const router = useRouter();
@@ -10,6 +13,9 @@ export default function ProductPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isZooming, setIsZooming] = useState(false);
+  const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+  const [imageRef, setImageRef] = useState(null);
 
   // WooCommerce API credentials
   const WC_BASE_URL = 'https://postmanoil.com/blog';
@@ -45,6 +51,24 @@ export default function ProductPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleMouseMove = (e) => {
+    if (!imageRef) return;
+    
+    const rect = imageRef.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    
+    setZoomPosition({ x, y });
+  };
+
+  const handleMouseEnter = () => {
+    setIsZooming(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsZooming(false);
   };
 
   const extractBuyButtons = (product) => {
@@ -97,9 +121,9 @@ export default function ProductPage() {
 
   const getPlatformLogo = (platform) => {
     const logos = {
-      'Amazon': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/amazon-logo-on-transparent-background-free-vector.jpg',
-      'Flipkart': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/flipkart-logo-svg-vector.svg',
-      'JioMart': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/jio-mart-logo.png'
+      'Amazon': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Amazon.png',
+      'Flipkart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/flipkart.png',
+      'JioMart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Jiomart.png'
     };
     return logos[platform] || logos['Amazon'];
   };
@@ -121,11 +145,11 @@ export default function ProductPage() {
       const lower = sentence.toLowerCase();
       if (lower.includes('ltr') || lower.includes('ml') || lower.includes('kg') || lower.includes('gram') || lower.includes('pack')) {
         specifications.push(sentence.trim());
-      } else if (lower.includes('benefit') || lower.includes('healthy') || lower.includes('vitamin') || lower.includes('nutrition') || lower.includes('rich')) {
+      } else if (lower.includes('benefit') || lower.includes('vitamin') || lower.includes('nutrition') || lower.includes('rich')) {
         benefits.push(sentence.trim());
       } else if (lower.includes('cooking') || lower.includes('frying') || lower.includes('recipe') || lower.includes('kitchen')) {
         usage.push(sentence.trim());
-      } else if (lower.includes('cold pressed') || lower.includes('pure') || lower.includes('natural') || lower.includes('organic') || lower.includes('quality')) {
+      } else if (lower.includes('cold pressed') || lower.includes('premium') || lower.includes('traditional') || lower.includes('quality')) {
         features.push(sentence.trim());
       } else if (sentence.trim().length > 25) {
         features.push(sentence.trim());
@@ -165,18 +189,42 @@ export default function ProductPage() {
   const buyButtons = extractBuyButtons(product);
   const parsedDescription = parseProductDescription(product.description, product.short_description);
 
+  // Determine product type for SEO
+  const productType = product.name.toLowerCase().includes('mustard') ? 'mustard-oil' :
+                     product.name.toLowerCase().includes('refined') ? 'refined-oil' :
+                     'groundnut-oil';
+
+  // Generate schema data
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://postmanoil.com' },
+    { name: 'Products', url: 'https://postmanoil.com/products' },
+    { name: product.name, url: `https://postmanoil.com/product/${product.id}` }
+  ];
+
+  const productSchemaData = {
+    name: product.name,
+    description: product.short_description ? product.short_description.replace(/<[^>]*>/g, '') : product.description.replace(/<[^>]*>/g, ''),
+    images: product.images.map(img => img.src),
+    category: product.categories[0]?.name || 'Cooking Oil',
+    sku: product.sku,
+    id: product.id
+  };
+
   return (
     <>
-      <Head>
-        <title>{product.name} | Postman Oils - Premium Cooking Oil Online</title>
-        <meta name="description" content={`Buy ${product.name} online. Pure, authentic cooking oil from Postman Oils. Available on Amazon, Flipkart & JioMart. 55+ years of trust.`} />
-        <meta name="keywords" content={`${product.name}, postman oils, cooking oil, pure oil, ${product.categories.map(c => c.name).join(', ')}`} />
-        <meta property="og:title" content={`${product.name} | Postman Oils`} />
-        <meta property="og:description" content={`Buy ${product.name} online. Pure, authentic cooking oil from Postman Oils.`} />
-        <meta property="og:image" content={product.images[0]?.src} />
-        <meta property="og:type" content="product" />
-        <link rel="canonical" href={`https://postmanoil.com/product/${product.id}`} />
-      </Head>
+      <SEO 
+        title={`${product.name} - Buy Online | Postman Oils (Mittal Oils)`}
+        description={`Buy ${product.name} online from Postman Oil. ${product.short_description ? product.short_description.replace(/<[^>]*>/g, '').substring(0, 120) : ''} Postmanoils by Mittal Oils. Available on Amazon, Flipkart & JioMart. 58+ years of trust.`}
+        keywords={`${product.name}, postman oils, postman oil, postmanoils, mittal oils, edible oils, ${product.categories.map(c => c.name).join(', ')}, buy ${product.name.toLowerCase()} online, postman ${product.name.toLowerCase()}`}
+        image={product.images[0]?.src}
+        url={`https://postmanoil.com/product/${product.id}`}
+        type="product"
+        schemaData={generateProductSchema(productSchemaData)}
+        additionalSchemas={[
+          generateBreadcrumbSchema(breadcrumbItems),
+          generateProductGallerySchema(product)
+        ]}
+      />
 
       {/* Breadcrumb */}
       <div className="bg-gradient-to-r from-orange-50 to-yellow-50 py-4">
@@ -193,13 +241,20 @@ export default function ProductPage() {
       <section className="py-8 md:py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           
+          {/* Mobile Title */}
+          <div className="lg:hidden mb-6">
+            <h1 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 bg-clip-text text-transparent mb-2 leading-tight">
+              {product.name}
+            </h1>
+          </div>
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             
             {/* Left Column: Product Info & Description */}
             <div className="space-y-6">
               
-              {/* Product Header */}
-              <div>
+              {/* Product Header - Desktop Only */}
+              <div className="hidden lg:block">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 bg-clip-text text-transparent mb-4 leading-tight">
                   {product.name}
                 </h1>
@@ -247,7 +302,7 @@ export default function ProductPage() {
               {/* Buy Buttons */}
               <div className="space-y-4">
                 <h3 className="text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent flex items-center">
-                  <span className="mr-2">🛒</span> Buy Now From:
+                  <span className="mr-2">🛒</span> Quick Purchase:
                 </h3>
                 
                 {/* Desktop: Single row */}
@@ -400,7 +455,7 @@ export default function ProductPage() {
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div className="text-center">
                           <div className="text-2xl mb-1">🌱</div>
-                          <div className="text-xs font-bold text-gray-800">100% Natural</div>
+                          <div className="text-xs font-bold text-gray-800">Premium Quality</div>
                         </div>
                         <div className="text-center">
                           <div className="text-2xl mb-1">❄️</div>
@@ -423,13 +478,51 @@ export default function ProductPage() {
 
             {/* Right Column: Product Images */}
             <div className="lg:order-last order-first">
-              {/* Main Image */}
+              {/* Main Image with Zoom */}
               <div className="relative h-80 md:h-96 lg:h-[500px] bg-gradient-to-br from-orange-50 to-yellow-50 rounded-2xl overflow-hidden mb-4 shadow-xl border-2 border-orange-100">
-                <img
-                  src={product.images[selectedImage]?.src || product.images[0]?.src}
-                  alt={product.name}
-                  className="w-full h-full object-contain p-6"
-                />
+                <div
+                  className="relative w-full h-full cursor-crosshair"
+                  onMouseMove={handleMouseMove}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <img
+                    ref={setImageRef}
+                    src={product.images[selectedImage]?.src || product.images[0]?.src}
+                    {...getImageSEO(productType, product.name)}
+                    className="w-full h-full object-contain p-6"
+                  />
+                  
+                  {/* Zoom Lens - only visible on desktop */}
+                  {isZooming && (
+                    <>
+                      <div 
+                        className="hidden lg:block absolute w-40 h-40 border-2 border-orange-400 rounded-full pointer-events-none bg-white/30 backdrop-blur-sm"
+                        style={{
+                          left: `${zoomPosition.x}%`,
+                          top: `${zoomPosition.y}%`,
+                          transform: 'translate(-50%, -50%)'
+                        }}
+                      />
+                      
+                      {/* Zoom Preview - overlay style */}
+                      <div className="hidden lg:block absolute inset-0 bg-white overflow-hidden z-40">
+                        <img
+                          src={product.images[selectedImage]?.src || product.images[0]?.src}
+                          {...getImageSEO(productType, `${product.name} Zoom`)}
+                          className="absolute"
+                          style={{
+                            width: '200%',
+                            height: '200%',
+                            left: `-${zoomPosition.x}%`,
+                            top: `-${zoomPosition.y}%`,
+                            objectFit: 'contain'
+                          }}
+                        />
+                      </div>
+                    </>
+                  )}
+                </div>
                 
                 {/* Sale Badge */}
                 {product.on_sale && (
@@ -456,7 +549,7 @@ export default function ProductPage() {
                     >
                       <img
                         src={image.src}
-                        alt={`${product.name} view ${index + 1}`}
+                        {...getImageSEO(productType, `${product.name} View ${index + 1}`)}
                         className="w-full h-full object-contain bg-gray-50 p-1"
                       />
                     </button>
@@ -464,8 +557,8 @@ export default function ProductPage() {
                 </div>
               )}
 
-              {/* Quick Purchase Card */}
-              <div className="bg-white rounded-2xl border-2 border-orange-200 shadow-lg p-6 sticky top-6">
+              {/* Quick Purchase Card - Hidden on Mobile */}
+              <div className="hidden lg:block bg-white rounded-2xl border-2 border-orange-200 shadow-lg p-6 sticky top-6">
                 <h3 className="font-bold text-orange-700 mb-4 flex items-center text-lg">
                   <span className="mr-2">⚡</span> Quick Purchase
                 </h3>

@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import SEO from '../components/SEO';
+import { generateWebPageSchema, generateBreadcrumbSchema } from '../utils/structuredData';
+import { getImageSEO } from '../utils/imageSEO';
 
 export default function PostmanRecipes() {
   const router = useRouter();
@@ -183,7 +186,7 @@ export default function PostmanRecipes() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center mb-16">
             <div className="h-12 bg-gradient-to-r from-orange-300 to-yellow-200 rounded-full w-64 mx-auto mb-4 animate-pulse"></div>
             <div className="h-6 bg-gradient-to-r from-orange-200 to-yellow-100 rounded-full w-48 mx-auto animate-pulse"></div>
@@ -231,57 +234,51 @@ export default function PostmanRecipes() {
     );
   }
 
+  // Schema data
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://postmanoil.com' },
+    { name: 'Recipes', url: 'https://postmanoil.com/postman-recipes' }
+  ];
+
+  const webPageSchema = generateWebPageSchema({
+    title: "Postman Recipes - Traditional & Modern Recipes with Postman Oils",
+    description: "Discover delicious recipes using Postman Oil. Traditional Indian recipes and modern dishes with our premium cooking oils.",
+    url: `https://postmanoil.com/postman-recipes${currentPage > 1 ? `?page=${currentPage}` : ''}`
+  });
+
   return (
     <>
-      <Head>
-        <title>Postman Recipes - Delicious Cooking with Postman Oil</title>
-        <meta name="description" content="Discover amazing recipes using Postman Oil. From traditional curries to modern fusion dishes, explore our collection of delicious recipes." />
-        <meta property="og:title" content="Postman Recipes - Delicious Cooking with Postman Oil" />
-        <meta property="og:description" content="Discover amazing recipes using Postman Oil. From traditional curries to modern fusion dishes, explore our collection of delicious recipes." />
-        <meta property="og:type" content="website" />
+      <SEO 
+        title="Postman Recipes - Delicious Cooking with Postman Oil | Mittal Oils"
+        description="Discover amazing recipes using Postman Oil. From traditional Indian curries to modern fusion dishes with Postmanoils. Explore cooking ideas with Mittal Oils premium edible oils."
+        keywords="postman oil recipes, postman oils cooking, postmanoils recipes, mittal oils recipes, cooking with postman oil, indian recipes, traditional recipes, mustard oil recipes, groundnut oil recipes, healthy cooking recipes, postman oil dishes"
+        image="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png"
+        url={`https://postmanoil.com/postman-recipes${currentPage > 1 ? `?page=${currentPage}` : ''}`}
+        type="website"
+        schemaData={webPageSchema}
+        additionalSchemas={[
+          generateBreadcrumbSchema(breadcrumbItems)
+        ]}
+      />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-amber-50">
-        {/* Hero Section with reduced spacing */}
-        <section className="relative overflow-hidden bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 text-white py-16 md:py-20">
+        {/* Compact Hero Section */}
+        <section className="relative overflow-hidden bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 text-white py-3 md:py-4">
           <div className="absolute inset-0 bg-black/10"></div>
-          <div className="absolute inset-0 bg-[url('/pattern.svg')] bg-repeat opacity-10"></div>
-          
-          {/* Floating food icons */}
-          <div className="absolute top-6 left-6 text-3xl opacity-20 animate-float">🍳</div>
-          <div className="absolute top-16 right-1/4 text-4xl opacity-20 animate-float-delay">🍲</div>
-          <div className="absolute bottom-1/4 left-1/3 text-3xl opacity-20 animate-float-delay-2">🥘</div>
-          <div className="absolute bottom-16 right-16 text-4xl opacity-20 animate-float">🍛</div>
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6 leading-tight font-playfair">
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-black leading-tight font-playfair">
               Postman Recipes
             </h1>
-            <p className="text-lg md:text-xl font-light mb-6 max-w-3xl mx-auto leading-relaxed">
-              Discover the art of cooking with premium Postman Oil. From traditional favorites to innovative fusion dishes.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-base">
-              <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
-                <span className="font-bold">{totalPosts}</span>
-                <span className="ml-2">Recipes</span>
-              </div>
-              <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
-                <span className="font-bold">Fresh</span>
-                <span className="ml-2">Content</span>
-              </div>
-              <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
-                <span className="font-bold">Expert</span>
-                <span className="ml-2">Tips</span>
-              </div>
-            </div>
           </div>
         </section>
 
         {/* Recipe Cards Section */}
-        <section className="py-12 relative">
+        <section className="py-8 relative">
           {/* Decorative elements */}
           <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-r from-yellow-200 to-orange-200 rounded-full filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-72 h-72 bg-gradient-to-r from-red-200 to-pink-200 rounded-full filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
@@ -297,7 +294,7 @@ export default function PostmanRecipes() {
                         <div className="relative h-48 md:h-52 overflow-hidden">
                           <img
                             src={post.featuredImage}
-                            alt={post.title}
+                            {...getImageSEO('recipe', post.title)}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>

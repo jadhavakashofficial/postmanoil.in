@@ -1,4 +1,5 @@
 import React from 'react';
+import { getImageSEO } from '../utils/imageSEO';
 
 export default function HowOilIsMade() {
   const steps = [
@@ -7,7 +8,7 @@ export default function HowOilIsMade() {
       title: "Procurement of Seeds",
       image: "https://www.zettafarms.com/wp-content/uploads/2024/01/blog-3.jpg",
       description: "Sourcing premium, pesticide-free seeds directly from trusted farmers",
-      icon: "🌱",
+      icon: "",
       gradient: "from-emerald-500 to-teal-600",
       titleColor: "from-emerald-700 to-teal-800"
     },
@@ -16,7 +17,7 @@ export default function HowOilIsMade() {
       title: "Cleaning & Selection",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/1.png",
       description: "Thorough cleaning and hand-sorting to remove all impurities",
-      icon: "✨",
+      icon: "",
       gradient: "from-blue-500 to-cyan-600",
       titleColor: "from-blue-700 to-cyan-800"
     },
@@ -25,7 +26,7 @@ export default function HowOilIsMade() {
       title: "Seed Crushing",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8333-scaled.jpg",
       description: "Traditional stone mills gently crush seeds to preserve nutrients",
-      icon: "⚡",
+      icon: "",
       gradient: "from-purple-500 to-indigo-600",
       titleColor: "from-purple-700 to-indigo-800"
     },
@@ -34,7 +35,7 @@ export default function HowOilIsMade() {
       title: "Oil Extraction",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8326-scaled.jpg",
       description: "Cold-press extraction below 40°C to preserve nutrients",
-      icon: "💧",
+      icon: "",
       gradient: "from-orange-500 to-red-600",
       titleColor: "from-orange-700 to-red-800"
     },
@@ -43,7 +44,7 @@ export default function HowOilIsMade() {
       title: "Filtration",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8244-scaled.jpg",
       description: "Multi-stage purification process for crystal-clear oil",
-      icon: "🔬",
+      icon: "",
       gradient: "from-pink-500 to-rose-600",
       titleColor: "from-pink-700 to-rose-800"
     },
@@ -52,7 +53,7 @@ export default function HowOilIsMade() {
       title: "Laboratory Testing",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8516-scaled.jpg",
       description: "Rigorous quality control to ensure purity and freshness",
-      icon: "🧪",
+      icon: "",
       gradient: "from-yellow-500 to-amber-600",
       titleColor: "from-yellow-700 to-amber-800"
     },
@@ -61,7 +62,7 @@ export default function HowOilIsMade() {
       title: "Packaging",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8284-scaled.jpg",
       description: "Nitrogen-flushed bottles sealed for freshness",
-      icon: "📦",
+      icon: "",
       gradient: "from-green-500 to-emerald-600",
       titleColor: "from-green-700 to-emerald-800"
     }
@@ -76,7 +77,7 @@ export default function HowOilIsMade() {
   };
 
   return (
-    <section className="py-12 sm:py-16 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden" itemScope itemType="https://schema.org/Process">
+    <section className="py-6 sm:py-10 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden" itemScope itemType="https://schema.org/Process">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-24 h-24 bg-violet-400 rounded-full blur-sm"></div>
@@ -86,14 +87,14 @@ export default function HowOilIsMade() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-10 sm:mb-14">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight bg-gradient-to-r from-red-600 via-orange-500 to-pink-600 bg-clip-text text-transparent leading-tight" itemProp="name">
+        <div className="text-center mb-4 sm:mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black mb-2 tracking-tight bg-gradient-to-r from-red-600 via-orange-500 to-pink-600 bg-clip-text text-transparent leading-tight" itemProp="name">
             How Postman Oil Is Made
           </h1>
-          <p className="text-gray-700 text-lg sm:text-xl font-medium max-w-3xl mx-auto px-2" itemProp="description">
+          <p className="text-gray-700 text-base sm:text-lg font-medium max-w-3xl mx-auto px-2" itemProp="description">
             Our meticulous <span className="text-red-600 font-bold">7-step process</span> ensures every drop meets the highest standards of <span className="text-orange-600 font-bold">purity and quality</span>
           </p>
-          <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-red-500 to-orange-500 mx-auto rounded-full mt-4 sm:mt-6"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-red-500 to-orange-500 mx-auto rounded-full mt-3"></div>
         </div>
 
         {/* Mobile Layout (2 columns + full width for 7th) */}
@@ -120,9 +121,9 @@ export default function HowOilIsMade() {
             ))}
           </div>
 
-          {/* Last 3 cards centered */}
+          {/* Last 3 cards - centered with same card size */}
           <div className="flex justify-center">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6 max-w-5xl">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 lg:w-3/4">
               {steps.slice(4, 7).map((step) => (
                 <StepCard key={step.id} step={step} onClick={() => handleCardClick(step.id)} />
               ))}
@@ -131,12 +132,12 @@ export default function HowOilIsMade() {
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-10 sm:mt-14">
+        <div className="text-center mt-4 sm:mt-6">
           <button 
             onClick={handleKnowMoreClick}
             className="group inline-flex items-center space-x-2 bg-gradient-to-r from-red-600 via-orange-500 to-pink-600 hover:from-red-700 hover:via-orange-600 hover:to-pink-700 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-full shadow-xl hover:shadow-red-500/30 transform transition-all duration-300 ring-2 ring-white/40 font-bold text-sm sm:text-base tracking-wide active:scale-95"
           >
-            <span>Know More About Our Process</span>
+            <span>How Postman Oil Is Made</span>
             <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
             </svg>
@@ -153,7 +154,7 @@ function StepCard({ step, onClick, isMobile = false, isFullWidth = false }) {
     group relative bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl 
     transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-1.5 
     border border-white/40 overflow-hidden cursor-pointer
-    active:scale-95 active:shadow-md
+    active:scale-95 active:shadow-md h-full flex flex-col
     ${isFullWidth ? 'w-full' : ''}
   `;
 
@@ -181,11 +182,9 @@ function StepCard({ step, onClick, isMobile = false, isFullWidth = false }) {
       <div className={`relative ${isMobile ? 'h-36' : 'h-44 sm:h-48'} overflow-hidden bg-gray-100`}>
         <img
           src={step.image}
-          alt={`Step ${step.id}: ${step.title}`}
+          {...getImageSEO('process', `Step ${step.id}: ${step.title}`)}
           className="w-full h-full object-contain bg-gray-50 group-hover:scale-105 transition-transform duration-300"
           itemProp="image"
-          loading="lazy"
-          decoding="async"
           style={{
             objectPosition: 'center'
           }}
@@ -194,28 +193,16 @@ function StepCard({ step, onClick, isMobile = false, isFullWidth = false }) {
         {/* Hover Overlay */}
         <div className={`absolute inset-0 bg-gradient-to-t ${step.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
         
-        {/* Icon */}
-        <div className="absolute bottom-2 right-2 bg-white/95 backdrop-blur-sm rounded-full w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
-          <span className={`${isMobile ? 'text-base' : 'text-lg'}`}>{step.icon}</span>
-        </div>
       </div>
 
       {/* Content - Compact and optimized */}
-      <div className={`${isMobile ? 'p-3 pb-4' : 'p-4 pb-5'}`}>
+      <div className={`${isMobile ? 'p-3' : 'p-4'} flex-grow flex flex-col`}>
         <h3 className={`font-bold text-transparent bg-gradient-to-r ${step.titleColor} bg-clip-text mb-2 ${isMobile ? 'text-sm leading-tight' : 'text-base leading-tight'}`} itemProp="name">
           {step.title}
         </h3>
-        <p className={`text-gray-600 leading-snug mb-3 ${isMobile ? 'text-xs' : 'text-sm'}`} itemProp="text">
+        <p className={`text-gray-600 leading-snug ${isMobile ? 'text-xs' : 'text-sm'}`} itemProp="text">
           {step.description}
         </p>
-        
-        {/* Click indicator - Always visible but subtle */}
-        <div className="flex items-center justify-between group-hover:opacity-100 opacity-70 transition-opacity duration-300">
-          <span className={`text-gray-400 font-medium ${isMobile ? 'text-xs' : 'text-sm'}`}>Learn more</span>
-          <svg className="w-4 h-4 text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
       </div>
 
       {/* Bottom Accent */}

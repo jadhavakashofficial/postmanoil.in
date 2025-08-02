@@ -4,12 +4,14 @@ export default function CustomerReviews() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const sliderRef = useRef(null);
   const videoRefs = useRef({});
 
   const reviews = [
     {
       id: 1,
+      type: 'video',
       videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=300&fit=crop&crop=face',
       name: 'Priya Sharma',
@@ -20,16 +22,16 @@ export default function CustomerReviews() {
     },
     {
       id: 2,
-      videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
-      thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=face',
+      type: 'image',
+      imageUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8244-scaled.jpg',
       name: 'Rajesh Kumar',
       location: 'Delhi, India',
       rating: 5,
-      text: 'I have been using Postman mustard oil for over 3 years now. The cold-pressed method preserves all nutrients. My family\'s health has improved significantly.',
-      duration: '1:30'
+      text: 'I have been using Postman mustard oil for over 3 years now. The cold-pressed method preserves all nutrients. My family\'s health has improved significantly.'
     },
     {
       id: 3,
+      type: 'video',
       videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=300&fit=crop&crop=face',
       name: 'Meera Patel',
@@ -40,16 +42,16 @@ export default function CustomerReviews() {
     },
     {
       id: 4,
-      videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
-      thumbnail: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=300&fit=crop&crop=face',
+      type: 'image',
+      imageUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8326-scaled.jpg',
       name: 'Amit Singh',
       location: 'Jaipur, Rajasthan',
       rating: 5,
-      text: 'Outstanding quality! The lab testing gives me confidence in the purity. My children love the taste, and I love knowing they\'re getting the best nutrition.',
-      duration: '2:05'
+      text: 'Outstanding quality! The lab testing gives me confidence in the purity. My children love the taste, and I love knowing they\'re getting the best nutrition.'
     },
     {
       id: 5,
+      type: 'video',
       videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
       thumbnail: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop&crop=face',
       name: 'Sunita Reddy',
@@ -60,13 +62,12 @@ export default function CustomerReviews() {
     },
     {
       id: 6,
-      videoUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/postman-oill_17-1.mp4',
-      thumbnail: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=300&fit=crop&crop=face',
+      type: 'image',
+      imageUrl: 'https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_8516-scaled.jpg',
       name: 'Kavya Iyer',
       location: 'Bangalore, Karnataka',
       rating: 5,
-      text: 'Authentic taste and supreme quality! This is exactly what traditional Indian cooking needs. 100% satisfied with every drop.',
-      duration: '3:20'
+      text: 'Authentic taste and supreme quality! This is exactly what traditional Indian cooking needs. 100% satisfied with every drop.'
     }
   ];
 
@@ -82,6 +83,9 @@ export default function CustomerReviews() {
 
   // Handle video play/pause on hover with audio
   const handleCardHover = (reviewId) => {
+    const review = reviews.find(r => r.id === reviewId);
+    if (review.type !== 'video') return;
+    
     setHoveredCard(reviewId);
     setIsAutoPlaying(false);
     
@@ -94,6 +98,9 @@ export default function CustomerReviews() {
   };
 
   const handleCardLeave = (reviewId) => {
+    const review = reviews.find(r => r.id === reviewId);
+    if (review.type !== 'video') return;
+    
     setHoveredCard(null);
     setIsAutoPlaying(true);
     
@@ -106,13 +113,13 @@ export default function CustomerReviews() {
   };
 
   const nextSlide = () => {
-    setCurrentSlide(prev => (prev + 1) % Math.ceil(reviews.length / 3));
+    setCurrentSlide(prev => (prev + 1) % totalSlides);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 3000);
   };
 
   const prevSlide = () => {
-    setCurrentSlide(prev => (prev - 1 + Math.ceil(reviews.length / 3)) % Math.ceil(reviews.length / 3));
+    setCurrentSlide(prev => (prev - 1 + totalSlides) % totalSlides);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 3000);
   };
@@ -131,10 +138,39 @@ export default function CustomerReviews() {
     ));
   };
 
-  const totalSlides = Math.ceil(reviews.length / 3);
+  const itemsPerSlide = isMobile ? 1 : 3;
+  const totalSlides = Math.ceil(reviews.length / itemsPerSlide);
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Reset slide when switching between mobile/desktop
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [isMobile]);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % totalSlides);
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, totalSlides]);
 
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
+    <section className="py-6 md:py-8 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
       {/* Simplified background elements */}
       <div className="absolute inset-0 opacity-15">
         <div 
@@ -151,13 +187,13 @@ export default function CustomerReviews() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+        {/* Compact Header */}
+        <div className="text-center mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 text-gray-900">
             What Our <span className="text-amber-600">Customers Say</span>
           </h2>
-          <p className="text-gray-700 max-w-2xl mx-auto text-lg">
-            Join thousands of satisfied families who trust Postman Oil for authentic, healthy cooking
+          <p className="text-gray-700 max-w-2xl mx-auto text-sm md:text-base">
+            Join thousands of satisfied families who trust Postman Oil
           </p>
         </div>
 
@@ -175,8 +211,8 @@ export default function CustomerReviews() {
             >
               {Array.from({ length: totalSlides }, (_, slideIndex) => (
                 <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-                    {reviews.slice(slideIndex * 3, slideIndex * 3 + 3).map((review) => (
+                  <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'} gap-8 px-4`}>
+                    {reviews.slice(slideIndex * itemsPerSlide, slideIndex * itemsPerSlide + itemsPerSlide).map((review) => (
                       <div 
                         key={review.id} 
                         className="group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl border-2 border-orange-100 hover:border-orange-200 transition-all duration-500 overflow-hidden flex flex-col"
@@ -189,89 +225,127 @@ export default function CustomerReviews() {
                         onMouseEnter={() => handleCardHover(review.id)}
                         onMouseLeave={() => handleCardLeave(review.id)}
                       >
-                        {/* Enhanced Video Container with custom thumbnail */}
+                        {/* Enhanced Media Container for both video and image reviews */}
                         <div className="relative h-56 overflow-hidden bg-gradient-to-br from-orange-100 via-amber-100 to-yellow-100">
                           
-                          {/* Custom Static Thumbnail - Always visible when not playing */}
-                          {hoveredCard !== review.id && (
-                            <div className="absolute inset-0 bg-gradient-to-br from-orange-200 to-amber-200 flex flex-col items-center justify-center">
-                              {/* Postman Oil Branding */}
-                              <div className="text-center mb-4">
-                                <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mb-3 shadow-xl mx-auto">
-                                  <span className="text-white font-black text-2xl">P</span>
+                          {review.type === 'video' ? (
+                            <>
+                              {/* Custom Static Thumbnail - Always visible when not playing */}
+                              {hoveredCard !== review.id && (
+                                <div className="absolute inset-0 bg-gradient-to-br from-orange-200 to-amber-200 flex flex-col items-center justify-center">
+                                  {/* Postman Oil Branding */}
+                                  <div className="text-center mb-4">
+                                    <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mb-3 shadow-xl mx-auto">
+                                      <span className="text-white font-black text-2xl">P</span>
+                                    </div>
+                                    <h3 className="text-orange-800 font-bold text-lg mb-1">Postman Oil</h3>
+                                    <p className="text-orange-700 text-sm font-medium">Video Review</p>
+                                  </div>
+                                  
+                                  {/* User Info Preview */}
+                                  <div className="text-center">
+                                    <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg mx-auto mb-2">
+                                      {review.name.charAt(0)}
+                                    </div>
+                                    <p className="text-orange-800 font-semibold text-sm">{review.name}</p>
+                                    <p className="text-orange-600 text-xs">{review.location}</p>
+                                  </div>
+                                  
+                                  {/* Decorative Elements */}
+                                  <div className="absolute top-4 left-4 w-8 h-8 bg-orange-300 rounded-full opacity-60"></div>
+                                  <div className="absolute bottom-4 right-4 w-6 h-6 bg-amber-300 rounded-full opacity-60"></div>
+                                  <div className="absolute top-1/2 left-6 w-4 h-4 bg-yellow-300 rounded-full opacity-40"></div>
                                 </div>
-                                <h3 className="text-orange-800 font-bold text-lg mb-1">Postman Oil</h3>
-                                <p className="text-orange-700 text-sm font-medium">Customer Review</p>
+                              )}
+                              
+                              {/* Video Element - Only visible when hovering */}
+                              <video
+                                ref={el => videoRefs.current[review.id] = el}
+                                src={review.videoUrl}
+                                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${hoveredCard === review.id ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                                muted={hoveredCard !== review.id}
+                                loop
+                                playsInline
+                                preload="metadata"
+                                style={{
+                                  transform: 'translate3d(0, 0, 0)',
+                                  backfaceVisibility: 'hidden'
+                                }}
+                              />
+                              
+                              {/* Play Button Overlay - Only show when not hovered */}
+                              {hoveredCard !== review.id && (
+                                <div className="absolute inset-0 bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors duration-300">
+                                  <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300 cursor-pointer border-4 border-white/30 backdrop-blur-sm">
+                                    <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                  </div>
+                                </div>
+                              )}
+                              
+                              {/* Duration Badge */}
+                              <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-semibold border border-white/20">
+                                {review.duration}
+                              </div>
+
+                              {/* Video Playing Indicator with Sound Icon */}
+                              {hoveredCard === review.id && (
+                                <div className="absolute top-4 left-4 bg-red-600 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center space-x-2 border border-white/20">
+                                  <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                                  <span>PLAYING</span>
+                                  <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                  </svg>
+                                </div>
+                              )}
+
+                              {/* Hover to Play Instruction */}
+                              {hoveredCard !== review.id && (
+                                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-orange-700 px-3 py-1.5 rounded-full text-xs font-semibold border border-orange-200">
+                                  <span className="flex items-center space-x-1">
+                                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                    <span>Hover to play with sound</span>
+                                  </span>
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            /* Image Review Display */
+                            <>
+                              <img
+                                src={review.imageUrl}
+                                alt={`${review.name}'s review`}
+                                className="absolute inset-0 w-full h-full object-cover"
+                              />
+                              
+                              {/* Image Review Overlay */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
+                                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                                  <div className="flex items-center space-x-3 mb-2">
+                                    <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                                      {review.name.charAt(0)}
+                                    </div>
+                                    <div>
+                                      <p className="font-bold text-sm">{review.name}</p>
+                                      <p className="text-xs opacity-90">{review.location}</p>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                               
-                              {/* User Info Preview */}
-                              <div className="text-center">
-                                <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg mx-auto mb-2">
-                                  {review.name.charAt(0)}
-                                </div>
-                                <p className="text-orange-800 font-semibold text-sm">{review.name}</p>
-                                <p className="text-orange-600 text-xs">{review.location}</p>
+                              {/* Image Review Badge */}
+                              <div className="absolute top-4 right-4 bg-gradient-to-r from-orange-500 to-red-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold border border-white/20 backdrop-blur-sm">
+                                <span className="flex items-center space-x-1">
+                                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                  </svg>
+                                  <span>Verified Review</span>
+                                </span>
                               </div>
-                              
-                              {/* Decorative Elements */}
-                              <div className="absolute top-4 left-4 w-8 h-8 bg-orange-300 rounded-full opacity-60"></div>
-                              <div className="absolute bottom-4 right-4 w-6 h-6 bg-amber-300 rounded-full opacity-60"></div>
-                              <div className="absolute top-1/2 left-6 w-4 h-4 bg-yellow-300 rounded-full opacity-40"></div>
-                            </div>
-                          )}
-                          
-                          {/* Video Element - Only visible when hovering */}
-                          <video
-                            ref={el => videoRefs.current[review.id] = el}
-                            src={review.videoUrl}
-                            className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${hoveredCard === review.id ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-                            muted={hoveredCard !== review.id}
-                            loop
-                            playsInline
-                            preload="metadata"
-                            style={{
-                              transform: 'translate3d(0, 0, 0)',
-                              backfaceVisibility: 'hidden'
-                            }}
-                          />
-                          
-                          {/* Play Button Overlay - Only show when not hovered */}
-                          {hoveredCard !== review.id && (
-                            <div className="absolute inset-0 bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors duration-300">
-                              <div className="w-16 h-16 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300 cursor-pointer border-4 border-white/30 backdrop-blur-sm">
-                                <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M8 5v14l11-7z"/>
-                                </svg>
-                              </div>
-                            </div>
-                          )}
-                          
-                          {/* Duration Badge */}
-                          <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-semibold border border-white/20">
-                            {review.duration}
-                          </div>
-
-                          {/* Video Playing Indicator with Sound Icon */}
-                          {hoveredCard === review.id && (
-                            <div className="absolute top-4 left-4 bg-red-600 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center space-x-2 border border-white/20">
-                              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                              <span>PLAYING</span>
-                              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                              </svg>
-                            </div>
-                          )}
-
-                          {/* Hover to Play Instruction */}
-                          {hoveredCard !== review.id && (
-                            <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-orange-700 px-3 py-1.5 rounded-full text-xs font-semibold border border-orange-200">
-                              <span className="flex items-center space-x-1">
-                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                <span>Hover to play with sound</span>
-                              </span>
-                            </div>
+                            </>
                           )}
                         </div>
 

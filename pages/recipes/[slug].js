@@ -165,42 +165,42 @@ export default function RecipeBlogPost() {
         <article className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Article Header */}
           <header className="mb-8">
-            <div className="text-center mb-8">
+            <div className="text-center mb-6">
               {/* Categories */}
-              <div className="flex flex-wrap justify-center gap-2 mb-4">
+              <div className="flex flex-wrap justify-center gap-2 mb-3">
                 {post.categories.map((category, index) => (
                   <span 
                     key={index}
-                    className="px-3 py-1 bg-orange-100 text-orange-700 text-sm rounded-full font-medium"
+                    className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full font-medium border border-gray-200"
                   >
                     {category}
                   </span>
                 ))}
               </div>
               
-              {/* Title - Responsive sizing */}
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight px-4">
+              {/* Title - Professional and elegant design */}
+              <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-4 leading-snug px-2 sm:px-4 max-w-3xl mx-auto">
                 {post.title}
               </h1>
               
               {/* Meta Information */}
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-gray-600 mb-8 text-sm sm:text-base">
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-gray-600 mb-6 text-xs sm:text-sm">
                 <div className="flex items-center">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                   </svg>
-                  <span className="font-medium">{post.author}</span>
+                  <span className="text-gray-600">{post.author}</span>
                 </div>
                 
                 <div className="flex items-center">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                   </svg>
                   <span>{post.date}</span>
                 </div>
                 
                 <div className="flex items-center">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                   </svg>
                   <span>{post.readTime}</span>
@@ -210,13 +210,12 @@ export default function RecipeBlogPost() {
 
             {/* Featured Image */}
             {post.featuredImage && (
-              <div className="relative mb-8 rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative mb-8 rounded-xl overflow-hidden shadow-lg border border-gray-200">
                 <img
                   src={post.featuredImage}
                   alt={post.title}
-                  className="w-full h-64 sm:h-80 md:h-96 object-contain bg-gray-100"
+                  className="w-full h-48 sm:h-64 md:h-80 object-contain bg-gray-50"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
             )}
           </header>
@@ -225,51 +224,51 @@ export default function RecipeBlogPost() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Main Content */}
             <div className="lg:col-span-3">
-              <div className="bg-white rounded-2xl shadow-xl border border-orange-100 overflow-hidden mb-8">
-                <div className="p-4 sm:p-6 md:p-8">
+              <div className="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden mb-8">
+                <div className="p-4 sm:p-6">
                   <div 
                     className="prose-none max-w-none"
                     dangerouslySetInnerHTML={{ 
                       __html: post.content
-                        // Modern H1 - Hero style
-                        .replace(/<h1([^>]*)>/g, '<h1$1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-12 mt-16 leading-tight" style="background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);">')
+                        // Modern H1 - Professional style
+                        .replace(/<h1([^>]*)>/g, '<h1$1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 mt-12 leading-snug text-gray-800" style="color: #1f2937 !important;">')
                         
-                        // Modern H2 - Section headers with modern styling
-                        .replace(/<h2([^>]*)>/g, '<h2$1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 mt-12 text-slate-800 relative pl-8 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-2 before:bg-gradient-to-b before:from-orange-400 before:to-red-500 before:rounded-full hover:transform hover:scale-105 transition-all duration-300" style="color: #1e293b !important;">')
+                        // Modern H2 - Clean section headers
+                        .replace(/<h2([^>]*)>/g, '<h2$1 class="text-xl md:text-2xl lg:text-3xl font-semibold mb-6 mt-10 text-gray-800 relative pl-6 before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gradient-to-b before:from-orange-400 before:to-red-500 before:rounded-full" style="color: #374151 !important;">')
                         
-                        // Modern H3 - Subsection with contemporary look
-                        .replace(/<h3([^>]*)>/g, '<h3$1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 mt-10 text-transparent bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text relative" style="background: linear-gradient(135deg, #d97706, #ea580c); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">')
+                        // Modern H3 - Elegant subsections
+                        .replace(/<h3([^>]*)>/g, '<h3$1 class="text-lg md:text-xl lg:text-2xl font-semibold mb-5 mt-8 text-gray-700" style="color: #4b5563 !important;">')
                         
                         // Modern H4 - Clean and minimal
-                        .replace(/<h4([^>]*)>/g, '<h4$1 class="text-xl md:text-2xl lg:text-3xl font-semibold mb-4 mt-8 text-gray-800 border-b-2 border-gray-200 pb-2" style="color: #1f2937 !important;">')
+                        .replace(/<h4([^>]*)>/g, '<h4$1 class="text-base md:text-lg lg:text-xl font-medium mb-4 mt-6 text-gray-700 border-b border-gray-200 pb-2" style="color: #4b5563 !important;">')
                         
                         // Modern paragraphs - Better typography
-                        .replace(/<p([^>]*)>/g, '<p$1 class="text-lg md:text-xl leading-relaxed mb-8 text-gray-700 font-light tracking-wide" style="color: #374151 !important; line-height: 1.8; font-size: 1.25rem;">')
+                        .replace(/<p([^>]*)>/g, '<p$1 class="text-base md:text-lg leading-relaxed mb-6 text-gray-600" style="color: #4b5563 !important; line-height: 1.75;">')
                         
-                        // Modern lists - Card-like design
-                        .replace(/<ul([^>]*)>/g, '<ul$1 class="space-y-4 my-12 bg-white rounded-2xl p-8 shadow-xl border border-gray-100">')
-                        .replace(/<ol([^>]*)>/g, '<ol$1 class="space-y-4 my-12 bg-white rounded-2xl p-8 shadow-xl border border-gray-100">')
-                        .replace(/<li([^>]*)>/g, '<li$1 class="flex items-start space-x-4 text-lg text-gray-700 leading-relaxed p-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border-l-4 border-orange-400 hover:shadow-md transition-all duration-300" style="color: #374151 !important; font-size: 1.125rem;"><span class="flex-shrink-0 w-3 h-3 bg-gradient-to-r from-orange-400 to-red-500 rounded-full mt-2 shadow-lg"></span><span class="flex-1">')
+                        // Modern lists - Clean design
+                        .replace(/<ul([^>]*)>/g, '<ul$1 class="space-y-3 my-8 pl-6">')
+                        .replace(/<ol([^>]*)>/g, '<ol$1 class="space-y-3 my-8 pl-6">')
+                        .replace(/<li([^>]*)>/g, '<li$1 class="flex items-start space-x-3 text-base text-gray-600 leading-relaxed" style="color: #4b5563 !important;"><span class="flex-shrink-0 w-1.5 h-1.5 bg-gray-400 rounded-full mt-2"></span><span class="flex-1">')
                         
                         // Close span for list items
                         .replace(/<\/li>/g, '</span></li>')
                         
-                        // Modern blockquotes - Card style
-                        .replace(/<blockquote([^>]*)>/g, '<blockquote$1 class="my-12 p-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 border-l-8 border-gradient-to-b from-blue-500 to-purple-600 rounded-2xl shadow-2xl relative overflow-hidden" style="border-left: 8px solid #3b82f6; font-size: 1.375rem; line-height: 1.7;"><div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-purple-500"></div><div class="relative z-10 text-gray-800 italic font-medium" style="color: #1f2937 !important;">')
+                        // Modern blockquotes - Clean style
+                        .replace(/<blockquote([^>]*)>/g, '<blockquote$1 class="my-8 p-6 bg-gray-50 border-l-4 border-gray-400 rounded-lg" style="border-left: 4px solid #9ca3af;"><div class="text-gray-700 italic" style="color: #374151 !important;">')
                         
                         // Close div for blockquotes
                         .replace(/<\/blockquote>/g, '</div></blockquote>')
                         
-                        // Modern strong/bold - More prominent
-                        .replace(/<strong([^>]*)>/g, '<strong$1 class="font-bold text-orange-600 bg-orange-100 px-2 py-1 rounded-lg hover:bg-orange-200 transition-colors duration-200" style="color: #ea580c !important; font-weight: 700;">')
-                        .replace(/<b([^>]*)>/g, '<b$1 class="font-bold text-red-600 bg-red-100 px-2 py-1 rounded-lg" style="color: #dc2626 !important; font-weight: 700;">')
+                        // Modern strong/bold - Subtle emphasis
+                        .replace(/<strong([^>]*)>/g, '<strong$1 class="font-semibold text-gray-800" style="color: #1f2937 !important; font-weight: 600;">')
+                        .replace(/<b([^>]*)>/g, '<b$1 class="font-semibold text-gray-800" style="color: #1f2937 !important; font-weight: 600;">')
                         
-                        // Modern emphasis - Stylish italic
-                        .replace(/<em([^>]*)>/g, '<em$1 class="italic text-amber-700 font-medium underline decoration-amber-300 decoration-2 underline-offset-4" style="color: #b45309 !important;">')
-                        .replace(/<i([^>]*)>/g, '<i$1 class="italic text-orange-600 font-medium" style="color: #ea580c !important;">')
+                        // Modern emphasis - Clean italic
+                        .replace(/<em([^>]*)>/g, '<em$1 class="italic text-gray-700" style="color: #374151 !important;">')
+                        .replace(/<i([^>]*)>/g, '<i$1 class="italic text-gray-700" style="color: #374151 !important;">')
                         
-                        // Modern links - Button-like
-                        .replace(/<a ([^>]*)>/g, '<a $1 class="inline-flex items-center text-blue-600 font-semibold hover:text-white hover:bg-blue-600 px-4 py-2 rounded-full border-2 border-blue-600 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105 no-underline" style="color: #2563eb !important; text-decoration: none; font-size: 1rem;">')
+                        // Modern links - Simple underline
+                        .replace(/<a ([^>]*)>/g, '<a $1 class="text-orange-600 font-medium hover:text-orange-700 underline underline-offset-2" style="color: #ea580c !important; text-decoration: underline;">')
                         
                         // Modern images - Better presentation
                         .replace(/<img ([^>]*)>/g, '<img $1 class="w-full max-w-4xl mx-auto rounded-3xl shadow-2xl my-12 border-8 border-white hover:scale-105 transition-transform duration-500 object-contain bg-gradient-to-br from-gray-50 to-gray-100" style="max-height: 700px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">')

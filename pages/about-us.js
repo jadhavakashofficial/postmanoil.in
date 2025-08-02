@@ -105,7 +105,7 @@ export default function AboutUs() {
                 <div>
                   <h2 className="text-2xl font-bold text-orange-800 mb-4">Rooted in Heritage, Nurtured by Generations</h2>
                   <p className="text-gray-700 mb-4">
-                    Rooted in the vibrant soil of Rajasthan and nurtured by generations, our journey began in the 1970s with a simple mission — to bring pure, traditional oils to every Indian kitchen. For over 55 years, Postman by Mittal Oil Mills (P) Ltd. has been a symbol of purity, quality, and trust in Indian households.
+                    Rooted in the vibrant soil of Rajasthan and nurtured by generations, our journey began in the 1970s with a simple mission — to bring premium traditional oils to every Indian kitchen. For over 55 years, Postman by Mittal Oil Mills (P) Ltd. has been a symbol of quality and trust in Indian households.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                     <div className="bg-gradient-to-br from-orange-100 to-amber-50 rounded-xl p-5 border border-orange-200 shadow-sm transition-transform duration-300 hover:scale-[1.03]">
@@ -117,8 +117,8 @@ export default function AboutUs() {
                       <div className="font-bold text-orange-800">Generations of Expertise</div>
                     </div>
                     <div className="bg-gradient-to-br from-orange-100 to-amber-50 rounded-xl p-5 border border-orange-200 shadow-sm transition-transform duration-300 hover:scale-[1.03]">
-                      <div className="text-5xl text-amber-600 mb-3">100%</div>
-                      <div className="font-bold text-orange-800">Pure & Organic</div>
+                      <div className="text-5xl text-amber-600 mb-3">Premium</div>
+                      <div className="font-bold text-orange-800">Quality & Traditional</div>
                     </div>
                   </div>
                 </div>
@@ -140,7 +140,7 @@ export default function AboutUs() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div>
                     <p className="mb-4">
-                      We are a family-run business spanning four generations, passionate about preserving the rich heritage of oil extraction. From the ancient Kolhu method to Wooden Cold Pressed techniques, our oils are crafted using time-tested processes that retain their natural aroma, flavor, and nutritional value.
+                      We are a family-run business spanning four generations, passionate about preserving the rich heritage of oil extraction. From the ancient Kolhu method to Wooden Cold Pressed techniques, our oils are crafted using time-tested processes that retain their authentic aroma, flavor, and nutritional value.
                     </p>
                     <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-4 rounded-lg border-l-4 border-orange-400">
                       <p className="font-semibold text-orange-800">"We don't just make oils, we preserve traditions"</p>
@@ -202,7 +202,7 @@ export default function AboutUs() {
                       </div>
                       <h3 className="font-bold text-orange-800">Wooden Cold Pressed</h3>
                     </div>
-                    <p className="text-sm text-gray-700">Gentle extraction preserving nutrients and natural flavors</p>
+                    <p className="text-sm text-gray-700">Gentle extraction preserving nutrients and authentic flavors</p>
                   </div>
                   
                   <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-5 rounded-xl border border-orange-200 shadow-sm transition-transform duration-300 hover:scale-[1.02]">
@@ -239,8 +239,8 @@ export default function AboutUs() {
                         ✓
                       </div>
                       <div>
-                        <h3 className="font-bold text-orange-800">100% Pure & Organic Oils</h3>
-                        <p className="text-gray-700">No chemicals, no adulteration - just nature's goodness</p>
+                        <h3 className="font-bold text-orange-800">Premium Quality Oils</h3>
+                        <p className="text-gray-700">Traditional methods, no adulteration - just nature's goodness</p>
                       </div>
                     </div>
                     
@@ -407,7 +407,7 @@ export default function AboutUs() {
                       </div>
                       <h4 className="font-bold text-orange-800">Mustard Cake</h4>
                     </div>
-                    <p className="text-sm text-gray-700">Natural pest control and soil conditioner</p>
+                    <p className="text-sm text-gray-700">Traditional pest control and soil conditioner</p>
                   </div>
                 </div>
               </div>
@@ -446,7 +446,7 @@ export default function AboutUs() {
                         </svg>
                       </div>
                       <h4 className="font-bold text-orange-800 mb-2">Health Commitment</h4>
-                      <p className="text-sm text-gray-700">Pure oils for your family's well-being</p>
+                      <p className="text-sm text-gray-700">Premium oils for your family's well-being</p>
                     </div>
                     
                     <div className="text-center p-5 bg-white rounded-xl shadow-sm border border-orange-100 transition-transform duration-300 hover:scale-[1.03]">

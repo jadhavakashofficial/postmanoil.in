@@ -199,6 +199,17 @@ export default function Header() {
                           <div className="text-xs text-gray-500">Get in touch</div>
                         </div>
                       </Link>
+                      <Link 
+                        href="/certifications" 
+                        onClick={handleSubmenuClick}
+                        className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 hover:text-orange-700 transition-all duration-200 rounded-xl group"
+                      >
+                        <span className="text-lg mr-3 group-hover:scale-110 transition-transform duration-200">🏆</span>
+                        <div>
+                          <div className="font-medium">Certifications</div>
+                          <div className="text-xs text-gray-500">Quality assured</div>
+                        </div>
+                      </Link>
                       <div className="border-t border-orange-100 my-2 mx-4"></div>
                       <Link 
                         href="/terms-and-conditions" 
@@ -372,6 +383,15 @@ export default function Header() {
                 >
                   <span className="text-lg mr-3 w-6 flex justify-center group-hover:scale-110 transition-transform duration-200">📞</span>
                   CONTACT US
+                </Link>
+
+                <Link
+                  href="/certifications"
+                  className="flex items-center px-4 py-4 text-gray-800 hover:text-orange-600 hover:bg-white/70 rounded-xl font-semibold transition-all duration-200 group"
+                  onClick={closeMenu}
+                >
+                  <span className="text-lg mr-3 w-6 flex justify-center group-hover:scale-110 transition-transform duration-200">🏆</span>
+                  CERTIFICATIONS
                 </Link>
 
                 <div className="mt-6 pt-4 border-t border-orange-200">

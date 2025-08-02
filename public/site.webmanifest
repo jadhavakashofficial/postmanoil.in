@@ -1,0 +1,37 @@
+{
+  "name": "Postman Oils - Premium Cooking Oil Since 1967",
+  "short_name": "Postman Oils",
+  "description": "Premium cold-pressed mustard oil, groundnut oil & refined cooking oil manufacturer. Buy authentic Postman Oil online.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FFA500",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["food", "shopping", "lifestyle"],
+  "lang": "en-IN",
+  "dir": "ltr"
+}

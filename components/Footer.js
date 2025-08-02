@@ -1,6 +1,7 @@
 // components/Footer.js
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { getImageSEO } from '../utils/imageSEO';
 
 export default function Footer() {
   const [visitorCount, setVisitorCount] = useState(5425);
@@ -78,7 +79,7 @@ export default function Footer() {
             <div className="group">
               <img
                 src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png"
-                alt="Postman Oils"
+                {...getImageSEO('logo', 'Footer')}
                 className="h-14 w-auto mb-4 transition-transform duration-300 group-hover:scale-105"
               />
               <p className="text-gray-700 text-sm leading-relaxed font-medium">
@@ -165,6 +166,7 @@ export default function Footer() {
                 <li><Link href="/terms-and-conditions" className="text-gray-700 hover:text-orange-600 transition-all duration-300 text-sm font-medium hover:translate-x-2 block hover:bg-orange-50 hover:px-2 hover:py-1 hover:rounded-md">📋 Terms & Conditions</Link></li>
                 <li><Link href="/connect-for-dealership" className="text-gray-700 hover:text-orange-600 transition-all duration-300 text-sm font-medium hover:translate-x-2 block hover:bg-orange-50 hover:px-2 hover:py-1 hover:rounded-md">📞 Contact Us</Link></li>
                 <li><Link href="/about-us" className="text-gray-700 hover:text-orange-600 transition-all duration-300 text-sm font-medium hover:translate-x-2 block hover:bg-orange-50 hover:px-2 hover:py-1 hover:rounded-md">ℹ️ About Us</Link></li>
+                <li><Link href="/certifications" className="text-gray-700 hover:text-orange-600 transition-all duration-300 text-sm font-medium hover:translate-x-2 block hover:bg-orange-50 hover:px-2 hover:py-1 hover:rounded-md">🏆 Certifications</Link></li>
               </ul>
             </div>
           </div>
@@ -211,22 +213,6 @@ export default function Footer() {
                 </div>
               </div>
 
-              {/* Phone */}
-              <div className="flex items-start space-x-3 p-2 rounded-lg hover:bg-orange-50 transition-all duration-300 group/item">
-                <div className="bg-gradient-to-r from-red-500 to-pink-500 p-2 rounded-full flex-shrink-0 mt-1 shadow-lg group-hover/item:scale-110 transition-transform duration-300">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-orange-700 font-semibold text-sm">📞 Phone</p>
-                  <div className="text-gray-700 text-sm space-y-1 font-medium">
-                    <p className="hover:text-orange-600 transition-colors">Anil: 9928021482</p>
-                    <p className="hover:text-orange-600 transition-colors">Sanjay: 9214044288</p>
-                    <p className="hover:text-orange-600 transition-colors">Pakshik: 9529808832</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -237,7 +223,7 @@ export default function Footer() {
           <div className="text-center mb-8">
             <img
               src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png"
-              alt="Postman Oils"
+              {...getImageSEO('logo', 'Footer Mobile')}
               className="h-12 w-auto mx-auto mb-4 transition-transform duration-300 hover:scale-105"
             />
             <p className="text-gray-700 text-sm px-4 font-medium leading-relaxed">
@@ -288,6 +274,7 @@ export default function Footer() {
                 <li><Link href="/" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">Home</Link></li>
                 <li><Link href="/postman-recipes" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">Recipes</Link></li>
                 <li><Link href="/about-us" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">About Us</Link></li>
+                <li><Link href="/certifications" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">Certifications</Link></li>
               </ul>
             </div>
           </div>
@@ -300,7 +287,6 @@ export default function Footer() {
               <div className="text-sm text-gray-700 mb-4 space-y-2 font-medium">
                 <p>📍 Kekri, Rajasthan, India</p>
                 <p>📧 marketingpostmanoil@gmail.com</p>
-                <p>📞 9928021482 | 9214044288</p>
               </div>
 
               {/* Enhanced Mobile Social Icons */}

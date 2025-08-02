@@ -1,7 +1,10 @@
 // pages/mustard-oil.js
 import { useState, useEffect } from 'react';
-import Head from 'next/head';
+import SEO from '../components/SEO';
 import Link from 'next/link';
+import BuyNowButtons from '../components/BuyNowButtons';
+import { generateProductSchema, generateWebPageSchema, generateBreadcrumbSchema, generateFAQSchema } from '../utils/structuredData';
+import { getImageSEO, generateImageSchema, generateProductGallerySchema } from '../utils/imageSEO';
 
 export default function MustardOilPage() {
   const [products, setProducts] = useState([]);
@@ -28,12 +31,7 @@ export default function MustardOilPage() {
     fetchMustardOilProducts();
   }, []);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => prev === benefitImages.length - 1 ? 0 : prev + 1);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+  // Removed automatic timer for manual control only
 
   const fetchMustardOilProducts = async () => {
     try {
@@ -68,33 +66,50 @@ export default function MustardOilPage() {
   };
 
   const sortProductsBySize = (products) => {
-    const sizeOrder = [
-      '200ml', '200 ml',
-      '500ml', '500 ml', 
-      '1l', '1 l', '1ltr', '1 ltr', '1 litre', '1litre',
-      '2l', '2 l', '2ltr', '2 ltr', '2 litre', '2litre',
-      '5l', '5 l', '5ltr', '5 ltr', '5 litre', '5litre',
-      '15l', '15 l', '15ltr', '15 ltr', '15 litre', '15litre'
-    ];
+    // Define size mappings with priority order
+    const sizeMap = {
+      '200ml': 1, '200 ml': 1, '200ML': 1, '200 ML': 1,
+      '500ml': 2, '500 ml': 2, '500ML': 2, '500 ML': 2,
+      '1l': 3, '1 l': 3, '1ltr': 3, '1 ltr': 3, '1 litre': 3, '1litre': 3, '1 liter': 3, '1L': 3, '1 L': 3,
+      '2l': 4, '2 l': 4, '2ltr': 4, '2 ltr': 4, '2 litre': 4, '2litre': 4, '2 liter': 4, '2L': 4, '2 L': 4,
+      '5l': 5, '5 l': 5, '5ltr': 5, '5 ltr': 5, '5 litre': 5, '5litre': 5, '5 liter': 5, '5L': 5, '5 L': 5,
+      '15l': 6, '15 l': 6, '15ltr': 6, '15 ltr': 6, '15 litre': 6, '15litre': 6, '15 liter': 6, '15L': 6, '15 L': 6
+    };
     
     return products.sort((a, b) => {
       const aName = a.name.toLowerCase();
       const bName = b.name.toLowerCase();
       
-      // Find size indicators in product names
-      const aSizeIndex = sizeOrder.findIndex(size => aName.includes(size));
-      const bSizeIndex = sizeOrder.findIndex(size => bName.includes(size));
+      // Extract size from product name using regex to avoid substring issues
+      let aSize = 999; // Default high value for products without size
+      let bSize = 999;
       
-      // If both have recognized sizes, sort by size order
-      if (aSizeIndex !== -1 && bSizeIndex !== -1) {
-        return aSizeIndex - bSizeIndex;
+      // Check for exact size matches to avoid "15l" matching when looking for "5l"
+      for (const [sizeKey, priority] of Object.entries(sizeMap)) {
+        const sizeLower = sizeKey.toLowerCase();
+        // Use word boundary or space to ensure exact match
+        const regex = new RegExp(`\\b${sizeLower}\\b|\\s${sizeLower}\\s|\\s${sizeLower}$`, 'i');
+        if (regex.test(aName)) {
+          aSize = priority;
+          break;
+        }
       }
       
-      // If only one has a recognized size, prioritize it
-      if (aSizeIndex !== -1) return -1;
-      if (bSizeIndex !== -1) return 1;
+      for (const [sizeKey, priority] of Object.entries(sizeMap)) {
+        const sizeLower = sizeKey.toLowerCase();
+        const regex = new RegExp(`\\b${sizeLower}\\b|\\s${sizeLower}\\s|\\s${sizeLower}$`, 'i');
+        if (regex.test(bName)) {
+          bSize = priority;
+          break;
+        }
+      }
       
-      // For products without recognized sizes (new products), sort by date (newest last)
+      // Sort by size priority
+      if (aSize !== bSize) {
+        return aSize - bSize;
+      }
+      
+      // If same size or both without size, sort by date
       return new Date(a.date_created) - new Date(b.date_created);
     });
   };
@@ -149,9 +164,9 @@ export default function MustardOilPage() {
 
   const getPlatformLogo = (platform) => {
     const logos = {
-      'Amazon': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/amazon-logo-on-transparent-background-free-vector.jpg',
-      'Flipkart': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/flipkart-logo-svg-vector.svg',
-      'JioMart': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/jio-mart-logo.png'
+      'Amazon': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Amazon.png',
+      'Flipkart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/flipkart.png',
+      'JioMart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Jiomart.png'
     };
     return logos[platform] || logos['Amazon'];
   };
@@ -174,38 +189,95 @@ export default function MustardOilPage() {
     );
   }
 
+  // Schema data for SEO
+  const faqs = [
+    {
+      question: "What is Kachi Ghani mustard oil?",
+      answer: "Kachi Ghani mustard oil is traditionally extracted using wooden kolhu (cold press) at low temperatures, preserving natural nutrients, flavor, and aroma. Postman's Kachi Ghani process ensures pure, unrefined oil."
+    },
+    {
+      question: "Is Postman mustard oil good for cooking?",
+      answer: "Yes, Postman mustard oil is ideal for Indian cooking, especially for tadka, deep frying, and pickling. Its high smoking point and pungent flavor enhance the taste of traditional dishes."
+    },
+    {
+      question: "What are the health benefits of mustard oil?",
+      answer: "Mustard oil is rich in omega-3 fatty acids, vitamin E, and has natural antibacterial properties. It supports heart health, improves digestion, and is beneficial for skin and hair when used externally."
+    },
+    {
+      question: "Where can I buy Postman mustard oil online?",
+      answer: "Postman mustard oil is available on Amazon, Flipkart, and JioMart. We offer various pack sizes from 200ml to 15 litres with free delivery options across India."
+    }
+  ];
+
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://postmanoil.com' },
+    { name: 'Products', url: 'https://postmanoil.com/products' },
+    { name: 'Mustard Oil', url: 'https://postmanoil.com/mustard-oil' }
+  ];
+
+  const productSchemaData = {
+    name: "Postman Kachi Ghani Mustard Oil",
+    description: "Premium cold-pressed mustard oil manufactured using traditional wooden kolhu method. Rich in omega-3, vitamin E, perfect for Indian cooking.",
+    images: [
+      "https://postmanoil.com/images/products/postman-mustard-oil-kachi-ghani-1-litre.jpg",
+      "https://postmanoil.com/images/products/postman-mustard-oil-kachi-ghani-5-litre.jpg",
+      "https://postmanoil.com/images/products/postman-mustard-oil-kachi-ghani-15-litre.jpg"
+    ],
+    category: "Cooking Oil",
+    oilType: "Mustard Oil",
+    processingMethod: "Cold Pressed (Kachi Ghani)",
+    lowPrice: "120",
+    highPrice: "2400",
+    nutrition: {
+      "@type": "NutritionInformation",
+      "servingSize": "1 tablespoon (14g)",
+      "calories": "124",
+      "fatContent": "14g",
+      "saturatedFatContent": "1.6g",
+      "unsaturatedFatContent": "12.4g"
+    }
+  };
+
   return (
     <>
-      <Head>
-        <title>Wood Pressed Kacchi Ghani Mustard Oil Collection | Postman Oils - Premium Cold-Pressed Mustard Oil</title>
-        <meta name="description" content="Shop premium Wood Pressed Kacchi Ghani Mustard Oil from Postman Oils. 100% natural, unrefined mustard oil made with traditional wood pressing methods. Available on Amazon, Flipkart & JioMart." />
-        <meta name="keywords" content="wood pressed mustard oil, kacchi ghani mustard oil, cold pressed mustard oil, postman oil, traditional mustard oil, pure mustard oil, natural mustard oil" />
-        <meta property="og:title" content="Premium Wood Pressed Kacchi Ghani Mustard Oil | Postman Oils" />
-        <meta property="og:description" content="Authentic wood-pressed mustard oil made with traditional methods. 58+ years of trust and legacy." />
-        <link rel="canonical" href="https://postmanoil.com/mustard-oil" />
-      </Head>
+      <SEO 
+        title="Postman Oils Kacchi Ghani Mustard Oil - Premium Cold Pressed Sarson Ka Tel | Mittal Oils"
+        description="Buy authentic Postman Oil Kachi Ghani mustard oil online. Postmanoils traditional wood-pressed, cold-pressed mustard oil by Mittal Oils. Rich in omega-3. Perfect for tadka, cooking & pickling. 58+ years trusted brand. Free delivery on Amazon, Flipkart, JioMart."
+        keywords="postman oils, postman oil, postmanoils, mittal oils, edible oils, postman mustard oil, kachi ghani mustard oil, postman kacchi ghani, wood pressed mustard oil, cold pressed mustard oil, traditional mustard oil, sarson ka tel, cooking mustard oil, mustard oil 1 litre, mustard oil 5 litre, mustard oil for tadka, mustard oil for pickle, omega 3 mustard oil, healthy cooking oil, Indian mustard oil, Rajasthan mustard oil, Kekri mustard oil, buy mustard oil online, mustard oil amazon, mustard oil flipkart, postmanoils mustard oil, mittal oil mills mustard oil"
+        image="https://postmanoil.com/blog/wp-content/uploads/2025/06/1_yellow_mustard_bottle_FRONT.webp"
+        url="https://postmanoil.com/mustard-oil"
+        type="product"
+        schemaData={generateProductSchema(productSchemaData)}
+        additionalSchemas={[
+          generateFAQSchema(faqs),
+          generateBreadcrumbSchema(breadcrumbItems),
+          generateImageSchema(
+            "https://postmanoil.com/blog/wp-content/uploads/2025/06/1_yellow_mustard_bottle_FRONT.webp",
+            "mustard-oil-bottle",
+            "Kacchi Ghani Mustard Oil"
+          )
+        ]}
+        breadcrumb={generateBreadcrumbSchema(breadcrumbItems)}
+      />
 
       {/* Compact Hero Section */}
-      <section className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 py-6 text-white">
+      <section className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 py-3 md:py-4 text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-center">
             {/* Logo */}
-            <div className="mr-4 md:mr-6">
+            <div className="mr-3 md:mr-6">
               <img
                 src="https://postmanoil.com/blog/wp-content/uploads/2025/05/Postman.png"
-                alt="Postman Oils Logo"
-                className="h-16 md:h-20 w-auto object-contain"
+                {...getImageSEO('postman-logo', '')}
+                className="h-12 md:h-20 w-auto object-contain"
               />
             </div>
             
             {/* Title */}
             <div className="text-center">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-black">
-                Postman Oils <span className="text-yellow-200">Mustard Oil</span>
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-black">
+                Postman <span className="text-yellow-200 block md:inline">Kacchi Ghani Mustard Oil</span>
               </h1>
-              <p className="text-sm md:text-lg font-bold mt-1">
-                Wood Pressed • Natural • Traditional
-              </p>
             </div>
           </div>
         </div>
@@ -216,11 +288,6 @@ export default function MustardOilPage() {
       {/* Products Grid */}
       <section className="py-8 bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl md:text-3xl font-black mb-3 bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 bg-clip-text text-transparent">
-              Postman Mustard Oil Collection
-            </h3>
-          </div>
 
           {currentProducts.length > 0 ? (
             <>
@@ -287,14 +354,6 @@ export default function MustardOilPage() {
       {/* Benefits 3-Image Slider Section */}
       <section className="py-8 bg-gradient-to-br from-orange-100 via-yellow-100 to-amber-100">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-6">
-            <h3 className="text-2xl md:text-3xl font-black mb-3 bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 bg-clip-text text-transparent">
-              Benefits of Kacchi Ghani Mustard Oil
-            </h3>
-            <p className="text-base text-gray-700 font-medium">
-              Discover the traditional benefits of wood-pressed mustard oil
-            </p>
-          </div>
 
           {/* 3-Image Grid Slider */}
           <div className="relative max-w-6xl mx-auto">
@@ -310,9 +369,8 @@ export default function MustardOilPage() {
                       <div key={imageIndex} className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                         <img
                           src={image}
-                          alt={`Benefits of Kacchi Ghani Mustard Oil ${groupIndex * 3 + imageIndex + 1}`}
+                          {...getImageSEO('mustard-oil', `Benefits ${groupIndex * 3 + imageIndex + 1}`)}
                           className="w-full h-48 md:h-56 lg:h-64 object-contain p-3"
-                          loading="lazy"
                         />
                       </div>
                     ))}
@@ -363,8 +421,8 @@ export default function MustardOilPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
             <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-green-200">
               <div className="text-3xl mb-3">🌿</div>
-              <h4 className="font-bold text-green-800 text-sm mb-1">100% Natural</h4>
-              <p className="text-xs text-green-600">No artificial additives</p>
+              <h4 className="font-bold text-green-800 text-sm mb-1">Traditionally Crafted</h4>
+              <p className="text-xs text-green-600">Time-honored extraction</p>
             </div>
             <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-amber-200">
               <div className="text-3xl mb-3">🏭</div>
@@ -390,16 +448,22 @@ export default function MustardOilPage() {
 
 function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
   const buyButtons = extractBuyButtons(product);
+  const [isHovered, setIsHovered] = useState(false);
+  const hasSecondImage = product.images && product.images.length > 1;
 
   return (
     <div className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-orange-100">
       
       {/* Product Image - Clickable */}
       <Link href={`/product/${product.id}`}>
-        <div className="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-50 cursor-pointer">
+        <div 
+          className="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-50 cursor-pointer"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <img
-            src={product.images[0]?.src || '/placeholder.jpg'}
-            alt={product.name}
+            src={isHovered && hasSecondImage ? product.images[1].src : (product.images[0]?.src || '/placeholder.jpg')}
+            {...getImageSEO('mustard-oil', product.name)}
             className="w-full h-full object-contain p-3 group-hover:scale-110 transition-transform duration-700"
           />
           
@@ -434,85 +498,11 @@ function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
         </Link>
 
         {/* Buy Buttons */}
-        <div className="space-y-2">
-          {buyButtons.length === 1 ? (
-            // Single button - full width
-            <a
-              href={buyButtons[0].url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full h-10 hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-lg"
-            >
-              <img
-                src={getPlatformLogo(buyButtons[0].platform)}
-                alt={`Buy on ${buyButtons[0].platform}`}
-                className="w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 hover:border-orange-300 p-2"
-              />
-            </a>
-          ) : (
-            <>
-              {/* Desktop: Single row, Mobile: Two rows */}
-              <div className="hidden md:flex md:space-x-2">
-                {buyButtons.map((button, index) => (
-                  <a
-                    key={index}
-                    href={button.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block flex-1 h-10 hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-lg"
-                  >
-                    <img
-                      src={getPlatformLogo(button.platform)}
-                      alt={`Buy on ${button.platform}`}
-                      className="w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 hover:border-orange-300 p-2"
-                    />
-                  </a>
-                ))}
-              </div>
-              
-              {/* Mobile: Two rows */}
-              <div className="md:hidden space-y-2">
-                <div className="grid grid-cols-2 gap-2">
-                  {buyButtons.slice(0, 2).map((button, index) => (
-                    <a
-                      key={index}
-                      href={button.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block h-8 hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-lg"
-                    >
-                      <img
-                        src={getPlatformLogo(button.platform)}
-                        alt={`Buy on ${button.platform}`}
-                        className="w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 hover:border-orange-300 p-1"
-                      />
-                    </a>
-                  ))}
-                </div>
-                
-                {buyButtons.length > 2 && (
-                  <div className={`grid gap-2 ${buyButtons.length === 3 ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                    {buyButtons.slice(2).map((button, index) => (
-                      <a
-                        key={index + 2}
-                        href={button.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block h-8 hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-lg"
-                      >
-                        <img
-                          src={getPlatformLogo(button.platform)}
-                          alt={`Buy on ${button.platform}`}
-                          className="w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 hover:border-orange-300 p-1"
-                        />
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-        </div>
+        <BuyNowButtons 
+          buyButtons={buyButtons} 
+          getPlatformLogo={getPlatformLogo}
+          colorScheme="orange"
+        />
       </div>
 
       {/* Bottom Accent */}

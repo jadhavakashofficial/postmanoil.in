@@ -1,28 +1,36 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { getImageSEO } from '../utils/imageSEO';
+
 export default function FeaturedProducts() {
+  const router = useRouter();
   const products = [
     // Row 1 - Kacchi Ghani Mustard Oil
     {
-      id: 1,
+      id: 1819,
       name: "Kacchi Ghani Mustard Oil 1Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/1-1-580x580.png",
-      link: "/product/1997",
+      alt: "Postman Mustard Oil 1 Litre - Pure Kachi Ghani Cold Pressed Sarson Ka Tel",
+      link: "/product/1819",
       gradient: "from-amber-400 via-yellow-500 to-orange-500",
       shadow: "shadow-amber-500/30",
       bgGlow: "from-amber-100 to-yellow-100"
     },
     {
-      id: 2,
+      id: 1855,
       name: "Kacchi Ghani Mustard Oil 5Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61pg1v3I9zL._SL1080_-580x580.jpg",
+      alt: "Postman Mustard Oil 5 Litre Jar - Pure Kachi Ghani Cold Pressed",
       link: "/product/1855",
       gradient: "from-orange-400 via-red-500 to-pink-500",
       shadow: "shadow-orange-500/30",
       bgGlow: "from-orange-100 to-red-100"
     },
     {
-      id: 3,
+      id: 1858,
       name: "Kacchi Ghani Mustard Oil 15Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61rmnbqnBQL._SL1100_-580x580.jpg",
+      alt: "Postman Mustard Oil 15 Litre Tin - Pure Kachi Ghani Bulk Pack",
       link: "/product/1858",
       gradient: "from-red-400 via-pink-500 to-rose-500",
       shadow: "shadow-red-500/30",
@@ -30,27 +38,30 @@ export default function FeaturedProducts() {
     },
     // Row 2 - Groundnut Filter Oil
     {
-      id: 4,
+      id: 1862,
       name: "Groundnut Filter Oil 1Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61htcRuz9NL._SL1500_-580x580.jpg",
+      alt: "Postman Groundnut Oil 1 Litre - Cold Pressed Moongfali Tel",
       link: "/product/1862",
       gradient: "from-emerald-400 via-teal-500 to-cyan-500",
       shadow: "shadow-emerald-500/30",
       bgGlow: "from-emerald-100 to-teal-100"
     },
     {
-      id: 5,
+      id: 1870,
       name: "Groundnut Filtered Oil 5 Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/516TDqUwbL._SL1080_-580x580.jpg",
+      alt: "Postman Groundnut Oil 5 Litre - Pure Cold Pressed Peanut Oil",
       link: "/product/1870",
       gradient: "from-cyan-400 via-blue-500 to-indigo-500",
       shadow: "shadow-cyan-500/30",
       bgGlow: "from-cyan-100 to-blue-100"
     },
     {
-      id: 6,
+      id: 1872,
       name: "Groundnut Filtered Oil 15Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/Untitled-18-1-scaled-e1750371753802-800x800.png",
+      alt: "Postman Groundnut Oil 15 Litre Tin - Cold Pressed Bulk Pack",
       link: "/product/1872",
       gradient: "from-blue-400 via-indigo-500 to-purple-500",
       shadow: "shadow-blue-500/30",
@@ -58,27 +69,30 @@ export default function FeaturedProducts() {
     },
     // Row 3 - Refined Groundnut Oil
     {
-      id: 7,
+      id: 1882,
       name: "Refined Groundnut Oil 1Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61rbdNGSMKL._SL1500_-580x580.jpg",
+      alt: "Postman Refined Groundnut Oil 1 Litre - Premium Cooking Oil",
       link: "/product/1882",
       gradient: "from-purple-400 via-violet-500 to-fuchsia-500",
       shadow: "shadow-purple-500/30",
       bgGlow: "from-purple-100 to-violet-100"
     },
     {
-      id: 8,
+      id: 3011,
       name: "Refined Groundnut Oil 5Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/Screenshot-2025-06-20-at-3.41.07%E2%80%AFAM.png",
+      alt: "Postman Refined Groundnut Oil 5 Litre - Premium Quality",
       link: "/product/3011",
       gradient: "from-fuchsia-400 via-pink-500 to-rose-500",
       shadow: "shadow-fuchsia-500/30",
       bgGlow: "from-fuchsia-100 to-pink-100"
     },
     {
-      id: 9,
+      id: 1897,
       name: "Refined Groundnut Oil 15Ltr",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61ZEP9YlrRL._SL1100_-580x580.jpg",
+      alt: "Postman Refined Groundnut Oil 15 Litre Tin - Premium Bulk Pack",
       link: "/product/1897",
       gradient: "from-rose-400 via-pink-500 to-red-500",
       shadow: "shadow-rose-500/30",
@@ -87,7 +101,7 @@ export default function FeaturedProducts() {
   ];
 
   return (
-    <section className="py-8 bg-gradient-to-br from-lime-50 via-white to-lime-100/40 relative overflow-hidden">
+    <section className="py-4 bg-gradient-to-br from-lime-50 via-white to-lime-100/40 relative overflow-hidden">
       {/* Simplified Background Elements for better performance */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-32 h-32 bg-lime-300 rounded-full" style={{ filter: 'blur(8px)' }}></div>
@@ -98,24 +112,24 @@ export default function FeaturedProducts() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-black text-gray-800 mb-3">
+        {/* Compact Header */}
+        <div className="text-center mb-4">
+          <h2 className="text-xl md:text-2xl font-black text-gray-800 mb-2">
             Featured <span className="text-transparent bg-gradient-to-r from-red-600 via-red-500 to-rose-600 bg-clip-text">Postman</span> <span className="text-transparent bg-gradient-to-r from-red-500 to-rose-500 bg-clip-text">Products</span>
           </h2>
-          <p className="text-gray-700 text-base font-medium">
-            Discover our premium collection of <span className="text-transparent bg-gradient-to-r from-red-500 to-rose-500 bg-clip-text font-semibold">pure, natural oils</span> crafted with traditional methods for <span className="text-transparent bg-gradient-to-r from-red-500 to-rose-500 bg-clip-text font-semibold">exceptional quality</span>
+          <p className="text-gray-700 text-sm font-medium">
+            Discover our premium collection of pure oils
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-red-500 via-red-400 to-rose-500 mx-auto rounded-full mt-4"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-red-500 via-red-400 to-rose-500 mx-auto rounded-full mt-2"></div>
         </div>
 
         {/* Products Grid - 3x3 with optimized performance */}
         <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {products.map((product, index) => (
-            <a 
+            <Link 
               key={product.id}
               href={product.link}
-              className="group relative bg-white/95 rounded-2xl sm:rounded-3xl shadow-md hover:shadow-xl border border-white/80 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:scale-105 cursor-pointer"
+              className="group relative bg-white/95 rounded-2xl sm:rounded-3xl shadow-md hover:shadow-xl border border-white/80 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:scale-105 cursor-pointer block"
               style={{
                 willChange: 'transform',
                 backfaceVisibility: 'hidden',
@@ -126,13 +140,15 @@ export default function FeaturedProducts() {
               <div className={`absolute inset-0 bg-gradient-to-br ${product.bgGlow} opacity-20 group-hover:opacity-40 transition-opacity duration-300`}></div>
               <div className={`absolute inset-0 bg-gradient-to-r ${product.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
 
-              {/* Image Container with optimized performance */}
-              <div className="relative p-3 sm:p-4 lg:p-6">
-                <div className="relative aspect-square overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100">
+              {/* Image Container with reduced padding */}
+              <div className="relative p-2 sm:p-3">
+                <div className="relative aspect-square overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100">
                   <img
                     src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-contain p-2 sm:p-3 group-hover:scale-110 transition-transform duration-300"
+                    {...getImageSEO(product.name.toLowerCase().includes('mustard') ? 'mustard-oil' : 
+                                   product.name.toLowerCase().includes('refined') ? 'refined-oil' : 
+                                   'groundnut-oil', product.name)}
+                    className="w-full h-full object-contain p-1 sm:p-2 group-hover:scale-110 transition-transform duration-300"
                     loading="lazy"
                     decoding="async"
                     style={{
@@ -146,9 +162,9 @@ export default function FeaturedProducts() {
                 </div>
               </div>
 
-              {/* Product Info */}
-              <div className="p-2 sm:p-4 lg:p-5 pt-0">
-                <h3 className="font-bold text-transparent bg-gradient-to-r from-red-600 via-red-500 to-rose-600 bg-clip-text text-sm sm:text-base lg:text-lg text-center leading-tight group-hover:from-red-500 group-hover:to-rose-500 transition-all duration-300">
+              {/* Product Info with reduced padding */}
+              <div className="p-2 sm:p-3 pt-0">
+                <h3 className="font-bold text-transparent bg-gradient-to-r from-red-600 via-red-500 to-rose-600 bg-clip-text text-xs sm:text-sm lg:text-base text-center leading-tight group-hover:from-red-500 group-hover:to-rose-500 transition-all duration-300">
                   {product.name}
                 </h3>
               </div>
@@ -158,7 +174,7 @@ export default function FeaturedProducts() {
               
               {/* Professional corner indicator */}
               <div className="absolute top-3 right-3 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-300"></div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

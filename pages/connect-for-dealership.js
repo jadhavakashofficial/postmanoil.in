@@ -19,20 +19,19 @@ export default function ContactUsPage() {
     setIsLoading(true);
     
     try {
-      // Submit to WordPress backend
-      const response = await fetch('/wp-admin/admin-ajax.php', {
+      // Submit to PHP handler in blog directory
+      const response = await fetch('https://postmanoil.com/blog/postman-contact-handler.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: new URLSearchParams({
-          action: 'handle_contact_form',
+        body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           subject: formData.subject,
           message: formData.message,
-          nonce: window.contactFormNonce // WordPress nonce for security
+          formType: 'dealership'
         })
       });
       
@@ -41,13 +40,13 @@ export default function ContactUsPage() {
       if (result.success) {
         setStatus({ 
           success: true, 
-          message: "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours." 
+          message: "Thank you! Your dealership inquiry has been received. Check your email for confirmation!" 
         });
         setFormData({ name: "", email: "", phone: "", subject: "General Inquiry", message: "" });
       } else {
         setStatus({ 
           success: false, 
-          message: result.data || "Failed to send message. Please try again." 
+          message: result.message || "Failed to send message. Please try again." 
         });
       }
     } catch (error) {
@@ -88,7 +87,7 @@ export default function ContactUsPage() {
       </Head>
 
       {/* Compact Header */}
-      <section className="py-8 bg-gradient-to-br from-orange-50 via-red-50 to-lime-50 relative overflow-hidden">
+      <section className="py-4 md:py-6 bg-gradient-to-br from-orange-50 via-red-50 to-lime-50 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-32 h-32 bg-orange-300 rounded-full" style={{ filter: 'blur(20px)' }}></div>
@@ -111,7 +110,7 @@ export default function ContactUsPage() {
       </section>
 
       {/* Main Contact Section */}
-      <section className="py-12 bg-gradient-to-br from-orange-50 via-amber-50 to-lime-50 relative overflow-hidden">
+      <section className="py-6 md:py-8 bg-gradient-to-br from-orange-50 via-amber-50 to-lime-50 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-40 h-40 bg-orange-300 rounded-full" style={{ filter: 'blur(20px)' }}></div>
@@ -122,7 +121,7 @@ export default function ContactUsPage() {
           <div className="grid lg:grid-cols-5 gap-8">
             
             {/* Contact Information */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 order-2 lg:order-2">
               <div className="bg-gradient-to-br from-orange-500 via-red-500 to-lime-600 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
@@ -131,7 +130,7 @@ export default function ContactUsPage() {
                 </div>
                 
                 <div className="relative z-10">
-                  <h2 className="text-2xl font-bold mb-8 flex items-center">
+                  <h2 className="text-2xl font-bold mb-6 flex items-center">
                     <span className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center mr-3">
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
@@ -206,50 +205,59 @@ export default function ContactUsPage() {
             </div>
             
             {/* Contact Form */}
-            <div className="lg:col-span-3">
-              <div className="bg-white rounded-3xl shadow-2xl border border-orange-100 overflow-hidden">
+            <div className="lg:col-span-3 order-1 lg:order-1">
+              <div className="bg-white rounded-3xl shadow-2xl border-2 border-orange-100 overflow-hidden transform hover:scale-[1.01] transition-transform duration-300">
+                <div className="bg-gradient-to-r from-orange-500 to-red-500 p-6 text-white">
+                  <h2 className="text-2xl font-bold flex items-center">
+                    <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-4l-4 4z" />
+                    </svg>
+                    Get In Touch With Us
+                  </h2>
+                  <p className="text-orange-100 mt-2">We respond within 24 hours</p>
+                </div>
                 <div className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Send Us a Message</h2>
-                  <p className="text-gray-600 mb-8">Fill out the form below and we'll get back to you as soon as possible.</p>
                   
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Name and Email Row */}
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
-                          Full Name *
+                        <label className="block text-gray-700 text-sm font-bold mb-2 flex items-center">
+                          <span className="text-orange-500 mr-1">●</span>
+                          Full Name
                         </label>
                         <div className="relative">
                           <input
                             type="text"
                             name="name"
-                            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 text-gray-700"
-                            placeholder="Enter your full name"
+                            className="w-full px-4 py-3 pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 text-gray-700 bg-gray-50 hover:bg-white"
+                            placeholder="John Doe"
                             value={formData.name}
                             onChange={handleInputChange}
                             required
                           />
-                          <svg className="w-5 h-5 absolute right-4 top-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-5 h-5 absolute left-4 top-3.5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                           </svg>
                         </div>
                       </div>
                       
                       <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
-                          Email Address *
+                        <label className="block text-gray-700 text-sm font-bold mb-2 flex items-center">
+                          <span className="text-orange-500 mr-1">●</span>
+                          Email Address
                         </label>
                         <div className="relative">
                           <input
                             type="email"
                             name="email"
-                            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 text-gray-700"
-                            placeholder="Enter your email address"
+                            className="w-full px-4 py-3 pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 text-gray-700 bg-gray-50 hover:bg-white"
+                            placeholder="john@example.com"
                             value={formData.email}
                             onChange={handleInputChange}
                             required
                           />
-                          <svg className="w-5 h-5 absolute right-4 top-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-5 h-5 absolute left-4 top-3.5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                           </svg>
@@ -260,15 +268,16 @@ export default function ContactUsPage() {
                     {/* Phone and Subject Row */}
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                        <label className="block text-gray-700 text-sm font-bold mb-2 flex items-center">
                           Phone Number
+                          <span className="text-gray-400 text-xs ml-2">(Optional)</span>
                         </label>
                         <div className="relative">
                           <input
                             type="tel"
                             name="phone"
-                            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 text-gray-700"
-                            placeholder="Enter your phone number"
+                            className="w-full px-4 py-3 pl-12 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 text-gray-700 bg-gray-50 hover:bg-white"
+                            placeholder="+91 98765 43210"
                             value={formData.phone}
                             onChange={handleInputChange}
                           />
@@ -279,8 +288,9 @@ export default function ContactUsPage() {
                       </div>
                       
                       <div>
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
-                          Subject *
+                        <label className="block text-gray-700 text-sm font-bold mb-2 flex items-center">
+                          <span className="text-orange-500 mr-1">●</span>
+                          Subject
                         </label>
                         <div className="relative">
                           <select
@@ -303,14 +313,15 @@ export default function ContactUsPage() {
                     
                     {/* Message */}
                     <div>
-                      <label className="block text-gray-700 text-sm font-bold mb-2">
-                        Your Message *
+                      <label className="block text-gray-700 text-sm font-bold mb-2 flex items-center">
+                        <span className="text-orange-500 mr-1">●</span>
+                        Your Message
                       </label>
                       <textarea
                         name="message"
                         rows="6"
                         className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 text-gray-700 resize-none"
-                        placeholder="Tell us about your inquiry, requirements, or any questions you have about our products..."
+                        placeholder="Tell us how we can help you with our premium cooking oils, dealership opportunities, or bulk orders..."
                         value={formData.message}
                         onChange={handleInputChange}
                         required

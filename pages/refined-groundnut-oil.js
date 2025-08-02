@@ -2,6 +2,10 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import BuyNowButtons from '../components/BuyNowButtons';
+import SEO from '../components/SEO';
+import { generateProductSchema, generateWebPageSchema, generateBreadcrumbSchema, generateFAQSchema } from '../utils/structuredData';
+import { getImageSEO, generateImageSchema } from '../utils/imageSEO';
 
 export default function RefinedGroundnutOilPage() {
   const [products, setProducts] = useState([]);
@@ -26,12 +30,7 @@ export default function RefinedGroundnutOilPage() {
     fetchRefinedGroundnutOilProducts();
   }, []);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => prev === benefitImages.length - 1 ? 0 : prev + 1);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+  // Removed automatic timer for manual control only
 
   const fetchRefinedGroundnutOilProducts = async () => {
     try {
@@ -72,33 +71,49 @@ export default function RefinedGroundnutOilPage() {
   };
 
   const sortProductsBySize = (products) => {
-    const sizeOrder = [
-      '200ml', '200 ml',
-      '500ml', '500 ml', 
-      '1l', '1 l', '1ltr', '1 ltr', '1 litre', '1litre',
-      '2l', '2 l', '2ltr', '2 ltr', '2 litre', '2litre',
-      '5l', '5 l', '5ltr', '5 ltr', '5 litre', '5litre',
-      '15l', '15 l', '15ltr', '15 ltr', '15 litre', '15litre'
-    ];
+    // Define size mappings with priority order
+    const sizeMap = {
+      '500ml': 1, '500 ml': 1, '500ML': 1, '500 ML': 1,
+      '1l': 2, '1 l': 2, '1ltr': 2, '1 ltr': 2, '1 litre': 2, '1litre': 2, '1 liter': 2, '1L': 2, '1 L': 2,
+      '2l': 3, '2 l': 3, '2ltr': 3, '2 ltr': 3, '2 litre': 3, '2litre': 3, '2 liter': 3, '2L': 3, '2 L': 3,
+      '5l': 4, '5 l': 4, '5ltr': 4, '5 ltr': 4, '5 litre': 4, '5litre': 4, '5 liter': 4, '5L': 4, '5 L': 4,
+      '15l': 5, '15 l': 5, '15ltr': 5, '15 ltr': 5, '15 litre': 5, '15litre': 5, '15 liter': 5, '15L': 5, '15 L': 5
+    };
     
     return products.sort((a, b) => {
       const aName = a.name.toLowerCase();
       const bName = b.name.toLowerCase();
       
-      // Find size indicators in product names
-      const aSizeIndex = sizeOrder.findIndex(size => aName.includes(size));
-      const bSizeIndex = sizeOrder.findIndex(size => bName.includes(size));
+      // Extract size from product name using regex to avoid substring issues
+      let aSize = 999; // Default high value for products without size
+      let bSize = 999;
       
-      // If both have recognized sizes, sort by size order
-      if (aSizeIndex !== -1 && bSizeIndex !== -1) {
-        return aSizeIndex - bSizeIndex;
+      // Check for exact size matches to avoid "15l" matching when looking for "5l"
+      for (const [sizeKey, priority] of Object.entries(sizeMap)) {
+        const sizeLower = sizeKey.toLowerCase();
+        // Use word boundary or space to ensure exact match
+        const regex = new RegExp(`\\b${sizeLower}\\b|\\s${sizeLower}\\s|\\s${sizeLower}$`, 'i');
+        if (regex.test(aName)) {
+          aSize = priority;
+          break;
+        }
       }
       
-      // If only one has a recognized size, prioritize it
-      if (aSizeIndex !== -1) return -1;
-      if (bSizeIndex !== -1) return 1;
+      for (const [sizeKey, priority] of Object.entries(sizeMap)) {
+        const sizeLower = sizeKey.toLowerCase();
+        const regex = new RegExp(`\\b${sizeLower}\\b|\\s${sizeLower}\\s|\\s${sizeLower}$`, 'i');
+        if (regex.test(bName)) {
+          bSize = priority;
+          break;
+        }
+      }
       
-      // For products without recognized sizes (new products), sort by date (newest last)
+      // Sort by size priority
+      if (aSize !== bSize) {
+        return aSize - bSize;
+      }
+      
+      // If same size or both without size, sort by date
       return new Date(a.date_created) - new Date(b.date_created);
     });
   };
@@ -153,9 +168,9 @@ export default function RefinedGroundnutOilPage() {
 
   const getPlatformLogo = (platform) => {
     const logos = {
-      'Amazon': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/amazon-logo-on-transparent-background-free-vector.jpg',
-      'Flipkart': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/flipkart-logo-svg-vector.svg',
-      'JioMart': 'https://postmanoil.com/blog/wp-content/uploads/2025/06/jio-mart-logo.png'
+      'Amazon': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Amazon.png',
+      'Flipkart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/flipkart.png',
+      'JioMart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Jiomart.png'
     };
     return logos[platform] || logos['Amazon'];
   };
@@ -178,38 +193,80 @@ export default function RefinedGroundnutOilPage() {
     );
   }
 
+  // Schema data
+  const faqs = [
+    {
+      question: "What is the difference between refined and filtered groundnut oil?",
+      answer: "Refined groundnut oil undergoes processing to remove impurities and odor, making it neutral in taste and ideal for all types of cooking. Postman refined oil has a longer shelf life and higher smoke point."
+    },
+    {
+      question: "Is Postman refined groundnut oil healthy?",
+      answer: "Yes, Postman refined groundnut oil is heart-healthy, rich in unsaturated fats, vitamin E, and has zero cholesterol. The refining process removes allergens while retaining nutritional benefits."
+    },
+    {
+      question: "Where can I buy Postman refined oil online?",
+      answer: "Postman refined groundnut oil is available on Amazon India, Flipkart, and JioMart. We offer pack sizes from 1 litre to 15 litres with free delivery options."
+    }
+  ];
+
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://postmanoil.com' },
+    { name: 'Products', url: 'https://postmanoil.com/products' },
+    { name: 'Refined Groundnut Oil', url: 'https://postmanoil.com/refined-groundnut-oil' }
+  ];
+
+  const productSchemaData = {
+    name: "Postman Refined Groundnut Oil",
+    description: "Premium refined groundnut oil perfect for all types of cooking. Long shelf life, neutral taste, and high smoke point.",
+    images: [
+      "https://postmanoil.com/blog/wp-content/uploads/2025/06/3_white_refined_bottle_FRONT.webp"
+    ],
+    category: "Cooking Oil",
+    oilType: "Refined Groundnut Oil",
+    processingMethod: "Refined",
+    lowPrice: "150",
+    highPrice: "2800"
+  };
+
   return (
     <>
-      <Head>
-        <title>Refined Groundnut Oil Collection | Postman Oils - Premium Refined Groundnut Oil</title>
-        <meta name="description" content="Shop premium Refined Groundnut Oil from Postman Oils. Pure, refined, and perfect for everyday cooking. Long shelf life, easy to digest. Available on Amazon, Flipkart & JioMart." />
-        <meta name="keywords" content="refined groundnut oil, refined peanut oil, postman oil, cooking oil, pure groundnut oil, long shelf life oil" />
-        <meta property="og:title" content="Premium Refined Groundnut Oil | Postman Oils" />
-        <meta property="og:description" content="Pure and refined groundnut oil perfect for everyday cooking. Long shelf life, easy to digest. 58+ years of trust." />
-        <link rel="canonical" href="https://postmanoil.com/refined-groundnut-oil" />
-      </Head>
+      <SEO 
+        title="Postman Oils Refined Groundnut Oil - Premium Refined Cooking Oil | Mittal Oils"
+        description="Shop premium Postman Oil Refined Groundnut Oil. Postmanoils pure, refined oil by Mittal Oils perfect for everyday cooking. Long shelf life, easy to digest. Available on Amazon, Flipkart & JioMart."
+        keywords="postman oils, postman oil, postmanoils, mittal oils, edible oils, postman refined oil, refined groundnut oil, refined peanut oil, cooking oil, pure groundnut oil, long shelf life oil, neutral taste oil, high smoke point oil, healthy refined oil, vitamin e oil, cholesterol free oil, postmanoils refined oil, mittal oil mills refined oil"
+        image="https://postmanoil.com/blog/wp-content/uploads/2025/06/3_white_refined_bottle_FRONT.webp"
+        url="https://postmanoil.com/refined-groundnut-oil"
+        type="product"
+        schemaData={generateProductSchema(productSchemaData)}
+        additionalSchemas={[
+          generateFAQSchema(faqs),
+          generateBreadcrumbSchema(breadcrumbItems),
+          generateImageSchema(
+            "https://postmanoil.com/blog/wp-content/uploads/2025/06/3_white_refined_bottle_FRONT.webp",
+            "refined-oil-bottle",
+            "Refined Groundnut Oil"
+          )
+        ]}
+      />
 
       {/* Compact Hero Section */}
-      <section className="bg-gradient-to-r from-purple-400 via-indigo-500 to-blue-500 py-6 text-white">
+      <section className="bg-gradient-to-r from-purple-400 via-indigo-500 to-blue-500 py-3 md:py-4 text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-center">
             {/* Logo */}
-            <div className="mr-4 md:mr-6">
+            <div className="mr-3 md:mr-6">
               <img
                 src="https://postmanoil.com/blog/wp-content/uploads/2025/05/Postman.png"
-                alt="Postman Oils Logo"
-                className="h-16 md:h-20 w-auto object-contain"
+                {...getImageSEO('postman-logo', '')}
+                className="h-12 md:h-20 w-auto object-contain"
               />
             </div>
             
             {/* Title */}
             <div className="text-center">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-black">
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-black">
                 Postman <span className="text-white">Refined Groundnut Oil</span>
               </h1>
-              <p className="text-sm md:text-lg font-bold mt-1">
-                Pure • Refined • Versatile • Premium
-              </p>
             </div>
           </div>
         </div>
@@ -218,11 +275,6 @@ export default function RefinedGroundnutOilPage() {
       {/* Products Grid */}
       <section className="py-8 bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl md:text-3xl font-black mb-3 bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 bg-clip-text text-transparent">
-              Postman Refined Groundnut Oil Collection
-            </h3>
-          </div>
 
           {currentProducts.length > 0 ? (
             <>
@@ -307,9 +359,8 @@ export default function RefinedGroundnutOilPage() {
                 <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl overflow-hidden shadow-lg">
                   <img
                     src={benefitImages[currentSlide]}
-                    alt={`Benefits of Refined Groundnut Oil ${currentSlide + 1}`}
+                    {...getImageSEO('refined-oil', `Benefits ${currentSlide + 1}`)}
                     className="w-full h-48 object-contain p-3"
-                    loading="lazy"
                   />
                 </div>
               </div>
@@ -321,9 +372,8 @@ export default function RefinedGroundnutOilPage() {
                     <div key={index} className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                       <img
                         src={image}
-                        alt={`Benefits of Refined Groundnut Oil ${index + 1}`}
+                        {...getImageSEO('refined-oil', `Benefits ${index + 1}`)}
                         className="w-full h-48 md:h-56 lg:h-64 object-contain p-3"
-                        loading="lazy"
                       />
                     </div>
                   ))}
@@ -402,16 +452,22 @@ export default function RefinedGroundnutOilPage() {
 
 function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
   const buyButtons = extractBuyButtons(product);
+  const [isHovered, setIsHovered] = useState(false);
+  const hasSecondImage = product.images && product.images.length > 1;
 
   return (
     <div className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-purple-100">
       
       {/* Product Image - Clickable */}
       <Link href={`/product/${product.id}`}>
-        <div className="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-purple-50 to-indigo-50 cursor-pointer">
+        <div 
+          className="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-purple-50 to-indigo-50 cursor-pointer"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <img
-            src={product.images[0]?.src || '/placeholder.jpg'}
-            alt={product.name}
+            src={isHovered && hasSecondImage ? product.images[1].src : (product.images[0]?.src || '/placeholder.jpg')}
+            {...getImageSEO('refined-oil', product.name)}
             className="w-full h-full object-contain p-3 group-hover:scale-110 transition-transform duration-700"
           />
           
@@ -444,102 +500,11 @@ function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
         </Link>
 
         {/* Enhanced Buy Buttons with Better Alignment */}
-        <div className="space-y-2">
-          {buyButtons.length === 1 ? (
-            // Single button - full width
-            <a
-              href={buyButtons[0].url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full h-10 hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-lg"
-            >
-              <img
-                src={getPlatformLogo(buyButtons[0].platform)}
-                alt={`Buy on ${buyButtons[0].platform}`}
-                className="w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 hover:border-purple-300 p-2"
-              />
-            </a>
-          ) : (
-            <>
-              {/* Desktop: Single row with proper alignment */}
-              <div className="hidden md:flex md:space-x-2 md:items-end">
-                {buyButtons.map((button, index) => {
-                  let heightClass = 'h-10';
-                  let paddingClass = 'p-2';
-                  
-                  // Adjust height and padding for better alignment
-                  if (button.platform === 'Amazon') {
-                    heightClass = 'h-8'; // Amazon logo is naturally larger, so smaller container
-                    paddingClass = 'p-1';
-                  } else if (button.platform === 'JioMart') {
-                    heightClass = 'h-12'; // JioMart logo is smaller, so larger container
-                    paddingClass = 'p-2';
-                  } else if (button.platform === 'Flipkart') {
-                    heightClass = 'h-10'; // Flipkart is perfect as is
-                    paddingClass = 'p-2';
-                  }
-                  
-                  return (
-                    <a
-                      key={index}
-                      href={button.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`block flex-1 ${heightClass} hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-lg`}
-                    >
-                      <img
-                        src={getPlatformLogo(button.platform)}
-                        alt={`Buy on ${button.platform}`}
-                        className={`w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 hover:border-purple-300 ${paddingClass}`}
-                      />
-                    </a>
-                  );
-                })}
-              </div>
-              
-              {/* Mobile: Two rows */}
-              <div className="md:hidden space-y-2">
-                <div className="grid grid-cols-2 gap-2">
-                  {buyButtons.slice(0, 2).map((button, index) => (
-                    <a
-                      key={index}
-                      href={button.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block h-8 hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-lg"
-                    >
-                      <img
-                        src={getPlatformLogo(button.platform)}
-                        alt={`Buy on ${button.platform}`}
-                        className="w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 hover:border-purple-300 p-1"
-                      />
-                    </a>
-                  ))}
-                </div>
-                
-                {buyButtons.length > 2 && (
-                  <div className={`grid gap-2 ${buyButtons.length === 3 ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                    {buyButtons.slice(2).map((button, index) => (
-                      <a
-                        key={index + 2}
-                        href={button.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block h-8 hover:scale-105 transition-transform duration-300 shadow-md hover:shadow-lg"
-                      >
-                        <img
-                          src={getPlatformLogo(button.platform)}
-                          alt={`Buy on ${button.platform}`}
-                          className="w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 hover:border-purple-300 p-1"
-                        />
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-        </div>
+        <BuyNowButtons 
+          buyButtons={buyButtons} 
+          getPlatformLogo={getPlatformLogo}
+          colorScheme="purple"
+        />
       </div>
 
       {/* Bottom Accent */}

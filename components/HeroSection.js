@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getImageSEO } from '../utils/imageSEO';
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -66,7 +67,7 @@ export default function HeroSection() {
             <div key={slide.id} className="w-full flex-shrink-0 relative cursor-pointer" onClick={() => handleSlideClick(slide.link)}>
               <img
                 src={slide.image}
-                alt={slide.alt}
+                {...getImageSEO('default', slide.alt)}
                 className="w-full h-auto block"
                 loading={index === 0 ? "eager" : "lazy"} // Eager load first image
                 decoding="async"
