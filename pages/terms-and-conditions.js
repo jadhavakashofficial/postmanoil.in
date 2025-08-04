@@ -510,6 +510,193 @@ export default function TermsAndConditions() {
                 </div>
               </div>
 
+              {/* Section 9 - User Submissions */}
+              <div className="p-6 md:p-8" id="section-9">
+                <div 
+                  className="flex items-center justify-between cursor-pointer"
+                  onClick={() => toggleSection(9)}
+                >
+                  <div className="flex items-center">
+                    <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                      <span className="font-bold">9</span>
+                    </div>
+                    <h2 className="text-xl font-bold">
+                      <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                        User Submissions
+                      </span>
+                    </h2>
+                  </div>
+                  <svg 
+                    className={`w-6 h-6 text-orange-600 transition-transform duration-300 ${activeSection === 9 ? 'rotate-180' : ''}`}
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+                
+                <div className={`mt-4 text-gray-700 pl-12 ${activeSection === 9 ? 'block' : 'hidden md:block'}`}>
+                  <p className="mb-4">
+                    Any information, feedback, or content you submit through our website becomes the property of Postman Oils.
+                  </p>
+                  <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-4 rounded-lg">
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <span className="bg-orange-100 text-orange-800 rounded-full w-6 h-6 flex items-center justify-center mt-1 mr-3 flex-shrink-0">📋</span>
+                        <span>We may use your submissions for marketing, product development, or business purposes.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="bg-orange-100 text-orange-800 rounded-full w-6 h-6 flex items-center justify-center mt-1 mr-3 flex-shrink-0">🔒</span>
+                        <span>Personal information will be handled according to our Privacy Policy.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="bg-orange-100 text-orange-800 rounded-full w-6 h-6 flex items-center justify-center mt-1 mr-3 flex-shrink-0">✉️</span>
+                        <span>You must ensure all submissions are accurate and not misleading.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 10 - Termination */}
+              <div className="p-6 md:p-8" id="section-10">
+                <div 
+                  className="flex items-center justify-between cursor-pointer"
+                  onClick={() => toggleSection(10)}
+                >
+                  <div className="flex items-center">
+                    <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                      <span className="font-bold">10</span>
+                    </div>
+                    <h2 className="text-xl font-bold">
+                      <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                        Termination
+                      </span>
+                    </h2>
+                  </div>
+                  <svg 
+                    className={`w-6 h-6 text-orange-600 transition-transform duration-300 ${activeSection === 10 ? 'rotate-180' : ''}`}
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+                
+                <div className={`mt-4 text-gray-700 pl-12 ${activeSection === 10 ? 'block' : 'hidden md:block'}`}>
+                  <p className="mb-4">
+                    We reserve the right to terminate or suspend access to our website without prior notice for:
+                  </p>
+                  <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-lg">
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <span className="bg-red-100 text-red-800 rounded-full w-6 h-6 flex items-center justify-center mt-1 mr-3 flex-shrink-0">⛔</span>
+                        <span>Breach of these Terms & Conditions</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="bg-red-100 text-red-800 rounded-full w-6 h-6 flex items-center justify-center mt-1 mr-3 flex-shrink-0">⛔</span>
+                        <span>Unlawful or harmful activities</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="bg-red-100 text-red-800 rounded-full w-6 h-6 flex items-center justify-center mt-1 mr-3 flex-shrink-0">⛔</span>
+                        <span>Technical, legal, or security reasons</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 11 - Governing Law */}
+              <div className="p-6 md:p-8" id="section-11">
+                <div 
+                  className="flex items-center justify-between cursor-pointer"
+                  onClick={() => toggleSection(11)}
+                >
+                  <div className="flex items-center">
+                    <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                      <span className="font-bold">11</span>
+                    </div>
+                    <h2 className="text-xl font-bold">
+                      <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                        Governing Law
+                      </span>
+                    </h2>
+                  </div>
+                  <svg 
+                    className={`w-6 h-6 text-orange-600 transition-transform duration-300 ${activeSection === 11 ? 'rotate-180' : ''}`}
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+                
+                <div className={`mt-4 text-gray-700 pl-12 ${activeSection === 11 ? 'block' : 'hidden md:block'}`}>
+                  <p className="mb-4">
+                    These Terms & Conditions are governed by the laws of India.
+                  </p>
+                  <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-4 rounded-lg border-l-4 border-orange-400">
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <span className="bg-orange-100 text-orange-800 rounded-full w-6 h-6 flex items-center justify-center mt-1 mr-3 flex-shrink-0">⚖️</span>
+                        <span>Any disputes shall be subject to the exclusive jurisdiction of courts in Ajmer, Rajasthan.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="bg-orange-100 text-orange-800 rounded-full w-6 h-6 flex items-center justify-center mt-1 mr-3 flex-shrink-0">📜</span>
+                        <span>All matters will be resolved according to Indian law.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 12 - Disclaimer */}
+              <div className="p-6 md:p-8" id="section-12">
+                <div 
+                  className="flex items-center justify-between cursor-pointer"
+                  onClick={() => toggleSection(12)}
+                >
+                  <div className="flex items-center">
+                    <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-4">
+                      <span className="font-bold">12</span>
+                    </div>
+                    <h2 className="text-xl font-bold">
+                      <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                        Disclaimer
+                      </span>
+                    </h2>
+                  </div>
+                  <svg 
+                    className={`w-6 h-6 text-orange-600 transition-transform duration-300 ${activeSection === 12 ? 'rotate-180' : ''}`}
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+                
+                <div className={`mt-4 text-gray-700 pl-12 ${activeSection === 12 ? 'block' : 'hidden md:block'}`}>
+                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-lg mb-4">
+                    <p className="font-semibold text-yellow-800 mb-2">
+                      ⚠️ Important Disclaimer:
+                    </p>
+                    <ul className="space-y-2 text-yellow-700">
+                      <li>• This website is provided "as is" without warranties of any kind.</li>
+                      <li>• We do not guarantee uninterrupted or error-free service.</li>
+                      <li>• Information may change without notice.</li>
+                      <li>• Product availability varies by location.</li>
+                    </ul>
+                  </div>
+                  <p className="italic text-gray-600">
+                    Postman Oils strives for accuracy but cannot guarantee all information is current or complete.
+                  </p>
+                </div>
+              </div>
+
               {/* Section 13 */}
               <div className="p-6 md:p-8" id="section-13">
                 <div 

@@ -1,0 +1,216 @@
+/* Global Performance Optimizations for 120fps */
+
+/* Enable GPU acceleration and smooth rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Smooth scrolling for entire page */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed header if any */
+}
+
+/* Optimize animations for 120fps */
+@media (prefers-reduced-motion: no-preference) {
+  /* All transitions use GPU-accelerated properties */
+  * {
+    transition-property: transform, opacity, filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Image optimizations */
+  img {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Smooth hover effects */
+  a, button {
+    will-change: transform, opacity;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Optimize sliders */
+  .slider-content {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Smooth card animations */
+  .card-hover {
+    transform: translateZ(0);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px) translateZ(0);
+  }
+
+  /* Optimize infinite animations */
+  @keyframes smoothPulse {
+    0%, 100% { 
+      opacity: 1;
+      transform: scale(1) translateZ(0);
+    }
+    50% { 
+      opacity: 0.8;
+      transform: scale(1.05) translateZ(0);
+    }
+  }
+
+  @keyframes smoothFloat {
+    0%, 100% { 
+      transform: translateY(0) translateZ(0);
+    }
+    50% { 
+      transform: translateY(-10px) translateZ(0);
+    }
+  }
+
+  @keyframes smoothRotate {
+    from {
+      transform: rotate(0deg) translateZ(0);
+    }
+    to {
+      transform: rotate(360deg) translateZ(0);
+    }
+  }
+
+  /* Apply to specific elements */
+  .animate-pulse {
+    animation: smoothPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-float {
+    animation: smoothFloat 3s ease-in-out infinite;
+  }
+
+  .animate-spin {
+    animation: smoothRotate 1s linear infinite;
+  }
+}
+
+/* Accessibility improvements */
+:focus {
+  outline: 3px solid #FF6B35;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid #FF6B35;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip to content link for keyboard navigation */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  padding: 1rem;
+  background: #FF6B35;
+  color: white;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+}
+
+.skip-to-content:focus {
+  left: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor !important;
+  }
+  
+  button, a {
+    text-decoration: underline;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Performance hints for browsers */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize text rendering */
+.optimize-text {
+  text-rendering: optimizeSpeed;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
+
+/* Lazy loading placeholders */
+.lazy-load-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optimize touch interactions */
+@media (hover: none) and (pointer: coarse) {
+  button, a, .clickable {
+    -webkit-tap-highlight-color: rgba(255, 107, 53, 0.3);
+    touch-action: manipulation;
+  }
+}
+
+/* Smooth page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}

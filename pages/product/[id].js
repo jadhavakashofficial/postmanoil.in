@@ -447,30 +447,6 @@ export default function ProductPage() {
                       </div>
                     )}
 
-                    {/* Trust Badges */}
-                    <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-                      <h3 className="font-bold text-gray-700 mb-3 flex items-center text-lg">
-                        <span className="mr-2 text-xl">🏆</span> Quality Assurance
-                      </h3>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div className="text-center">
-                          <div className="text-2xl mb-1">🌱</div>
-                          <div className="text-xs font-bold text-gray-800">Premium Quality</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl mb-1">❄️</div>
-                          <div className="text-xs font-bold text-gray-800">Cold Pressed</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl mb-1">🧪</div>
-                          <div className="text-xs font-bold text-gray-800">Lab Tested</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl mb-1">🏆</div>
-                          <div className="text-xs font-bold text-gray-800">55+ Years Trust</div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               )}

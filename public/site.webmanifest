@@ -5,8 +5,9 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#f97316",
+  "theme_color": "#FF6B35",
   "orientation": "portrait-primary",
+  "scope": "/",
   "icons": [
     {
       "src": "https://postmanoil.com/blog/wp-content/uploads/2025/04/cropped-Postman-logo-2-1-e1745020681558.png",
@@ -19,19 +20,58 @@
       "type": "image/png"
     },
     {
-      "src": "https://postmanoil.com/blog/wp-content/uploads/2025/04/cropped-Postman-logo-2-1-e1745020681558.png",
+      "src": "/postman-logo.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://postmanoil.com/blog/wp-content/uploads/2025/04/cropped-Postman-logo-2-1-e1745020681558.png",
+      "src": "/postman-logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
-  "categories": ["food", "shopping", "lifestyle"],
+  "categories": ["food", "shopping", "lifestyle", "business"],
   "lang": "en-IN",
-  "dir": "ltr"
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Mustard Oil",
+      "short_name": "Mustard",
+      "description": "View our Kachi Ghani Mustard Oil products",
+      "url": "/mustard-oil",
+      "icons": [
+        {
+          "src": "/postman-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Groundnut Oil",
+      "short_name": "Groundnut",
+      "description": "View our Groundnut Filter Oil products",
+      "url": "/groundnut-oil",
+      "icons": [
+        {
+          "src": "/postman-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Refined Oil",
+      "short_name": "Refined",
+      "description": "View our Refined Groundnut Oil products",
+      "url": "/refined-groundnut-oil",
+      "icons": [
+        {
+          "src": "/postman-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
 }

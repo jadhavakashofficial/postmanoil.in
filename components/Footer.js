@@ -4,60 +4,117 @@ import { useState, useEffect } from "react";
 import { getImageSEO } from '../utils/imageSEO';
 
 export default function Footer() {
-  const [visitorCount, setVisitorCount] = useState(5425);
+  const [visitorCount, setVisitorCount] = useState(10000);
   const [isCounterAnimating, setIsCounterAnimating] = useState(false);
-  const [lastUpdateHour, setLastUpdateHour] = useState(null);
+  const [hasIncrementedVisitor, setHasIncrementedVisitor] = useState(false);
 
-  // Enhanced visitor counter with deterministic hourly increments (same for all users)
+  // Real visitor counter using PHP backend
   useEffect(() => {
-    const calculateVisitorCount = () => {
-      const baseCount = 5425;
-      const baseDate = new Date('2025-07-02T00:00:00Z'); // Fixed reference date
-      const currentDate = new Date();
-      
-      // Calculate hours passed since base date
-      const hoursPassed = Math.floor((currentDate - baseDate) / (1000 * 60 * 60));
-      
-      let totalIncrement = 0;
-      
-      // Generate consistent increments for each hour using a seed-based approach
-      for (let i = 0; i < hoursPassed; i++) {
-        // Use hour index as seed for consistent random generation
-        const seed = (baseDate.getTime() + i * 3600000) / 1000000;
-        const pseudoRandom = (seed * 9301 + 49297) % 233280;
-        const increment = Math.floor((pseudoRandom / 233280) * 9) + 1; // 1-9
-        totalIncrement += increment;
-      }
-      
-      return baseCount + totalIncrement;
-    };
+    const isLocalDevelopment = typeof window !== 'undefined' && 
+      (window.location.hostname === 'localhost' || 
+       window.location.hostname === '127.0.0.1' ||
+       window.location.hostname.includes('192.168'));
 
-    const updateVisitorCount = () => {
-      const currentHour = new Date().getHours();
-      const newCount = calculateVisitorCount();
-      
-      // Check if we're in a new hour
-      if (lastUpdateHour !== null && currentHour !== lastUpdateHour && newCount > visitorCount) {
-        setIsCounterAnimating(true);
+    const fetchVisitorCount = async () => {
+      // Use localStorage fallback for local development
+      if (isLocalDevelopment) {
+        const storedCount = localStorage.getItem('visitor_count') || '10000';
+        const currentCount = parseInt(storedCount);
         
-        setTimeout(() => {
-          setVisitorCount(newCount);
-          setTimeout(() => setIsCounterAnimating(false), 500);
-        }, 300);
-      } else if (lastUpdateHour === null) {
-        // Initial load
-        setVisitorCount(newCount);
+        if (!sessionStorage.getItem('visitor_counted')) {
+          const newCount = currentCount + 1;
+          localStorage.setItem('visitor_count', newCount.toString());
+          sessionStorage.setItem('visitor_counted', 'true');
+          setIsCounterAnimating(true);
+          setTimeout(() => {
+            setVisitorCount(newCount);
+            setTimeout(() => setIsCounterAnimating(false), 500);
+          }, 300);
+        } else {
+          setVisitorCount(currentCount);
+        }
+        return;
       }
-      
-      setLastUpdateHour(currentHour);
+
+      // Production: Use PHP backend
+      try {
+        // First, get the current count
+        const getResponse = await fetch('https://postmanoil.com/blog/visitor-api.php', {
+          method: 'GET',
+          credentials: 'include',
+          mode: 'cors'
+        });
+        
+        if (getResponse.ok) {
+          const getData = await getResponse.json();
+          if (getData.success) {
+            setVisitorCount(getData.count);
+          }
+        }
+        
+        // Then increment if not already counted
+        if (!hasIncrementedVisitor) {
+          const postResponse = await fetch('https://postmanoil.com/blog/visitor-api.php', {
+            method: 'POST',
+            credentials: 'include',
+            mode: 'cors'
+          });
+          
+          if (postResponse.ok) {
+            const postData = await postResponse.json();
+            if (postData.success && postData.incremented) {
+              setIsCounterAnimating(true);
+              setTimeout(() => {
+                setVisitorCount(postData.count);
+                setTimeout(() => setIsCounterAnimating(false), 500);
+              }, 300);
+            }
+            setHasIncrementedVisitor(true);
+          }
+        }
+      } catch (error) {
+        console.log('Using fallback visitor counter');
+        // Fallback to local storage based counting
+        const storedCount = localStorage.getItem('visitor_count') || '10000';
+        const currentCount = parseInt(storedCount);
+        
+        if (!sessionStorage.getItem('visitor_counted')) {
+          const newCount = currentCount + 1;
+          localStorage.setItem('visitor_count', newCount.toString());
+          sessionStorage.setItem('visitor_counted', 'true');
+          setVisitorCount(newCount);
+        } else {
+          setVisitorCount(currentCount);
+        }
+      }
     };
 
-    // Check every minute for hour changes
-    const interval = setInterval(updateVisitorCount, 60000);
-    updateVisitorCount(); // Initial check
+    fetchVisitorCount();
+    
+    // Update count every 30 seconds to see if others have visited (only in production)
+    if (!isLocalDevelopment) {
+      const interval = setInterval(() => {
+        fetch('https://postmanoil.com/blog/visitor-api.php', {
+          method: 'GET',
+          credentials: 'include',
+          mode: 'cors'
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success && data.count > visitorCount) {
+              setIsCounterAnimating(true);
+              setTimeout(() => {
+                setVisitorCount(data.count);
+                setTimeout(() => setIsCounterAnimating(false), 500);
+              }, 300);
+            }
+          })
+          .catch(() => {});
+      }, 30000);
 
-    return () => clearInterval(interval);
-  }, [lastUpdateHour, visitorCount]);
+      return () => clearInterval(interval);
+    }
+  }, [hasIncrementedVisitor, visitorCount]);
 
   return (
     <footer id="footer" className="bg-gradient-to-br from-orange-50 via-amber-50 to-red-50 mt-16 relative overflow-hidden">
@@ -89,16 +146,16 @@ export default function Footer() {
 
             {/* Enhanced Visitor Counter */}
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 rounded-xl blur-sm opacity-75 animate-pulse"></div>
-              <div className="relative bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-xl p-4 text-center shadow-2xl border border-orange-200 transform transition-all duration-300 hover:scale-105 hover:shadow-3xl">
-                <div className="text-white text-xs font-bold mb-3 tracking-wider uppercase">
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 rounded-lg blur-sm opacity-75 animate-pulse"></div>
+              <div className="relative bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-lg p-2.5 text-center shadow-2xl border border-orange-200 transform transition-all duration-300 hover:scale-105 hover:shadow-3xl">
+                <div className="text-white text-xs font-bold mb-2 tracking-wider uppercase">
                   🔥 Live Visitor Count 🔥
                 </div>
-                <div className="flex justify-center space-x-1.5">
+                <div className="flex justify-center space-x-1">
                   {visitorCount.toString().split('').map((digit, index) => (
                     <div
                       key={index}
-                      className={`bg-black text-orange-300 font-bold text-lg px-2 py-2 rounded-lg border-2 border-orange-400 min-w-[32px] text-center shadow-lg transform transition-all duration-500 ${
+                      className={`bg-black text-orange-300 font-bold text-lg px-2 py-1.5 rounded-md border-2 border-orange-400 min-w-[30px] text-center shadow-lg transform transition-all duration-500 ${
                         isCounterAnimating ? 'animate-bounce scale-110' : 'hover:scale-110'
                       }`}
                       style={{
@@ -109,7 +166,7 @@ export default function Footer() {
                     </div>
                   ))}
                 </div>
-                <div className="text-orange-200 text-xs mt-2 font-medium">
+                <div className="text-orange-200 text-xs mt-1.5 font-medium">
                   Updates every hour ⏰
                 </div>
               </div>

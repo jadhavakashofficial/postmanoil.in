@@ -12,6 +12,7 @@ export default function GroundnutOilPage() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const productsPerPage = 8;
 
   // WooCommerce API credentials
@@ -29,7 +30,16 @@ export default function GroundnutOilPage() {
     fetchGroundnutOilProducts();
   }, []);
 
-  // Removed automatic timer for manual control only
+  // Auto-play for sliders
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % benefitImages.length);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, benefitImages.length]);
 
   const fetchGroundnutOilProducts = async () => {
     try {
@@ -243,15 +253,15 @@ export default function GroundnutOilPage() {
       />
 
       {/* Compact Hero Section */}
-      <section className="bg-gradient-to-r from-red-400 via-orange-500 to-yellow-500 py-3 md:py-4 text-white">
+      <section className="bg-gradient-to-r from-red-400 via-orange-500 to-yellow-500 py-2 md:py-3 text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-center">
             {/* Logo */}
-            <div className="mr-3 md:mr-6">
+            <div className="mr-3 md:mr-6 bg-white/40 backdrop-blur-sm rounded-lg p-1 md:p-1.5">
               <img
                 src="https://postmanoil.com/blog/wp-content/uploads/2025/05/Postman.png"
                 {...getImageSEO('postman-logo', '')}
-                className="h-12 md:h-20 w-auto object-contain"
+                className="h-10 md:h-16 w-auto object-contain"
               />
             </div>
             
@@ -332,31 +342,64 @@ export default function GroundnutOilPage() {
       </section>
 
       {/* Benefits Slider Section */}
-      <section className="py-8 bg-gradient-to-br from-orange-100 via-red-100 to-yellow-100">
+      <section className="py-6 bg-gradient-to-br from-orange-100 via-red-100 to-yellow-100">
         <div className="max-w-7xl mx-auto px-4">
 
-          {/* Mobile: Single Image, Desktop: 3-Image Grid Slider */}
+          {/* Mobile Slider / Desktop Grid */}
           <div className="relative max-w-6xl mx-auto">
-            <div className="overflow-hidden rounded-2xl shadow-2xl bg-white p-4">
-              
-              {/* Mobile View - Single Image */}
-              <div className="md:hidden">
-                <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl overflow-hidden shadow-lg">
-                  <img
-                    src={benefitImages[currentSlide]}
-                    {...getImageSEO('groundnut-oil', `Benefits ${currentSlide + 1}`)}
-                    className="w-full h-48 object-contain p-3"
-                  />
+            {/* Mobile: Single Image Slider */}
+            <div className="md:hidden">
+              <div className="overflow-hidden rounded-2xl shadow-2xl bg-white p-4"
+                   onTouchStart={() => setIsAutoPlaying(false)}
+                   onTouchEnd={() => setTimeout(() => setIsAutoPlaying(true), 5000)}
+              >
+                <div 
+                  className="flex transition-transform duration-700 ease-in-out"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {benefitImages.map((image, index) => (
+                    <div key={index} className="w-full flex-shrink-0 px-2">
+                      <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl overflow-hidden shadow-lg">
+                        <img
+                          src={image}
+                          alt={`Postman Groundnut Oil Benefits - ${[
+                            'Premium Quality Groundnuts',
+                            'Traditional Cold Pressed Method'
+                          ][index] || `Feature ${index + 1}`}`}
+                          title={`Postman Groundnut Filter Oil - ${[
+                            'Made with Premium Groundnuts',
+                            'Traditional Extraction Process'
+                          ][index] || `Benefit ${index + 1}`}`}
+                          loading="lazy"
+                          width="400"
+                          height="300"
+                          className="w-full h-64 object-contain p-4"
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
+            </div>
 
-              {/* Desktop View - 2 Images Grid */}
-              <div className="hidden md:grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {/* Desktop: 2 Images Grid */}
+            <div className="hidden md:block overflow-hidden rounded-2xl shadow-2xl bg-white p-4">
+              <div className="grid grid-cols-2 gap-4 max-w-4xl mx-auto">
                 {benefitImages.map((image, index) => (
                   <div key={index} className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <img
                       src={image}
-                      {...getImageSEO('groundnut-oil', `Benefits ${index + 1}`)}
+                      alt={`Postman Groundnut Oil Benefits - ${[
+                        'Premium Quality Groundnuts',
+                        'Traditional Cold Pressed Method'
+                      ][index] || `Feature ${index + 1}`}`}
+                      title={`Postman Groundnut Filter Oil - ${[
+                        'Made with Premium Groundnuts',
+                        'Traditional Extraction Process'
+                      ][index] || `Benefit ${index + 1}`}`}
+                      loading="lazy"
+                      width="400"
+                      height="300"
                       className="w-full h-48 md:h-56 lg:h-64 object-contain p-3"
                     />
                   </div>
@@ -364,65 +407,119 @@ export default function GroundnutOilPage() {
               </div>
             </div>
 
-            {/* Slider Navigation */}
-            <button
-              onClick={() => setCurrentSlide((prev) => prev === 0 ? benefitImages.length - 1 : prev - 1)}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
-              aria-label="Previous slide"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            
-            <button
-              onClick={() => setCurrentSlide((prev) => prev === benefitImages.length - 1 ? 0 : prev + 1)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
-              aria-label="Next slide"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Enhanced Dots Indicator */}
-            <div className="flex justify-center mt-6 space-x-3">
-              {benefitImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`transition-all duration-300 rounded-full ${
-                    index === currentSlide 
-                      ? 'w-4 h-4 bg-gradient-to-r from-red-600 to-orange-600 scale-125 shadow-lg' 
-                      : 'w-3 h-3 bg-red-300 hover:bg-red-400 hover:scale-110'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
+            {/* Mobile Navigation Arrows - Only visible on mobile */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setCurrentSlide((prev) => prev === 0 ? benefitImages.length - 1 : prev - 1)}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white p-2 rounded-full shadow-xl transition-all duration-300"
+                aria-label="Previous slide"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <button
+                onClick={() => setCurrentSlide((prev) => (prev + 1) % benefitImages.length)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white p-2 rounded-full shadow-xl transition-all duration-300"
+                aria-label="Next slide"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
 
-          {/* Enhanced Key Benefits Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-green-200">
-              <div className="text-3xl mb-3">🌿</div>
-              <h4 className="font-bold text-green-800 text-sm mb-1">Premium Quality</h4>
-              <p className="text-xs text-green-600">Made with premium groundnuts only</p>
+          {/* Enhanced Key Benefits - Mobile Slider / Desktop Grid */}
+          <div className="mt-8">
+            {/* Mobile Slider View */}
+            <div className="md:hidden relative">
+              <div 
+                className="overflow-hidden"
+                onTouchStart={() => setIsAutoPlaying(false)}
+                onTouchEnd={() => setTimeout(() => setIsAutoPlaying(true), 5000)}
+              >
+                <div 
+                  className="flex transition-transform duration-500 ease-out"
+                  style={{ transform: `translateX(-${(currentSlide % 4) * 100}%)` }}
+                >
+                  <div className="w-full flex-shrink-0 px-2">
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 text-center shadow-lg border border-green-200">
+                      <div className="text-4xl mb-3">🌿</div>
+                      <h4 className="font-bold text-green-800 text-base mb-2">Premium Quality</h4>
+                      <p className="text-sm text-green-600">Made with premium groundnuts only</p>
+                    </div>
+                  </div>
+                  <div className="w-full flex-shrink-0 px-2">
+                    <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 text-center shadow-lg border border-blue-200">
+                      <div className="text-4xl mb-3">❄️</div>
+                      <h4 className="font-bold text-blue-800 text-base mb-2">Cold Pressed</h4>
+                      <p className="text-sm text-blue-600">Traditional cold pressing method</p>
+                    </div>
+                  </div>
+                  <div className="w-full flex-shrink-0 px-2">
+                    <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 text-center shadow-lg border border-purple-200">
+                      <div className="text-4xl mb-3">🔥</div>
+                      <h4 className="font-bold text-purple-800 text-base mb-2">High Smoke Point</h4>
+                      <p className="text-sm text-purple-600">Perfect for frying pakodas & snacks</p>
+                    </div>
+                  </div>
+                  <div className="w-full flex-shrink-0 px-2">
+                    <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 text-center shadow-lg border border-yellow-200">
+                      <div className="text-4xl mb-3">🏆</div>
+                      <h4 className="font-bold text-yellow-800 text-base mb-2">58+ Years Trust</h4>
+                      <p className="text-sm text-yellow-600">Legacy of quality</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Mobile Arrow Navigation */}
+              <div className="flex justify-center mt-4 gap-4">
+                <button
+                  onClick={() => setCurrentSlide((prev) => (prev - 1 + 4) % 4)}
+                  className="bg-orange-100 hover:bg-orange-200 text-orange-600 p-2 rounded-full transition-all duration-300"
+                  aria-label="Previous benefit"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setCurrentSlide((prev) => (prev + 1) % 4)}
+                  className="bg-orange-100 hover:bg-orange-200 text-orange-600 p-2 rounded-full transition-all duration-300"
+                  aria-label="Next benefit"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-blue-200">
-              <div className="text-3xl mb-3">❄️</div>
-              <h4 className="font-bold text-blue-800 text-sm mb-1">Cold Pressed</h4>
-              <p className="text-xs text-blue-600">Traditional cold pressing method</p>
-            </div>
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-purple-200">
-              <div className="text-3xl mb-3">🔥</div>
-              <h4 className="font-bold text-purple-800 text-sm mb-1">High Smoke Point</h4>
-              <p className="text-xs text-purple-600">Perfect for frying pakodas & snacks</p>
-            </div>
-            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-yellow-200">
-              <div className="text-3xl mb-3">🏆</div>
-              <h4 className="font-bold text-yellow-800 text-sm mb-1">58+ Years Trust</h4>
-              <p className="text-xs text-yellow-600">Legacy of quality</p>
+
+            {/* Desktop Grid View */}
+            <div className="hidden md:grid md:grid-cols-4 gap-4">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-green-200">
+                <div className="text-3xl mb-3">🌿</div>
+                <h4 className="font-bold text-green-800 text-sm mb-1">Premium Quality</h4>
+                <p className="text-xs text-green-600">Made with premium groundnuts only</p>
+              </div>
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-blue-200">
+                <div className="text-3xl mb-3">❄️</div>
+                <h4 className="font-bold text-blue-800 text-sm mb-1">Cold Pressed</h4>
+                <p className="text-xs text-blue-600">Traditional cold pressing method</p>
+              </div>
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-purple-200">
+                <div className="text-3xl mb-3">🔥</div>
+                <h4 className="font-bold text-purple-800 text-sm mb-1">High Smoke Point</h4>
+                <p className="text-xs text-purple-600">Perfect for frying pakodas & snacks</p>
+              </div>
+              <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-yellow-200">
+                <div className="text-3xl mb-3">🏆</div>
+                <h4 className="font-bold text-yellow-800 text-sm mb-1">58+ Years Trust</h4>
+                <p className="text-xs text-yellow-600">Legacy of quality</p>
+              </div>
             </div>
           </div>
         </div>

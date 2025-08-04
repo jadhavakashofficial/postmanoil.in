@@ -11,6 +11,7 @@ export default function MustardOilPage() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const productsPerPage = 8;
 
   // WooCommerce API credentials
@@ -31,7 +32,16 @@ export default function MustardOilPage() {
     fetchMustardOilProducts();
   }, []);
 
-  // Removed automatic timer for manual control only
+  // Auto-play for sliders
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % benefitImages.length);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, benefitImages.length]);
 
   const fetchMustardOilProducts = async () => {
     try {
@@ -253,23 +263,40 @@ export default function MustardOilPage() {
           generateBreadcrumbSchema(breadcrumbItems),
           generateImageSchema(
             "https://postmanoil.com/blog/wp-content/uploads/2025/06/1_yellow_mustard_bottle_FRONT.webp",
-            "mustard-oil-bottle",
-            "Kacchi Ghani Mustard Oil"
-          )
+            "postman-kachi-ghani-mustard-oil-bottle",
+            "Postman Kachi Ghani Mustard Oil - Premium Cold Pressed Sarson Ka Tel"
+          ),
+          generateProductGallerySchema({
+            name: "Postman Mustard Oil Gallery",
+            images: benefitImages.map((img, idx) => ({
+              src: img,
+              alt: `Postman Mustard Oil ${[
+                'Traditional Wood Pressed Method',
+                'Premium Quality Standards',
+                'Health Benefits of Mustard Oil',
+                'Perfect for Indian Cooking',
+                'Quality Assurance Process'
+              ][idx] || `Feature ${idx + 1}`}`
+            }))
+          })
         ]}
         breadcrumb={generateBreadcrumbSchema(breadcrumbItems)}
       />
 
       {/* Compact Hero Section */}
-      <section className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 py-3 md:py-4 text-white">
+      <section className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 py-2 md:py-3 text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-center">
             {/* Logo */}
-            <div className="mr-3 md:mr-6">
+            <div className="mr-3 md:mr-6 bg-white/40 backdrop-blur-sm rounded-lg p-1 md:p-1.5">
               <img
                 src="https://postmanoil.com/blog/wp-content/uploads/2025/05/Postman.png"
-                {...getImageSEO('postman-logo', '')}
-                className="h-12 md:h-20 w-auto object-contain"
+                alt="Postman Oils Logo - Premium Mustard Oil Brand"
+                title="Postman Oils - Trusted Since 1967"
+                loading="eager"
+                width="60"
+                height="60"
+                className="h-10 md:h-16 w-auto object-contain"
               />
             </div>
             
@@ -355,22 +382,76 @@ export default function MustardOilPage() {
       <section className="py-8 bg-gradient-to-br from-orange-100 via-yellow-100 to-amber-100">
         <div className="max-w-7xl mx-auto px-4">
 
-          {/* 3-Image Grid Slider */}
+          {/* Mobile Slider / Desktop Grid */}
           <div className="relative max-w-6xl mx-auto">
-            <div className="overflow-hidden rounded-2xl shadow-2xl bg-white p-4">
+            {/* Mobile: Single Image Slider */}
+            <div className="md:hidden">
+              <div className="overflow-hidden rounded-2xl shadow-2xl bg-white p-4">
+                <div 
+                  className="flex transition-transform duration-700 ease-in-out"
+                  style={{ transform: `translateX(-${(currentSlide % benefitImages.length) * 100}%)` }}
+                >
+                  {benefitImages.map((image, index) => (
+                    <div key={index} className="w-full flex-shrink-0 px-2">
+                      <div className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl overflow-hidden shadow-lg">
+                        <img
+                          src={image}
+                          alt={`Postman Mustard Oil Benefits - ${[
+                            'Traditional Wood Pressed Method',
+                            'Premium Quality Kachi Ghani',
+                            'Heart Healthy Omega-3 Rich',  
+                            'Perfect for Indian Cooking',
+                            'Lab Tested Pure Mustard Oil'
+                          ][index] || `Feature ${index + 1}`}`}
+                          title={`Postman Kachi Ghani Mustard Oil - ${[
+                            'Traditional Extraction Process',
+                            'Premium Quality Standards',
+                            'Health Benefits',
+                            'Cooking Excellence',
+                            'Quality Assurance'
+                          ][index] || `Benefit ${index + 1}`}`}
+                          loading="lazy"
+                          width="400"
+                          height="300"
+                          className="w-full h-64 object-contain p-4"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop: 3-Image Grid Slider */}
+            <div className="hidden md:block overflow-hidden rounded-2xl shadow-2xl bg-white p-4">
               <div 
                 className="flex transition-transform duration-700 ease-in-out"
                 style={{ transform: `translateX(-${Math.floor(currentSlide / 3) * 100}%)` }}
               >
-                {/* Group images in sets of 3 */}
                 {Array.from({ length: Math.ceil(benefitImages.length / 3) }, (_, groupIndex) => (
-                  <div key={groupIndex} className="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div key={groupIndex} className="w-full flex-shrink-0 grid grid-cols-3 gap-4">
                     {benefitImages.slice(groupIndex * 3, (groupIndex + 1) * 3).map((image, imageIndex) => (
                       <div key={imageIndex} className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                         <img
                           src={image}
-                          {...getImageSEO('mustard-oil', `Benefits ${groupIndex * 3 + imageIndex + 1}`)}
-                          className="w-full h-48 md:h-56 lg:h-64 object-contain p-3"
+                          alt={`Postman Mustard Oil Benefits - ${[
+                            'Traditional Wood Pressed Method',
+                            'Premium Quality Kachi Ghani',
+                            'Heart Healthy Omega-3 Rich',
+                            'Perfect for Indian Cooking',
+                            'Lab Tested Pure Mustard Oil'
+                          ][groupIndex * 3 + imageIndex] || `Feature ${groupIndex * 3 + imageIndex + 1}`}`}
+                          title={`Postman Kachi Ghani Mustard Oil - ${[
+                            'Traditional Extraction Process',
+                            'Premium Quality Standards',
+                            'Health Benefits',
+                            'Cooking Excellence',
+                            'Quality Assurance'
+                          ][groupIndex * 3 + imageIndex] || `Benefit ${groupIndex * 3 + imageIndex + 1}`}`}
+                          loading="lazy"
+                          width="400"
+                          height="300"
+                          className="w-full h-56 lg:h-64 object-contain p-3"
                         />
                       </div>
                     ))}
@@ -382,62 +463,115 @@ export default function MustardOilPage() {
             {/* Slider Navigation */}
             <button
               onClick={() => setCurrentSlide((prev) => prev === 0 ? benefitImages.length - 1 : prev - 1)}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
+              className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white p-2 md:p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
               aria-label="Previous slide"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             
             <button
               onClick={() => setCurrentSlide((prev) => prev === benefitImages.length - 1 ? 0 : prev + 1)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
+              className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white p-2 md:p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
               aria-label="Next slide"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
               </svg>
             </button>
 
-            {/* Enhanced Dots Indicator */}
-            <div className="flex justify-center mt-6 space-x-3">
-              {benefitImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`transition-all duration-300 rounded-full ${
-                    index === currentSlide 
-                      ? 'w-4 h-4 bg-gradient-to-r from-orange-600 to-red-600 scale-125 shadow-lg' 
-                      : 'w-3 h-3 bg-orange-300 hover:bg-orange-400 hover:scale-110'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
           </div>
 
-          {/* Enhanced Key Benefits Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-green-200">
-              <div className="text-3xl mb-3">🌿</div>
-              <h4 className="font-bold text-green-800 text-sm mb-1">Traditionally Crafted</h4>
-              <p className="text-xs text-green-600">Time-honored extraction</p>
+          {/* Enhanced Key Benefits - Mobile Slider / Desktop Grid */}
+          <div className="mt-8">
+            {/* Mobile Slider View */}
+            <div className="md:hidden relative">
+              <div 
+                className="overflow-hidden"
+                onTouchStart={() => setIsAutoPlaying(false)}
+                onTouchEnd={() => setTimeout(() => setIsAutoPlaying(true), 5000)}
+              >
+                <div 
+                  className="flex transition-transform duration-500 ease-out"
+                  style={{ transform: `translateX(-${(currentSlide % 4) * 100}%)` }}
+                >
+                  <div className="w-full flex-shrink-0 px-2">
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 text-center shadow-lg border border-green-200">
+                      <div className="text-4xl mb-3">🌿</div>
+                      <h4 className="font-bold text-green-800 text-base mb-2">Traditionally Crafted</h4>
+                      <p className="text-sm text-green-600">Time-honored extraction</p>
+                    </div>
+                  </div>
+                  <div className="w-full flex-shrink-0 px-2">
+                    <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-6 text-center shadow-lg border border-amber-200">
+                      <div className="text-4xl mb-3">🏭</div>
+                      <h4 className="font-bold text-amber-800 text-base mb-2">Wood Pressed</h4>
+                      <p className="text-sm text-amber-600">Traditional method</p>
+                    </div>
+                  </div>
+                  <div className="w-full flex-shrink-0 px-2">
+                    <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-6 text-center shadow-lg border border-red-200">
+                      <div className="text-4xl mb-3">❤️</div>
+                      <h4 className="font-bold text-red-800 text-base mb-2">Heart Healthy</h4>
+                      <p className="text-sm text-red-600">Cardiovascular benefits</p>
+                    </div>
+                  </div>
+                  <div className="w-full flex-shrink-0 px-2">
+                    <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 text-center shadow-lg border border-yellow-200">
+                      <div className="text-4xl mb-3">🏆</div>
+                      <h4 className="font-bold text-yellow-800 text-base mb-2">58+ Years Trust</h4>
+                      <p className="text-sm text-yellow-600">Legacy of quality</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Mobile Arrow Navigation */}
+              <div className="flex justify-center mt-4 gap-4">
+                <button
+                  onClick={() => setCurrentSlide((prev) => (prev - 1 + 4) % 4)}
+                  className="bg-orange-100 hover:bg-orange-200 text-orange-600 p-2 rounded-full transition-all duration-300"
+                  aria-label="Previous benefit"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setCurrentSlide((prev) => (prev + 1) % 4)}
+                  className="bg-orange-100 hover:bg-orange-200 text-orange-600 p-2 rounded-full transition-all duration-300"
+                  aria-label="Next benefit"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-amber-200">
-              <div className="text-3xl mb-3">🏭</div>
-              <h4 className="font-bold text-amber-800 text-sm mb-1">Wood Pressed</h4>
-              <p className="text-xs text-amber-600">Traditional method</p>
-            </div>
-            <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-red-200">
-              <div className="text-3xl mb-3">❤️</div>
-              <h4 className="font-bold text-red-800 text-sm mb-1">Heart Healthy</h4>
-              <p className="text-xs text-red-600">Cardiovascular benefits</p>
-            </div>
-            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-yellow-200">
-              <div className="text-3xl mb-3">🏆</div>
-              <h4 className="font-bold text-yellow-800 text-sm mb-1">58+ Years Trust</h4>
-              <p className="text-xs text-yellow-600">Legacy of quality</p>
+
+            {/* Desktop Grid View */}
+            <div className="hidden md:grid md:grid-cols-4 gap-4">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-green-200">
+                <div className="text-3xl mb-3">🌿</div>
+                <h4 className="font-bold text-green-800 text-sm mb-1">Traditionally Crafted</h4>
+                <p className="text-xs text-green-600">Time-honored extraction</p>
+              </div>
+              <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-amber-200">
+                <div className="text-3xl mb-3">🏭</div>
+                <h4 className="font-bold text-amber-800 text-sm mb-1">Wood Pressed</h4>
+                <p className="text-xs text-amber-600">Traditional method</p>
+              </div>
+              <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-red-200">
+                <div className="text-3xl mb-3">❤️</div>
+                <h4 className="font-bold text-red-800 text-sm mb-1">Heart Healthy</h4>
+                <p className="text-xs text-red-600">Cardiovascular benefits</p>
+              </div>
+              <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-yellow-200">
+                <div className="text-3xl mb-3">🏆</div>
+                <h4 className="font-bold text-yellow-800 text-sm mb-1">58+ Years Trust</h4>
+                <p className="text-xs text-yellow-600">Legacy of quality</p>
+              </div>
             </div>
           </div>
         </div>
@@ -452,7 +586,11 @@ function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
   const hasSecondImage = product.images && product.images.length > 1;
 
   return (
-    <div className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-orange-100">
+    <div 
+      className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-orange-100 gpu-accelerated card-hover"
+      role="article"
+      aria-label={`Product: ${product.name}`}
+    >
       
       {/* Product Image - Clickable */}
       <Link href={`/product/${product.id}`}>
@@ -463,7 +601,11 @@ function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
         >
           <img
             src={isHovered && hasSecondImage ? product.images[1].src : (product.images[0]?.src || '/placeholder.jpg')}
-            {...getImageSEO('mustard-oil', product.name)}
+            alt={`${product.name} - Postman Kachi Ghani Mustard Oil`}
+            title={`Buy ${product.name} Online - Premium Cold Pressed Mustard Oil`}
+            loading="lazy"
+            width="300"
+            height="300"
             className="w-full h-full object-contain p-3 group-hover:scale-110 transition-transform duration-700"
           />
           

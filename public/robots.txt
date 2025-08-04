@@ -4,8 +4,9 @@
 # Allow all search engines
 User-agent: *
 Allow: /
+Crawl-delay: 0
 Disallow: /api/
-Disallow: /_next/
+Disallow: /_next/static/
 Disallow: /admin/
 Disallow: /private/
 
@@ -26,10 +27,35 @@ Allow: *.gif
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Baiduspider
+Allow: /
 Crawl-delay: 1
 
-# Sitemap location
+User-agent: Applebot
+Allow: /
+
+# Allow important resources
+Allow: /_next/static/css/
+Allow: /_next/static/js/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.woff$
+Allow: /*.woff2$
+
+# Sitemap locations
 Sitemap: https://postmanoil.com/sitemap.xml
+Sitemap: https://postmanoil.com/sitemap-products.xml
+Sitemap: https://postmanoil.com/sitemap-images.xml
 
 # Block bad bots
 User-agent: AhrefsBot
@@ -42,6 +68,9 @@ User-agent: MJ12bot
 Disallow: /
 
 User-agent: DotBot
+Disallow: /
+
+User-agent: PetalBot
 Disallow: /
 
 # Allow social media crawlers
@@ -59,3 +88,6 @@ Allow: /
 
 User-agent: Slackbot
 Allow: /
+
+# Host directive
+Host: https://postmanoil.com

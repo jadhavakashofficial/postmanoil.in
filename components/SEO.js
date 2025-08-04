@@ -50,16 +50,34 @@ export default function SEO({
       <meta name="twitter:site" content="@PostmanOils" />
       <meta name="twitter:creator" content="@PostmanOils" />
       
-      {/* Additional SEO */}
-      <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+      {/* Advanced SEO Optimizations */}
+      <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
       <meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'} />
+      <meta name="bingbot" content={noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'} />
       <meta name="author" content={author} />
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
-      <meta name="revisit-after" content="3 days" />
+      <meta name="revisit-after" content="1 days" />
       <meta name="distribution" content="global" />
       <meta name="rating" content="general" />
+      <meta name="copyright" content="Postman Oils (Mittal Oils) - All Rights Reserved" />
+      
+      {/* Mobile App */}
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      <meta name="apple-mobile-web-app-title" content="Postman Oils" />
+      
+      {/* Security */}
+      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+      <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+      <meta name="referrer" content="origin-when-cross-origin" />
+      
+      {/* Search Engine Verification */}
+      <meta name="google-site-verification" content="your-google-verification-code" />
+      <meta name="msvalidate.01" content="your-bing-verification-code" />
+      <meta name="yandex-verification" content="your-yandex-verification-code" />
       
       {/* Dates */}
       {publishedDate && <meta property="article:published_time" content={publishedDate} />}
@@ -71,11 +89,20 @@ export default function SEO({
       <meta name="geo.position" content="25.4726;75.1505" />
       <meta name="ICBM" content="25.4726, 75.1505" />
       
-      {/* Performance */}
+      {/* Enhanced Performance Optimizations */}
       <link rel="preconnect" href="https://postmanoil.com" />
       <link rel="dns-prefetch" href="https://postmanoil.com" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://www.googletagmanager.com" />
+      <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+      
+      {/* Preload critical resources */}
+      <link rel="preload" href="/fonts/main-font.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      
+      {/* Resource hints for faster page loads */}
+      <link rel="prefetch" href="/api/products" />
+      <link rel="prerender" href="/" />
       
       {/* Canonical */}
       <link rel="canonical" href={url} />
