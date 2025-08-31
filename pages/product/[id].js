@@ -38,13 +38,6 @@ export default function ProductPage() {
       
       const productData = await response.json();
       
-      // Check if product has external buy buttons - if not, redirect
-      const buyButtons = extractBuyButtons(productData);
-      if (buyButtons.length === 0) {
-        router.push('/');
-        return;
-      }
-      
       setProduct(productData);
     } catch (err) {
       router.push('/');
@@ -121,7 +114,7 @@ export default function ProductPage() {
 
   const getPlatformLogo = (platform) => {
     const logos = {
-      'Amazon': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Amazon.png',
+      'Amazon': 'https://static.vecteezy.com/system/resources/previews/019/766/240/non_2x/amazon-logo-amazon-icon-transparent-free-png.png',
       'Flipkart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/flipkart.png',
       'JioMart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Jiomart.png'
     };
@@ -278,9 +271,9 @@ export default function ProductPage() {
                     {product.stock_status === 'instock' ? '✓ In Stock' : '✗ Out of Stock'}
                   </span>
                   
-                  {product.featured && (
-                    <span className="px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full text-sm font-bold">
-                      ⭐ Featured
+                  {(product.name.toLowerCase().includes('5l') || product.name.toLowerCase().includes('5 l')) && (
+                    <span className="px-3 py-1 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-full text-sm font-bold">
+                      🔥 BESTSELLER
                     </span>
                   )}
                 </div>
@@ -300,6 +293,7 @@ export default function ProductPage() {
               )}
 
               {/* Buy Buttons */}
+              {extractBuyButtons(product).length > 0 && (
               <div className="space-y-4">
                 <h3 className="text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent flex items-center">
                   <span className="mr-2">🛒</span> Quick Purchase:
@@ -307,18 +301,18 @@ export default function ProductPage() {
                 
                 {/* Desktop: Single row */}
                 <div className="hidden md:flex md:space-x-4">
-                  {buyButtons.map((button, index) => (
+                  {extractBuyButtons(product).map((button, index) => (
                     <a
                       key={index}
                       href={button.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 h-14 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white border-2 border-gray-200 hover:border-orange-300 p-3 flex items-center justify-center"
+                      className="flex-1 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white border-2 border-gray-200 hover:border-orange-300 p-2 flex items-center justify-center"
                     >
                       <img
                         src={getPlatformLogo(button.platform)}
                         alt={`Buy on ${button.platform}`}
-                        className="h-full object-contain"
+                        className={`h-full w-full object-contain ${button.platform === 'Amazon' ? 'scale-125' : 'scale-110'}`}
                       />
                     </a>
                   ))}
@@ -327,41 +321,97 @@ export default function ProductPage() {
                 {/* Mobile: Two rows */}
                 <div className="md:hidden space-y-3">
                   <div className="grid grid-cols-2 gap-3">
-                    {buyButtons.slice(0, 2).map((button, index) => (
+                    {extractBuyButtons(product).slice(0, 2).map((button, index) => (
                       <a
                         key={index}
                         href={button.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="h-12 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white border-2 border-gray-200 hover:border-orange-300 p-2 flex items-center justify-center"
+                        className="h-10 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white border-2 border-gray-200 hover:border-orange-300 p-1.5 flex items-center justify-center"
                       >
                         <img
                           src={getPlatformLogo(button.platform)}
                           alt={`Buy on ${button.platform}`}
-                          className="h-full object-contain"
+                          className={`h-full w-full object-contain ${button.platform === 'Amazon' ? 'scale-125' : 'scale-110'}`}
                         />
                       </a>
                     ))}
                   </div>
                   
-                  {buyButtons.length > 2 && (
-                    <div className={`grid gap-3 ${buyButtons.length === 3 ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                      {buyButtons.slice(2).map((button, index) => (
+                  {extractBuyButtons(product).length > 2 && (
+                    <div className={`grid gap-3 ${extractBuyButtons(product).length === 3 ? 'grid-cols-1' : 'grid-cols-2'}`}>
+                      {extractBuyButtons(product).slice(2).map((button, index) => (
                         <a
                           key={index + 2}
                           href={button.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="h-12 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white border-2 border-gray-200 hover:border-orange-300 p-2 flex items-center justify-center"
+                          className="h-10 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white border-2 border-gray-200 hover:border-orange-300 p-1.5 flex items-center justify-center"
                         >
                           <img
                             src={getPlatformLogo(button.platform)}
                             alt={`Buy on ${button.platform}`}
-                            className="h-full object-contain"
+                            className={`h-full w-full object-contain ${button.platform === 'Amazon' ? 'scale-125' : 'scale-110'}`}
                           />
                         </a>
                       ))}
                     </div>
+                  )}
+                </div>
+              </div>
+              )}
+
+              {/* Product-Specific Pointers */}
+              <div className="bg-gradient-to-br from-white via-orange-50 to-yellow-50 rounded-xl border-2 border-orange-200 shadow-lg p-4">
+                <h3 className="font-bold text-orange-700 mb-3 flex items-center text-lg">
+                  <span className="mr-2 text-xl">✅</span> Product Benefits
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {product.name.toLowerCase().includes('mustard') ? (
+                    <>
+                      <div className="flex items-center space-x-2 bg-white rounded-lg p-3 shadow-sm border border-orange-100">
+                        <span className="text-orange-500 text-lg">🌿</span>
+                        <span className="text-sm text-gray-700 font-medium">Wood Pressed</span>
+                      </div>
+                      <div className="flex items-center space-x-2 bg-white rounded-lg p-3 shadow-sm border border-orange-100">
+                        <span className="text-orange-500 text-lg">💪</span>
+                        <span className="text-sm text-gray-700 font-medium">Rich in Omega-3</span>
+                      </div>
+                      <div className="flex items-center space-x-2 bg-white rounded-lg p-3 shadow-sm border border-orange-100">
+                        <span className="text-orange-500 text-lg">🌾</span>
+                        <span className="text-sm text-gray-700 font-medium">Traditional Kachi Ghani</span>
+                      </div>
+                    </>
+                  ) : product.name.toLowerCase().includes('refined') ? (
+                    <>
+                      <div className="flex items-center space-x-2 bg-white rounded-lg p-3 shadow-sm border border-orange-100">
+                        <span className="text-orange-500 text-lg">🏆</span>
+                        <span className="text-sm text-gray-700 font-medium">Premium Quality</span>
+                      </div>
+                      <div className="flex items-center space-x-2 bg-white rounded-lg p-3 shadow-sm border border-orange-100">
+                        <span className="text-orange-500 text-lg">🔥</span>
+                        <span className="text-sm text-gray-700 font-medium">High Smoke Point</span>
+                      </div>
+                      <div className="flex items-center space-x-2 bg-white rounded-lg p-3 shadow-sm border border-orange-100">
+                        <span className="text-orange-500 text-lg">💎</span>
+                        <span className="text-sm text-gray-700 font-medium">Crystal Clear</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center space-x-2 bg-white rounded-lg p-3 shadow-sm border border-orange-100">
+                        <span className="text-orange-500 text-lg">❄️</span>
+                        <span className="text-sm text-gray-700 font-medium">Cold Pressed</span>
+                      </div>
+                      <div className="flex items-center space-x-2 bg-white rounded-lg p-3 shadow-sm border border-orange-100">
+                        <span className="text-orange-500 text-lg">🥜</span>
+                        <span className="text-sm text-gray-700 font-medium">100% Groundnut</span>
+                      </div>
+                      <div className="flex items-center space-x-2 bg-white rounded-lg p-3 shadow-sm border border-orange-100">
+                        <span className="text-orange-500 text-lg">💖</span>
+                        <span className="text-sm text-gray-700 font-medium">Heart Healthy</span>
+                      </div>
+                    </>
                   )}
                 </div>
               </div>
@@ -545,12 +595,12 @@ export default function ProductPage() {
                       href={button.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block w-full h-14 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-white to-gray-50 border-2 border-gray-200 hover:border-orange-300 p-3 flex items-center justify-center"
+                      className="block w-full h-12 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-r from-white to-gray-50 border-2 border-gray-200 hover:border-orange-300 p-2 flex items-center justify-center"
                     >
                       <img
                         src={getPlatformLogo(button.platform)}
                         alt={`Buy on ${button.platform}`}
-                        className="h-full object-contain"
+                        className={`h-full w-full object-contain ${button.platform === 'Amazon' ? 'scale-125' : 'scale-110'}`}
                       />
                     </a>
                   ))}

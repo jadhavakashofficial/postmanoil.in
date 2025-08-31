@@ -3,7 +3,7 @@ export default function BuyNowButtons({ buyButtons, getPlatformLogo, colorScheme
   // Get platform-specific styling - all same size for consistency
   const getPlatformStyles = (platform) => {
     // All platforms now use same height for better structure
-    return { height: 'h-10', padding: 'p-2' };
+    return { height: 'h-10', padding: 'p-1.5' };
   };
 
   const getHoverBorderColor = () => {
@@ -34,7 +34,7 @@ export default function BuyNowButtons({ buyButtons, getPlatformLogo, colorScheme
           <img
             src={getPlatformLogo(buyButtons[0].platform)}
             alt={`Buy on ${buyButtons[0].platform}`}
-            className={`w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 ${hoverBorderColor} p-2`}
+            className={`w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 ${hoverBorderColor} p-1 ${buyButtons[0].platform === 'Amazon' ? 'scale-110' : ''}`}
           />
         </a>
       ) : (
@@ -55,7 +55,7 @@ export default function BuyNowButtons({ buyButtons, getPlatformLogo, colorScheme
                   <img
                     src={getPlatformLogo(button.platform)}
                     alt={`Buy on ${button.platform}`}
-                    className={`w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 ${hoverBorderColor} ${padding}`}
+                    className={`w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 ${hoverBorderColor} ${padding} ${button.platform === 'Amazon' ? 'scale-110' : ''}`}
                   />
                 </a>
               );
@@ -76,7 +76,7 @@ export default function BuyNowButtons({ buyButtons, getPlatformLogo, colorScheme
                   <img
                     src={getPlatformLogo(button.platform)}
                     alt={`Buy on ${button.platform}`}
-                    className={`w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 ${hoverBorderColor} p-1`}
+                    className={`w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 ${hoverBorderColor} p-0.5 ${button.platform === 'Amazon' ? 'scale-110' : ''}`}
                   />
                 </a>
               ))}
@@ -95,7 +95,7 @@ export default function BuyNowButtons({ buyButtons, getPlatformLogo, colorScheme
                     <img
                       src={getPlatformLogo(button.platform)}
                       alt={`Buy on ${button.platform}`}
-                      className={`w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 ${hoverBorderColor} p-1`}
+                      className={`w-full h-full object-contain bg-white rounded-lg border-2 border-gray-200 ${hoverBorderColor} p-0.5`}
                     />
                   </a>
                 ))}

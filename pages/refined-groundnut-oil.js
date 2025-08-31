@@ -50,7 +50,7 @@ export default function RefinedGroundnutOilPage() {
       
       const allProducts = await response.json();
       
-      // Filter for refined groundnut oil products with external buy buttons
+      // Filter for refined groundnut oil products (show all, even without buy buttons)
       const refinedProducts = allProducts.filter(product => {
         const name = product.name.toLowerCase();
         const categories = product.categories.map(cat => cat.name.toLowerCase());
@@ -59,9 +59,8 @@ export default function RefinedGroundnutOilPage() {
                                   categories.some(cat => cat.includes('refined') && 
                                                 (cat.includes('groundnut') || cat.includes('peanut')));
         
-        const hasBuyButtons = extractBuyButtons(product).length > 0;
-        
-        return hasRefinedGroundnut && hasBuyButtons;
+        // Show all refined products, regardless of buy buttons
+        return hasRefinedGroundnut;
       });
 
       // Sort products by size priority and mark first as featured
@@ -178,7 +177,7 @@ export default function RefinedGroundnutOilPage() {
 
   const getPlatformLogo = (platform) => {
     const logos = {
-      'Amazon': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Amazon.png',
+      'Amazon': 'https://static.vecteezy.com/system/resources/previews/019/766/240/non_2x/amazon-logo-amazon-icon-transparent-free-png.png',
       'Flipkart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/flipkart.png',
       'JioMart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Jiomart.png'
     };
@@ -272,7 +271,7 @@ export default function RefinedGroundnutOilPage() {
                 loading="eager"
                 width="60"
                 height="60"
-                className="h-10 md:h-16 w-auto object-contain"
+                className="h-12 md:h-16 w-auto object-contain"
               />
             </div>
             
@@ -281,6 +280,24 @@ export default function RefinedGroundnutOilPage() {
               <h1 className="text-xl md:text-3xl lg:text-4xl font-black">
                 Postman <span className="text-white">Refined Groundnut Oil</span>
               </h1>
+              
+              {/* Pointers */}
+              <div className="flex justify-center gap-2 md:gap-4 mt-3">
+                {/* Mobile: 2 pointers */}
+                <span className="bg-white/20 text-white px-3 py-1 rounded-full text-xs md:text-sm font-semibold backdrop-blur-sm">
+                  Premium Quality
+                </span>
+                <span className="bg-white/20 text-white px-3 py-1 rounded-full text-xs md:text-sm font-semibold backdrop-blur-sm">
+                  ISO Certified
+                </span>
+                {/* Desktop only: 2 more pointers */}
+                <span className="hidden md:inline-block bg-white/20 text-white px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">
+                  High Smoke Point
+                </span>
+                <span className="hidden md:inline-block bg-white/20 text-white px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">
+                  Long Shelf Life
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -547,6 +564,12 @@ function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
   const buyButtons = extractBuyButtons(product);
   const [isHovered, setIsHovered] = useState(false);
   const hasSecondImage = product.images && product.images.length > 1;
+  
+  // Check if product is 5L
+  const is5Liter = product.name.toLowerCase().includes('5l') || 
+                   product.name.toLowerCase().includes('5 l') || 
+                   product.name.toLowerCase().includes('5 litre') ||
+                   product.name.toLowerCase().includes('5 liter');
 
   return (
     <div className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-purple-100">
@@ -568,17 +591,21 @@ function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
             className="w-full h-full object-contain p-3 group-hover:scale-110 transition-transform duration-700"
           />
           
-          {/* Badges */}
-          {(product.featured || product.on_sale) && (
-            <div className="absolute top-2 left-2 flex flex-col space-y-1">
-              {product.featured && (
-                <span className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
-                  ⭐ Featured
+          {/* Badges - Only show one */}
+          {(product.featured || product.on_sale || is5Liter) && (
+            <div className="absolute top-1 left-1 sm:top-2 sm:left-2">
+              {is5Liter ? (
+                <span className="bg-gradient-to-r from-red-500 to-red-600 text-white px-1 py-0.5 sm:px-1.5 sm:py-0.5 rounded-full text-[6px] sm:text-[8px] md:text-[10px] font-bold shadow-md">
+                  BESTSELLER
                 </span>
-              )}
+              ) : product.featured ? (
+                <span className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-1 py-0.5 sm:px-1.5 sm:py-0.5 rounded-full text-[6px] sm:text-[8px] md:text-[10px] font-bold shadow-md">
+                  FEATURED
+                </span>
+              ) : null}
               {product.on_sale && (
-                <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
-                  🔥 Sale!
+                <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[8px] sm:text-[10px] md:text-xs font-bold shadow-lg">
+                  <span className="hidden sm:inline">🔥 </span>Sale!
                 </span>
               )}
             </div>
@@ -591,11 +618,11 @@ function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
         
         {/* Product Name - Clickable */}
         <Link href={`/product/${product.id}`}>
-          <h3 className="font-bold text-gray-900 text-sm mb-3 cursor-pointer hover:text-purple-600 transition-colors line-clamp-2 min-h-[2.5rem] leading-tight">
+          <h3 className="font-bold text-gray-900 text-sm mb-2 cursor-pointer hover:text-purple-600 transition-colors line-clamp-2 min-h-[2.5rem] leading-tight">
             {product.name}
           </h3>
         </Link>
-
+        
         {/* Enhanced Buy Buttons with Better Alignment */}
         <BuyNowButtons 
           buyButtons={buyButtons} 

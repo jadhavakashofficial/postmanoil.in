@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Header from "./Header";
 import Footer from "./Footer";
+import WhatsAppButton from "./WhatsAppButton";
 
 export default function Layout({ children }) {
   // Enhanced keyboard navigation
@@ -101,10 +102,13 @@ export default function Layout({ children }) {
       
       <Footer />
       
+      {/* WhatsApp Button - Always Fixed */}
+      <WhatsAppButton />
+      
       {/* Back to top button for accessibility */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-8 right-8 bg-gradient-to-r from-orange-500 to-red-500 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:scale-110 focus:outline-none focus:ring-4 focus:ring-orange-300 hidden md:block"
+        className="fixed bottom-20 right-8 bg-gradient-to-r from-orange-500 to-red-500 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 focus:scale-110 focus:outline-none focus:ring-4 focus:ring-orange-300 hidden md:block"
         aria-label="Back to top"
         id="back-to-top"
       >

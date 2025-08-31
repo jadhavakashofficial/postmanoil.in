@@ -79,11 +79,13 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`flex justify-between items-center transition-all duration-300 ${isScrolled ? 'h-14 lg:h-16' : 'h-16 sm:h-18 lg:h-24'}`}>
             {/* Premium Logo with subtle shine effect - fixed for mobile */}
-            <Link href="/" className="flex-shrink-0 group">
+            <Link href="/" className="flex-shrink-0 group" aria-label="Postman Oils Home">
               <div className="relative overflow-hidden rounded-lg">
                 <img
                   src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png"
                   alt="Postman Oils - Premium Cooking Oils"
+                  width="280"
+                  height="80"
                   className={`w-auto transition-all duration-300 group-hover:scale-105 filter brightness-110 contrast-110 ${
                     isScrolled 
                       ? 'h-8 sm:h-10 lg:h-12 max-w-[140px] sm:max-w-[160px] lg:max-w-[280px]' 

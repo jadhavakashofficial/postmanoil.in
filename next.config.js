@@ -9,11 +9,12 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  trailingSlash: true, // Add trailing slash to all routes
-  exportPathMap: async function (
-    defaultPathMap,
-    { dev, dir, outDir, distDir, buildId }
-  ) {
+  trailingSlash: true, // Use trailing slashes for all routes
+  generateBuildId: async () => {
+    // Use a fixed build ID to prevent hydration mismatches
+    return 'postman-oils-build'
+  },
+  exportPathMap: async function () {
     return {
       '/': { page: '/' },
       '/about-us': { page: '/about-us' },
@@ -25,9 +26,9 @@ const nextConfig = {
       '/refined-groundnut-oil': { page: '/refined-groundnut-oil' },
       '/postman-recipes': { page: '/postman-recipes' },
       '/postman-supplements': { page: '/postman-supplements' },
-      '/how-postman-oil-is-made': { page: '/how-postman-oil-is-made' },
       '/privacy-policy': { page: '/privacy-policy' },
       '/terms-and-conditions': { page: '/terms-and-conditions' },
+      '/how-postman-oil-is-made': { page: '/how-postman-oil-is-made' },
     }
   },
 }

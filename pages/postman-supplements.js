@@ -13,7 +13,7 @@ export default function PremiumSupplements() {
         "Ideal for cattle and poultry"
       ],
       icon: "🐄",
-      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/05/IMG_8533-scaled.jpg"
+      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/08/IMG_8660-scaled.jpg"
     },
     {
       id: 'mustard-cake',
@@ -37,7 +37,7 @@ export default function PremiumSupplements() {
         "Supports sustained livestock productivity"
       ],
       icon: "🥜",
-      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/06/IMG_6416-scaled.jpg"
+      imageUrl: "https://postmanoil.com/blog/wp-content/uploads/2025/08/IMG_6409-scaled.jpg"
     }
   ];
 
@@ -78,7 +78,7 @@ export default function PremiumSupplements() {
                   <img
                     src={supplement.imageUrl}
                     alt={supplement.name}
-                    className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-110"
+                    className="w-full h-full object-contain p-2 transition-transform duration-500 hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                   <div className="absolute top-4 left-4 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white p-3 rounded-full shadow-lg border-2 border-white/20">

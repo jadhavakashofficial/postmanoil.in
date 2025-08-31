@@ -19,12 +19,14 @@ export default function FeaturedProducts() {
     {
       id: 1855,
       name: "Kacchi Ghani Mustard Oil 5Ltr",
-      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/61pg1v3I9zL._SL1080_-580x580.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/02_-Postman-Mustard-Oil-5-Ltr-1-scaled.png",
       alt: "Postman Mustard Oil 5 Litre Jar - Pure Kachi Ghani Cold Pressed",
       link: "/product/1855",
       gradient: "from-orange-400 via-red-500 to-pink-500",
       shadow: "shadow-orange-500/30",
-      bgGlow: "from-orange-100 to-red-100"
+      bgGlow: "from-orange-100 to-red-100",
+      isFeatured: true,
+      isBestseller: true
     },
     {
       id: 1858,
@@ -50,12 +52,14 @@ export default function FeaturedProducts() {
     {
       id: 1870,
       name: "Groundnut Filtered Oil 5 Ltr",
-      image: "https://postmanoil.com/blog/wp-content/uploads/2025/05/516TDqUwbL._SL1080_-580x580.jpg",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/06/01_Postman-Filtered-Groundnut-Oil-5-Ltr-1-scaled.png",
       alt: "Postman Groundnut Oil 5 Litre - Pure Cold Pressed Peanut Oil",
       link: "/product/1870",
       gradient: "from-cyan-400 via-blue-500 to-indigo-500",
       shadow: "shadow-cyan-500/30",
-      bgGlow: "from-cyan-100 to-blue-100"
+      bgGlow: "from-cyan-100 to-blue-100",
+      isFeatured: true,
+      isBestseller: true
     },
     {
       id: 1872,
@@ -86,7 +90,9 @@ export default function FeaturedProducts() {
       link: "/product/3011",
       gradient: "from-fuchsia-400 via-pink-500 to-rose-500",
       shadow: "shadow-fuchsia-500/30",
-      bgGlow: "from-fuchsia-100 to-pink-100"
+      bgGlow: "from-fuchsia-100 to-pink-100",
+      isFeatured: true,
+      isBestseller: true
     },
     {
       id: 1897,
@@ -157,6 +163,13 @@ export default function FeaturedProducts() {
                     }}
                   />
                   
+                  {/* Featured/Bestseller Tag */}
+                  {product.isBestseller && (
+                    <div className="absolute top-0.5 left-0.5 sm:top-1 sm:left-1 md:top-1.5 md:left-1.5 bg-gradient-to-r from-red-500 to-red-600 text-white text-[4px] sm:text-[5px] md:text-[6px] lg:text-[8px] font-bold px-0.5 py-[1px] sm:px-0.5 sm:py-[2px] md:px-1 md:py-0.5 rounded-full shadow-sm">
+                      BEST
+                    </div>
+                  )}
+                  
                   {/* Subtle shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-all duration-600"></div>
                 </div>
@@ -164,7 +177,7 @@ export default function FeaturedProducts() {
 
               {/* Product Info with reduced padding */}
               <div className="p-2 sm:p-3 pt-0">
-                <h3 className="font-bold text-transparent bg-gradient-to-r from-red-600 via-red-500 to-rose-600 bg-clip-text text-xs sm:text-sm lg:text-base text-center leading-tight group-hover:from-red-500 group-hover:to-rose-500 transition-all duration-300">
+                <h3 className="font-bold text-transparent bg-gradient-to-r from-red-600 via-red-500 to-rose-600 bg-clip-text text-[10px] sm:text-xs lg:text-sm text-center leading-tight line-clamp-2 min-h-[2rem] sm:min-h-[2.5rem] group-hover:from-red-500 group-hover:to-rose-500 transition-all duration-300">
                   {product.name}
                 </h3>
               </div>

@@ -10,32 +10,43 @@ export default function CertificationsPage() {
       id: 1,
       name: "Government of India Trademark",
       description: "Registered trademark under the Government of India, ensuring brand authenticity and legal protection for Postman Oils products.",
+      registrationNumber: "872525",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/08/1.png",
       category: "Legal"
     },
     {
       id: 2,
-      name: "TCCPL Certification",
-      description: "Certified by TCCPL for quality standards and manufacturing excellence.",
-      image: "https://postmanoil.com/blog/wp-content/uploads/2025/08/2.png",
-      category: "Quality"
+      name: "Copyright Registration",
+      description: "Copyright protected under intellectual property rights, ensuring brand protection and authenticity.",
+      registrationNumber: "A-90846/2011",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/08/1-2-2-scaled.jpg",
+      category: "Legal"
     },
     {
       id: 3,
       name: "FSSAI License",
       description: "Food Safety and Standards Authority of India certified, ensuring our oils meet the highest food safety standards.",
+      registrationNumber: "10017013001212",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/08/3.png",
       category: "Food Safety"
     },
     {
       id: 4,
       name: "ISO Certification",
-      description: "ISO certified for maintaining international quality management standards in our manufacturing processes.",
+      description: "ISO 22000:2018 certified for maintaining international quality management standards in our manufacturing processes.",
+      registrationNumber: "22000:2018",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/08/4.png",
       category: "International Standards"
     },
     {
       id: 5,
+      name: "TCCPL Certification",
+      description: "Certified by TCCPL for quality standards and manufacturing excellence.",
+      image: "https://postmanoil.com/blog/wp-content/uploads/2025/08/2.png",
+      category: "Quality"
+    },
+    {
+      id: 6,
       name: "HACCP Certification",
       description: "Hazard Analysis and Critical Control Points certified, ensuring systematic preventive approach to food safety.",
       image: "https://postmanoil.com/blog/wp-content/uploads/2025/08/5.png",
@@ -104,11 +115,11 @@ export default function CertificationsPage() {
       {/* Certifications Grid */}
       <section className="py-12 bg-gradient-to-br from-orange-50 via-yellow-50 to-red-50">
         <div className="max-w-7xl mx-auto px-4">
-          {/* Mobile Layout: 2 columns + full width for 5th */}
+          {/* Mobile Layout: 2 columns for all 6 */}
           <div className="block md:hidden">
-            {/* First 4 cards in 2 columns */}
-            <div className="grid grid-cols-2 gap-3 mb-3">
-              {certifications.slice(0, 4).map((cert) => (
+            {/* All 6 cards in 2 columns */}
+            <div className="grid grid-cols-2 gap-3">
+              {certifications.map((cert) => (
                 <div 
                   key={cert.id} 
                   className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-orange-200 hover:border-orange-400 group transform hover:-translate-y-2"
@@ -127,35 +138,14 @@ export default function CertificationsPage() {
                 </div>
                 <div className="p-3 sm:p-4 lg:p-6 bg-gradient-to-b from-white to-orange-50">
                   <h3 className="text-sm sm:text-base lg:text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-2 lg:mb-3">{cert.name}</h3>
+                  {cert.registrationNumber && (
+                    <p className="text-orange-600 font-semibold text-xs sm:text-sm mb-2">Registration: {cert.registrationNumber}</p>
+                  )}
                   <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">{cert.description}</p>
                 </div>
                 </div>
               ))}
             </div>
-            
-            {/* 5th card full width */}
-            {certifications.length === 5 && (
-              <div className="w-full">
-                <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-orange-200 hover:border-orange-400 group transform hover:-translate-y-2">
-                  <div className="relative h-32 sm:h-40 bg-gradient-to-br from-yellow-100 to-orange-100 p-4 sm:p-6 flex items-center justify-center">
-                    <img
-                      src={certifications[4].image}
-                      {...getImageSEO('certification', certifications[4].name)}
-                      className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 right-3">
-                      <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
-                        {certifications[4].category}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-3 sm:p-4 bg-gradient-to-b from-white to-orange-50">
-                    <h3 className="text-sm sm:text-base font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-2">{certifications[4].name}</h3>
-                    <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">{certifications[4].description}</p>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Desktop Layout: 3 columns grid */}
@@ -179,6 +169,9 @@ export default function CertificationsPage() {
                 </div>
                 <div className="p-4 lg:p-6 bg-gradient-to-b from-white to-orange-50">
                   <h3 className="text-base lg:text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-2 lg:mb-3">{cert.name}</h3>
+                  {cert.registrationNumber && (
+                    <p className="text-orange-600 font-semibold text-sm mb-2">Registration: {cert.registrationNumber}</p>
+                  )}
                   <p className="text-gray-700 text-sm leading-relaxed">{cert.description}</p>
                 </div>
               </div>

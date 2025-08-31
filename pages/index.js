@@ -10,6 +10,8 @@ import WhyChoosePostman from "../components/WhyChoosePostman";
 import CustomerReviews from "../components/CustomerReviews";
 import PostmanRecipes from "../components/PostmanRecipes";
 import ContactForms from "../components/ContactForms";
+import PostmanVideo from "../components/PostmanVideo";
+import StatisticsSection from "../components/StatisticsSection";
 
 export default function Home() {
   const faqs = [
@@ -69,9 +71,12 @@ export default function Home() {
       />
       <HeroSection />
       <PostmanOilCategories />
+      <StatisticsSection />
       <FeaturedProducts />
-      <HowOilIsMade />
+      <PostmanVideo />
       <AboutUsSection />
+      <HowOilIsMade />
+      
       <WhyChoosePostman />
       <CustomerReviews />
       <PostmanRecipes />

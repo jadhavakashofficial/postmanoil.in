@@ -117,7 +117,7 @@ export default function Footer() {
   }, [hasIncrementedVisitor, visitorCount]);
 
   return (
-    <footer id="footer" className="bg-gradient-to-br from-orange-50 via-amber-50 to-red-50 mt-16 relative overflow-hidden">
+    <footer id="footer" className="bg-gradient-to-br from-orange-50 via-amber-50 to-red-50 relative overflow-hidden" role="contentinfo" aria-label="Site footer">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 left-10 w-32 h-32 bg-orange-400 rounded-full blur-3xl animate-pulse"></div>
@@ -191,12 +191,12 @@ export default function Footer() {
               <div className="mt-6">
                 <h4 className="text-orange-700 font-semibold text-sm mb-3">Follow Our Journey</h4>
                 <div className="flex space-x-3">
-                  <a href="https://www.linkedin.com/company/postmanoil/" target="_blank" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 p-3 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-3 shadow-lg hover:shadow-xl group">
+                  <a href="https://www.linkedin.com/company/postmanoil/" target="_blank" rel="noopener noreferrer" aria-label="Follow Postman Oils on LinkedIn" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 p-3 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-3 shadow-lg hover:shadow-xl group">
                     <svg className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd" />
                     </svg>
                   </a>
-                  <a href="https://www.facebook.com/profile.php?id=61565820218513" target="_blank" className="bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-900 hover:to-blue-950 p-3 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-3 shadow-lg hover:shadow-xl group">
+                  <a href="https://www.facebook.com/profile.php?id=61565820218513" target="_blank" rel="noopener noreferrer" aria-label="Follow Postman Oils on Facebook" className="bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-900 hover:to-blue-950 p-3 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-3 shadow-lg hover:shadow-xl group">
                     <svg className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M20 10C20 4.477 15.523 0 10 0S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z" clipRule="evenodd" />
                     </svg>
@@ -274,18 +274,25 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Mobile Layout: Enhanced Accordion Style */}
+        {/* Mobile Layout: Enhanced Design */}
         <div className="lg:hidden">
-          {/* Company Info - Always Visible */}
-          <div className="text-center mb-8">
+          {/* Company Info with Better Styling */}
+          <div className="text-center mb-8 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-2xl p-6 mx-4 shadow-lg">
             <img
               src="https://postmanoil.com/blog/wp-content/uploads/2025/06/Logo.png"
               {...getImageSEO('logo', 'Footer Mobile')}
-              className="h-12 w-auto mx-auto mb-4 transition-transform duration-300 hover:scale-105"
+              className="h-14 w-auto mx-auto mb-4 transition-transform duration-300 hover:scale-105"
             />
-            <p className="text-gray-700 text-sm px-4 font-medium leading-relaxed">
-              Trusted by Indian families for over five decades.
+            <p className="text-gray-700 text-sm font-medium leading-relaxed">
+              Experience the legacy of purity with Postman Oils – trusted by Indian families for over five decades.
             </p>
+            {/* Quick Links for Mobile */}
+            <div className="flex justify-center gap-4 mt-4">
+              <span className="text-2xl">🏪</span>
+              <span className="text-2xl">📦</span>
+              <span className="text-2xl">🌾</span>
+              <span className="text-2xl">✨</span>
+            </div>
           </div>
 
           {/* Enhanced Mobile Visitor Counter */}
@@ -318,9 +325,9 @@ export default function Footer() {
             <div className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100">
               <h3 className="text-orange-700 font-bold text-base mb-3">🥜 Products</h3>
               <ul className="space-y-2">
-                <li><Link href="/refined-groundnut-oil" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">Refined Oil</Link></li>
-                <li><Link href="/groundnut-oil" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">Filtered Oil</Link></li>
-                <li><Link href="/mustard-oil" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">Mustard Oil</Link></li>
+                <li><Link href="/refined-groundnut-oil" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">🥜 Refined Oil</Link></li>
+                <li><Link href="/groundnut-oil" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">🌰 Filtered Oil</Link></li>
+                <li><Link href="/mustard-oil" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">🌿 Mustard Oil</Link></li>
               </ul>
             </div>
 
@@ -328,10 +335,10 @@ export default function Footer() {
             <div className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100">
               <h3 className="text-orange-700 font-bold text-base mb-3">🔗 Quick Links</h3>
               <ul className="space-y-2">
-                <li><Link href="/" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">Home</Link></li>
-                <li><Link href="/postman-recipes" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">Recipes</Link></li>
-                <li><Link href="/about-us" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">About Us</Link></li>
-                <li><Link href="/certifications" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">Certifications</Link></li>
+                <li><Link href="/" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">🏠 Home</Link></li>
+                <li><Link href="/postman-recipes" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">👨‍🍳 Recipes</Link></li>
+                <li><Link href="/about-us" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">ℹ️ About Us</Link></li>
+                <li><Link href="/certifications" className="text-gray-700 text-sm hover:text-orange-600 transition-colors font-medium block hover:translate-x-1">🏆 Certifications</Link></li>
               </ul>
             </div>
           </div>
@@ -380,7 +387,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
             <div className="text-sm text-gray-300 mb-3 sm:mb-0 font-medium">
-              © {new Date().getFullYear()} Mittal Oils Pvt Ltd. Crafted with ❤️ by{" "}
+              © {new Date().getFullYear()} <Link href="/about-us" className="text-orange-300 hover:text-orange-100 font-semibold transition-colors duration-200">Mittal Oils Mills</Link>. Crafted by{" "}
               <a
                 href="https://www.linkedin.com/in/classictechak/"
                 target="_blank"

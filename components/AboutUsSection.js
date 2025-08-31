@@ -1,6 +1,6 @@
 export default function YearsOfTrust() {
   return (
-    <section className="py-10 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
+    <section className="py-6 sm:py-10 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
       {/* Simplified Background Elements for better performance */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 bg-orange-300 rounded-full blur-sm"></div>
@@ -9,41 +9,41 @@ export default function YearsOfTrust() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-12 items-center">
           
           {/* Content Section */}
-          <div className="order-2 lg:order-1 space-y-6">
+          <div className="order-2 lg:order-1 space-y-3 sm:space-y-6 text-center lg:text-left">
             {/* Main Heading */}
-            <div className="space-y-3">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black leading-tight">
-                <span className="bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 bg-clip-text text-transparent">55+ Years of Trust</span>
-                <span className="text-gray-800 block mt-1">Purity Rooted in Tradition</span>
+            <div className="space-y-1 sm:space-y-3">
+              <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black leading-tight">
+                <span className="bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 bg-clip-text text-transparent text-base sm:text-xl md:text-2xl lg:text-3xl">55+ Years of Trust</span>
+                <span className="text-gray-800 block mt-0.5 sm:mt-1 text-sm sm:text-lg md:text-xl lg:text-2xl">Purity Rooted in Tradition</span>
               </h2>
             </div>
 
-            {/* Content Paragraphs */}
-            <div className="space-y-5 text-base md:text-lg leading-relaxed">
+            {/* Content Paragraphs - Mobile shows only first paragraph (50%) */}
+            <div className="space-y-3 sm:space-y-5 text-sm sm:text-base md:text-lg leading-relaxed">
               <p className="text-gray-700">
                 For over <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent font-bold text-lg md:text-xl">55 years</span>, Postman by Mittal Group has been the hallmark of <span className="bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent font-semibold">purity and tradition</span> in Indian kitchens. A <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent font-semibold">fourth-generation family business</span> rooted in Rajasthan, we meld time-honored "Kolhu" pressing, wooden extraction, and cold-press techniques with modern quality controls.
               </p>
               
-              <p className="text-gray-700">
+              <p className="text-gray-700 hidden sm:block">
                 From ethically sourcing the finest seeds directly from farmers to traditional stone crushing and low-heat expeller pressing, each drop is <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent font-bold text-lg md:text-xl">premium quality and traditionally processed</span>. Our triple-filtration and in-house lab testing guarantee crystal-clear clarity, nutrient retention, and a luscious flavor profile.
               </p>
             </div>
 
             {/* Know More Button */}
-            <div className="pt-4">
+            <div className="pt-2 sm:pt-4 flex justify-center lg:justify-start">
               <a 
-                href="#know-more" 
-                className="group inline-flex items-center space-x-2 bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 hover:from-orange-700 hover:via-red-600 hover:to-pink-700 text-white px-6 py-3 rounded-full shadow-xl hover:shadow-orange-500/30 transform hover:scale-105 transition-all duration-300 font-bold text-base"
+                href="/about-us" 
+                className="group inline-flex items-center space-x-1.5 bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 hover:from-orange-700 hover:via-red-600 hover:to-pink-700 text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full shadow-xl hover:shadow-orange-500/30 transform hover:scale-105 transition-all duration-300 font-bold text-xs sm:text-sm"
                 style={{
                   willChange: 'transform',
                   backfaceVisibility: 'hidden'
                 }}
               >
-                <span>Know More About Our Legacy</span>
-                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span>Know More About Legacy</span>
+                <svg className="w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </a>
@@ -51,7 +51,7 @@ export default function YearsOfTrust() {
           </div>
 
           {/* Image Section with optimized animations */}
-          <div className="order-1 lg:order-2 relative max-w-md mx-auto lg:max-w-lg">
+          <div className="order-1 lg:order-2 relative max-w-[200px] sm:max-w-md mx-auto lg:max-w-lg">
             <div className="relative group">
               {/* Image Container with simplified styling */}
               <div 
@@ -64,7 +64,7 @@ export default function YearsOfTrust() {
                 <img
                   src="https://postmanoil.com/blog/wp-content/uploads/2025/05/Postman.png"
                   alt="Postman Oil - 55+ Years of Trust and Tradition"
-                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500 p-4"
+                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500 p-1 sm:p-4 mx-auto"
                   loading="lazy"
                   decoding="async"
                   style={{
@@ -82,9 +82,9 @@ export default function YearsOfTrust() {
               <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
               {/* Trust Badge */}
-              <div className="absolute top-3 left-3 bg-gradient-to-r from-orange-600 to-red-600 text-white px-3 py-1.5 rounded-full shadow-lg font-bold text-xs">
-                <span className="flex items-center space-x-1">
-                  <span>✨</span>
+              <div className="absolute top-1 left-1 sm:top-3 sm:left-3 bg-gradient-to-r from-orange-600 to-red-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg font-bold text-[8px] sm:text-xs">
+                <span className="flex items-center space-x-0.5 sm:space-x-1">
+                  <span className="text-[8px] sm:text-xs">✨</span>
                   <span>55+ Years</span>
                 </span>
               </div>

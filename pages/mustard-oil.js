@@ -51,7 +51,7 @@ export default function MustardOilPage() {
       
       const allProducts = await response.json();
       
-      // Filter for mustard oil products with external buy buttons
+      // Filter for mustard oil products (show all, even without buy buttons)
       const mustardProducts = allProducts.filter(product => {
         const name = product.name.toLowerCase();
         const categories = product.categories.map(cat => cat.name.toLowerCase());
@@ -60,9 +60,8 @@ export default function MustardOilPage() {
                           name.includes('sarso') ||
                           categories.some(cat => cat.includes('mustard'));
         
-        const hasBuyButtons = extractBuyButtons(product).length > 0;
-        
-        return hasMustard && hasBuyButtons;
+        // Show all mustard products, regardless of buy buttons
+        return hasMustard;
       });
 
       // Sort products by size priority
@@ -174,7 +173,7 @@ export default function MustardOilPage() {
 
   const getPlatformLogo = (platform) => {
     const logos = {
-      'Amazon': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Amazon.png',
+      'Amazon': 'https://static.vecteezy.com/system/resources/previews/019/766/240/non_2x/amazon-logo-amazon-icon-transparent-free-png.png',
       'Flipkart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/flipkart.png',
       'JioMart': 'https://postmanoil.com/blog/wp-content/uploads/2025/07/Jiomart.png'
     };
@@ -296,15 +295,33 @@ export default function MustardOilPage() {
                 loading="eager"
                 width="60"
                 height="60"
-                className="h-10 md:h-16 w-auto object-contain"
+                className="h-12 md:h-16 w-auto object-contain"
               />
             </div>
             
             {/* Title */}
             <div className="text-center">
-              <h1 className="text-xl md:text-3xl lg:text-4xl font-black">
-                Postman <span className="text-yellow-200 block md:inline">Kacchi Ghani Mustard Oil</span>
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-black whitespace-nowrap">
+                Postman <span className="text-yellow-200">Kacchi Ghani Mustard Oil</span>
               </h1>
+              
+              {/* Pointers */}
+              <div className="flex justify-center gap-2 md:gap-4 mt-3">
+                {/* Mobile: 2 pointers */}
+                <span className="bg-yellow-100/20 text-yellow-100 px-3 py-1 rounded-full text-xs md:text-sm font-semibold backdrop-blur-sm">
+                  Wood Pressed
+                </span>
+                <span className="bg-yellow-100/20 text-yellow-100 px-3 py-1 rounded-full text-xs md:text-sm font-semibold backdrop-blur-sm">
+                  Kolhu Pressed
+                </span>
+                {/* Desktop only: 2 more pointers */}
+                <span className="hidden md:inline-block bg-yellow-100/20 text-yellow-100 px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">
+                  Traditional
+                </span>
+                <span className="hidden md:inline-block bg-yellow-100/20 text-yellow-100 px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm">
+                  Rich in Omega-3
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -584,6 +601,12 @@ function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
   const buyButtons = extractBuyButtons(product);
   const [isHovered, setIsHovered] = useState(false);
   const hasSecondImage = product.images && product.images.length > 1;
+  
+  // Check if product is 5L
+  const is5Liter = product.name.toLowerCase().includes('5l') || 
+                   product.name.toLowerCase().includes('5 l') || 
+                   product.name.toLowerCase().includes('5 litre') ||
+                   product.name.toLowerCase().includes('5 liter');
 
   return (
     <div 
@@ -609,17 +632,21 @@ function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
             className="w-full h-full object-contain p-3 group-hover:scale-110 transition-transform duration-700"
           />
           
-          {/* Badges */}
-          {(product.featured || product.on_sale) && (
-            <div className="absolute top-2 left-2 flex flex-col space-y-1">
-              {product.featured && (
-                <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
-                  ⭐ Featured
+          {/* Badges - Only show one */}
+          {(product.featured || product.on_sale || is5Liter) && (
+            <div className="absolute top-1 left-1 sm:top-2 sm:left-2">
+              {is5Liter ? (
+                <span className="bg-gradient-to-r from-red-500 to-red-600 text-white px-1 py-0.5 sm:px-1.5 sm:py-0.5 rounded-full text-[6px] sm:text-[8px] md:text-[10px] font-bold shadow-md">
+                  BESTSELLER
                 </span>
-              )}
+              ) : product.featured ? (
+                <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-1 py-0.5 sm:px-1.5 sm:py-0.5 rounded-full text-[6px] sm:text-[8px] md:text-[10px] font-bold shadow-md">
+                  FEATURED
+                </span>
+              ) : null}
               {product.on_sale && (
-                <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg">
-                  🔥 Sale!
+                <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[8px] sm:text-[10px] md:text-xs font-bold shadow-lg">
+                  <span className="hidden sm:inline">🔥 </span>Sale!
                 </span>
               )}
             </div>
@@ -634,11 +661,11 @@ function ProductCard({ product, extractBuyButtons, getPlatformLogo }) {
         
         {/* Product Name - Clickable */}
         <Link href={`/product/${product.id}`}>
-          <h3 className="font-bold text-gray-900 text-sm mb-3 cursor-pointer hover:text-orange-600 transition-colors line-clamp-2 min-h-[2.5rem] leading-tight">
+          <h3 className="font-bold text-gray-900 text-sm mb-2 cursor-pointer hover:text-orange-600 transition-colors line-clamp-2 min-h-[2.5rem] leading-tight">
             {product.name}
           </h3>
         </Link>
-
+        
         {/* Buy Buttons */}
         <BuyNowButtons 
           buyButtons={buyButtons} 

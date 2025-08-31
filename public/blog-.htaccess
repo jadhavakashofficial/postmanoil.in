@@ -1,0 +1,38 @@
+# Postman Oils Blog Folder .htaccess Configuration
+# This file should be placed in the /blog directory
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /blog/
+  
+  # WordPress default rules (if WordPress is in blog folder)
+  RewriteRule ^index\.php$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /blog/index.php [L]
+  
+  # Allow WordPress API access
+  RewriteRule ^wp-json/?(.*)$ /blog/index.php?rest_route=/$1 [L]
+</IfModule>
+
+# Protect WordPress files
+<Files wp-config.php>
+  Order allow,deny
+  Deny from all
+</Files>
+
+# Protect .htaccess itself
+<Files .htaccess>
+  Order allow,deny
+  Deny from all
+</Files>
+
+# Disable directory browsing
+Options -Indexes
+
+# Security Headers for blog
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>

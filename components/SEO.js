@@ -58,6 +58,7 @@ export default function SEO({
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />
+      <meta name="theme-color" content="#f97316" />
       <meta name="revisit-after" content="1 days" />
       <meta name="distribution" content="global" />
       <meta name="rating" content="general" />
